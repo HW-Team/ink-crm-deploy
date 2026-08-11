@@ -4,6 +4,7 @@ import { thDate, SOURCE_LABELS } from "@/lib/labels";
 import LogConversation from "@/components/LogConversation";
 import AddFollowUp from "@/components/AddFollowUp";
 import TransferOwner from "@/components/TransferOwner";
+import VisitButton from "@/components/VisitButton";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +38,13 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
             {" · "}{thDate(lead.lead_date)}
           </p>
         </div>
-        <StageBadge stage={lead.crm_stage} />
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <StageBadge stage={lead.crm_stage} />
+          <div className="flex items-center gap-3">
+            <VisitButton leadId={lead.id} />
+            <AddFollowUp contactId={lead.contact_id} leadId={lead.id} />
+          </div>
+        </div>
       </header>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -86,7 +93,6 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                 </div>
               ))}
             </div>
-            <AddFollowUp contactId={lead.contact_id} leadId={lead.id} />
           </div>
         </section>
       </div>
