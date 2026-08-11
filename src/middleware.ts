@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifySessionToken } from "@/lib/auth";
 
-// Route protection: app pages need a valid session; /login and API auth/agent routes are open.
+// Route protection: presence-check the session cookie. Real signature verification
+// happens server-side (pages via getSessionUser, API handlers). Middleware must stay
+// edge-runtime-safe: NO node:crypto / pg imports here (that crashed every route:
+// "Failed to load external module node:crypto").
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const token = req.cookies.get("ink_session")?.value;
 
   const isOpen =
     pathname.startsWith("/login") ||
@@ -14,11 +15,9 @@ export function middleware(req: NextRequest) {
 
   if (isOpen) return NextResponse.next();
   if (pathname.startsWith("/api/") || pathname.startsWith("/_next/")) {
-    // API routes other than the open set are guarded by their own handlers; let them through
-    // (they will 401 themselves if no valid session — pages fetch them with the cookie).
-    return NextResponse.next();
+    return NextResponse.next(); // API handlers 401 themselves
   }
-  if (!verifySessionToken(token)) {
+  if (!req.cookies.get("ink_session")?.value) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";
