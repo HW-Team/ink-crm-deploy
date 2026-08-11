@@ -16,7 +16,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
   if (params.q) { vals.push(`%${params.q}%`); conds.push(`(l.full_name ilike $${vals.length} or l.phone ilike $${vals.length})`); }
   if (tab === "inbox") conds.push("l.owner_id is null");
 
-  const [leads, inboxCount] = await Promise.all([
+  const [leads, inboxRows] = await Promise.all([
     q(
       `select l.*, u.full_name as owner_name
        from leads l left join users u on u.id = l.owner_id
@@ -26,6 +26,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
     ),
     q(`select count(*)::int as n from leads where owner_id is null`),
   ]);
+  const inboxCount = inboxRows[0]?.n ?? 0;
 
   return (
     <div className="space-y-6">
