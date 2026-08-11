@@ -5,10 +5,22 @@ import { SOURCE_LABELS } from "@/lib/labels";
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const [leadRows, contactsRows, followUpsRows] = await Promise.all([
+  const [leadRows, contactsRows, followUpsRows, workloadRows, unownedRows] = await Promise.all([
     q(`select crm_stage, source, full_name, owner from leads limit 5000`),
     q(`select count(*)::int as n from contacts`),
     q(`select count(*)::int as n from follow_ups where status = 'open'`),
+    q(
+      `select u.full_name, u.role,
+         count(l.id) filter (where l.owner_id = u.id) as owned_leads,
+         count(l.id) filter (where l.owner_id = u.id and l.crm_stage = 'new') as uncontacted,
+         count(fu.id) filter (where fu.owner_id = u.id and fu.status = 'open') as open_followups
+       from users u
+       left join leads l on 1 = 1
+       left join follow_ups fu on 1 = 1
+       group by u.id, u.full_name, u.role
+       order by owned_leads desc`
+    ),
+    q(`select count(*)::int as n from leads where owner_id is null`),
   ]);
 
   const totalLeads = leadRows.length;
@@ -20,6 +32,7 @@ export default async function DashboardPage() {
   }
   const openFollowUps = followUpsRows[0]?.n ?? 0;
   const totalContacts = contactsRows[0]?.n ?? 0;
+  const unowned = unownedRows[0]?.n ?? 0;
 
   const stageOrder = ["new", "contacted", "qualified", "site_visit", "proposal", "won", "unqualified", "lost", "no_answer", "duplicate"];
   const stageLabels: Record<string, string> = {
@@ -28,6 +41,7 @@ export default async function DashboardPage() {
     no_answer: "ไม่ตอบ", duplicate: "ซ้ำ",
   };
   const qualified = byStage.get("qualified") ?? 0;
+  const maxLoad = Math.max(1, ...workloadRows.map((w) => w.owned_leads ?? 0));
 
   return (
     <div className="space-y-6">
@@ -36,12 +50,13 @@ export default async function DashboardPage() {
         <p className="text-sm text-[#64748B]">ภาพรวม CRM</p>
       </header>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {[
           { label: "ลีดทั้งหมด", value: totalLeads },
           { label: "คอนแทกต์", value: totalContacts },
           { label: "ติดตามค้าง", value: openFollowUps },
           { label: "สนใจ", value: qualified },
+          { label: "รอรับงาน", value: unowned },
         ].map((k) => (
           <div key={k.label} className="card">
             <div className="kpi-value">{k.value.toLocaleString()}</div>
@@ -68,22 +83,44 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        <section className="card">
-          <h2 className="text-base font-semibold text-[#0F172A] mb-4">แหล่งที่มา</h2>
-          <div className="space-y-3">
-            {[...bySource.entries()].sort((a, b) => b[1] - a[1]).map(([src, n]) => {
-              const pct = totalLeads ? Math.round((n / totalLeads) * 100) : 0;
-              return (
-                <div key={src} className="flex items-center gap-3">
-                  <div className="w-24 text-sm text-[#334155] shrink-0">{SOURCE_LABELS[src] ?? src}</div>
-                  <div className="pbar flex-1"><div style={{ width: `${pct}%` }} /></div>
-                  <div className="w-10 text-right text-sm font-semibold text-[#0F172A]">{n}</div>
+        <div className="space-y-6">
+          <section className="card">
+            <h2 className="text-base font-semibold text-[#0F172A] mb-4">แหล่งที่มา</h2>
+            <div className="space-y-3">
+              {[...bySource.entries()].sort((a, b) => b[1] - a[1]).map(([src, n]) => {
+                const pct = totalLeads ? Math.round((n / totalLeads) * 100) : 0;
+                return (
+                  <div key={src} className="flex items-center gap-3">
+                    <div className="w-24 text-sm text-[#334155] shrink-0">{SOURCE_LABELS[src] ?? src}</div>
+                    <div className="pbar flex-1"><div style={{ width: `${pct}%` }} /></div>
+                    <div className="w-10 text-right text-sm font-semibold text-[#0F172A]">{n}</div>
+                  </div>
+                );
+              })}
+              {bySource.size === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีข้อมูล</p>}
+            </div>
+          </section>
+
+          <section className="card">
+            <h2 className="text-base font-semibold text-[#0F172A] mb-4">ภาระงานต่อคน</h2>
+            <div className="space-y-3">
+              {workloadRows.map((w: any) => (
+                <div key={w.full_name} className="flex items-center gap-3">
+                  <div className="w-28 text-sm text-[#334155] shrink-0 truncate">
+                    {w.full_name}{w.role === "agent" ? " (AI)" : ""}
+                  </div>
+                  <div className="pbar flex-1">
+                    <div style={{ width: `${Math.round(((w.owned_leads ?? 0) / maxLoad) * 100)}%` }} />
+                  </div>
+                  <div className="w-24 text-right text-xs text-[#64748B] shrink-0">
+                    {w.owned_leads ?? 0} ลีด · {w.open_followups ?? 0} ติดตาม
+                  </div>
                 </div>
-              );
-            })}
-            {bySource.size === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีข้อมูล</p>}
-          </div>
-        </section>
+              ))}
+              {workloadRows.length === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีทีม</p>}
+            </div>
+          </section>
+        </div>
       </div>
 
       <section className="card overflow-x-auto p-0">

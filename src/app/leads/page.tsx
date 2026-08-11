@@ -1,6 +1,7 @@
 import { q } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
 import { SOURCE_LABELS } from "@/lib/labels";
+import ClaimButton from "@/components/ClaimButton";
 
 export const dynamic = "force-dynamic";
 
@@ -9,12 +10,14 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
 
   const conds: string[] = [];
   const vals: unknown[] = [];
-  if (params.stage) { vals.push(params.stage); conds.push(`crm_stage = $${vals.length}`); }
-  if (params.q) { vals.push(`%${params.q}%`); conds.push(`(full_name ilike $${vals.length} or phone ilike $${vals.length})`); }
+  if (params.stage) { vals.push(params.stage); conds.push(`l.crm_stage = $${vals.length}`); }
+  if (params.q) { vals.push(`%${params.q}%`); conds.push(`(l.full_name ilike $${vals.length} or l.phone ilike $${vals.length})`); }
 
   const leads = await q(
-    `select * from leads ${conds.length ? `where ${conds.join(" and ")}` : ""}
-     order by lead_date desc limit 200`,
+    `select l.*, u.full_name as owner_name
+     from leads l left join users u on u.id = l.owner_id
+     ${conds.length ? `where ${conds.join(" and ")}` : ""}
+     order by l.lead_date desc limit 200`,
     vals
   );
 
@@ -58,7 +61,11 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
                 <td><StageBadge stage={l.crm_stage} /></td>
                 <td>{SOURCE_LABELS[l.source] ?? l.source}</td>
                 <td>{l.interest ?? "—"}</td>
-                <td>{l.owner ?? "—"}</td>
+                <td>
+                  {l.owner_name
+                    ? <span className="text-[13px] text-[#334155]">{l.owner_name}</span>
+                    : <ClaimButton leadId={l.id} />}
+                </td>
                 <td className="whitespace-nowrap">{new Date(l.lead_date).toLocaleDateString("th-TH", { day: "numeric", month: "short" })}</td>
               </tr>
             ))}

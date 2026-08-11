@@ -1,0 +1,107 @@
+# Ink Homes CRM — minimal self-contained Supabase (db + kong + auth + rest + studio + meta)
+# Self-contained: values inlined, named volumes — no ${VAR} injection needed
+services:
+  db:
+    image: supabase/postgres:15.8.1.048
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: POSTGRES_PASSWORD_PLACEHOLDER
+      POSTGRES_DB: postgres
+    volumes:
+      - ink_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  kong:
+    image: kong:2.8.1
+    restart: unless-stopped
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /tmp/kong.yml
+      KONG_DNS_ORDER: LAST,A,CNAME
+      KONG_PLUGINS: request-transformer,cors,key-auth,acl
+      KONG_NGINX_PROXY_PROXY_BUFFER_SIZE: 160k
+      KONG_NGINX_PROXY_PROXY_BUFFERS: 64 160k
+    volumes:
+      - ./kong.yml:/tmp/kong.yml
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+    depends_on:
+      - db
+
+  auth:
+    image: supabase/gotrue:v2.174.0
+    restart: unless-stopped
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: "9999"
+      API_EXTERNAL_URL: http://localhost:8000
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://postgres:POSTGRES_PASSWORD_PLACEHOLDER@db:5432/postgres
+      GOTRUE_SITE_URL: http://localhost:3000
+      GOTRUE_URI_ALLOW_LIST: ""
+      GOTRUE_DISABLE_SIGNUP: "false"
+      GOTRUE_JWT_ADMIN_ROLES: service_role
+      GOTRUE_JWT_AUD: authenticated
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_SECRET: JWT_SECRET_PLACEHOLDER
+      GOTRUE_JWT_EXP: "3600"
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
+      GOTRUE_MAILER_AUTOCONFIRM: "true"
+      GOTRUE_SMTP_ADMIN_EMAIL: ink@ink-homes.com
+      GOTRUE_SMTP_HOST: smtp.gmail.com
+      GOTRUE_SMTP_PORT: "587"
+      GOTRUE_SMTP_SENDER_NAME: Ink Homes CRM
+      GOTRUE_SMTP_USER: ""
+      GOTRUE_SMTP_PASS: ""
+    depends_on:
+      - db
+
+  rest:
+    image: postgrest/postgrest:v12.2.12
+    restart: unless-stopped
+    environment:
+      PGRST_DB_URI: postgres://postgres:POSTGRES_PASSWORD_PLACEHOLDER@db:5432/postgres
+      PGRST_DB_SCHEMAS: public,storage,graphql_public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: JWT_SECRET_PLACEHOLDER
+      PGRST_DB_MAX_ROWS: "1000"
+    depends_on:
+      - db
+
+  meta:
+    image: supabase/postgres-meta:v0.89.3
+    restart: unless-stopped
+    environment:
+      PG_META_PORT: "8080"
+      PG_META_DB_HOST: db
+      PG_META_DB_PORT: "5432"
+      PG_META_DB_USER: postgres
+      PG_META_DB_PASSWORD: POSTGRES_PASSWORD_PLACEHOLDER
+      PG_META_DB_NAME: postgres
+    depends_on:
+      - db
+
+  studio:
+    image: supabase/studio:2026.01.07-sha-037e5f9
+    restart: unless-stopped
+    environment:
+      STUDIO_PG_META_URL: http://meta:8080
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_PUBLIC_URL: http://localhost:8000
+      SUPABASE_ANON_KEY: ANON_KEY_PLACEHOLDER
+      SUPABASE_SERVICE_KEY: SERVICE_ROLE_KEY_PLACEHOLDER
+      SUPABASE_DEFAULT_ORGANIZATION_NAME: Ink Homes
+      SUPABASE_DEFAULT_PROJECT_NAME: ink-crm
+    depends_on:
+      - kong
+      - auth
+      - rest
+      - meta
+
+volumes:
+  ink_db:
