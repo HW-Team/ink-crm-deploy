@@ -1,1 +1,9 @@
-aW1wb3J0IHsgY3JlYXRlQ2xpZW50IH0gZnJvbSAiQHN1cGFiYXNlL3N1cGFiYXNlLWpzIjsKCi8vIEJyb3dzZXIgY2xpZW50IOKAlCBhbm9uIGtleSArIFJMUyAoc3RhZmYgYXV0aGVudGljYXRlZCkKZXhwb3J0IGZ1bmN0aW9uIGNyZWF0ZUJyb3dzZXJDbGllbnQoKSB7CiAgY29uc3QgdXJsID0gcHJvY2Vzcy5lbnYuTkVYVF9QVUJMSUNfU1VQQUJBU0VfVVJMITsKICBjb25zdCBrZXkgPSBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19TVVBBQkFTRV9BTk9OX0tFWSE7CiAgaWYgKCF1cmwgfHwgIWtleSkgdGhyb3cgbmV3IEVycm9yKCJNaXNzaW5nIE5FWFRfUFVCTElDX1NVUEFCQVNFX1VSTCAvIEFOT05fS0VZIik7CiAgcmV0dXJuIGNyZWF0ZUNsaWVudCh1cmwsIGtleSk7Cn0K
+import { createClient } from "@supabase/supabase-js";
+
+// Browser client — anon key + RLS (staff authenticated)
+export function createBrowserClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+  if (!url || !key) throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL / ANON_KEY");
+  return createClient(url, key);
+}

@@ -1,1 +1,227 @@
-LS0gSW5rIEhvbWVzIENSTSDigJQgc2NoZW1hIChtaXJyb3JzIEdvb2dsZSBTaGVldCAxOjEsIHBlciBIV1QtMTQxIHNwZWMpCi0tIDQgZW50aXRpZXM6IGNvbnRhY3RzLCBsZWFkcywgY29udmVyc2F0aW9uX2xvZ3MsIGZvbGxvd191cHMgKyBsb29rdXAgZW51bXMKCi0tID09PT09PT09PT09PSBFTlVNUyA9PT09PT09PT09PT0KCmNyZWF0ZSB0eXBlIGxlYWRfc3RhZ2UgYXMgZW51bSAoCiAgJ25ldycsICAgICAgICAgICAgLS0g4LmD4Lir4Lih4LmIIC8gVW5jb250YWN0ZWQKICAnY29udGFjdGVkJywgICAgICAtLSDguJXguLTguJTguJXguYjguK0gLyBJbnRha2UKICAncXVhbGlmaWVkJywgICAgICAtLSDguKrguJnguYPguIggLyBRdWFsaWZpZWQKICAnc2l0ZV92aXNpdCcsICAgICAtLSDguJnguLHguJTguJTguLnguYLguIrguKfguYzguKPguLnguKEv4LiX4Li14LmI4LiU4Li04LiZCiAgJ3Byb3Bvc2FsJywgICAgICAgLS0g4LmA4Liq4LiZ4Lit4Lij4Liy4LiE4LiyIC8gUXVvdGUKICAnd29uJywgICAgICAgICAgICAtLSDguJvguLTguJTguIHguLLguKPguILguLLguKIKICAndW5xdWFsaWZpZWQnLCAgICAtLSDguYTguKHguYjguJzguYjguLLguJkKICAnbG9zdCcsICAgICAgICAgICAtLSDguKvguKXguLjguJQKICAnZHVwbGljYXRlJywgICAgICAtLSDguIvguYnguLMKICAnbm9fYW5zd2VyJyAgICAgICAtLSDguYTguKHguYjguJXguK3guJoKKTsKCmNyZWF0ZSB0eXBlIGxlYWRfc291cmNlIGFzIGVudW0gKAogICdGQUNFQk9PSycsICdXRUJTSVRFJywgJ0xJTkUnLCAnQ0FMTCcsICdPVEhFUicKKTsKCmNyZWF0ZSB0eXBlIGNoYW5uZWxfdHlwZSBhcyBlbnVtICgKICAnUEhPTkUnLCAnTElORScsICdNRVNTRU5HRVInLCAnV0hBVFNBUFAnLCAnRU1BSUwnLCAnU0lURV9GT1JNJywgJ09USEVSJwopOwoKY3JlYXRlIHR5cGUgZGlyZWN0aW9uX3R5cGUgYXMgZW51bSAoJ0lOJywgJ09VVCcpOwoKY3JlYXRlIHR5cGUgcHJpb3JpdHlfdHlwZSBhcyBlbnVtICgnbG93JywgJ21lZGl1bScsICdoaWdoJywgJ3VyZ2VudCcpOwoKY3JlYXRlIHR5cGUgZm9sbG93dXBfc3RhdHVzIGFzIGVudW0gKCdvcGVuJywgJ2RvbmUnLCAnY2FuY2VsbGVkJyk7CgotLSA9PT09PT09PT09PT0gQ09OVEFDVFMgKDMwIGZpZWxkcykgPT09PT09PT09PT09CgpjcmVhdGUgdGFibGUgY29udGFjdHMgKAogIGlkIHV1aWQgcHJpbWFyeSBrZXkgZGVmYXVsdCBnZW5fcmFuZG9tX3V1aWQoKSwKICBsZWdhY3lfaWQgdGV4dCB1bmlxdWUsICAgICAgICAgICAgICAgLS0gQ29udGFjdCBJRCBmcm9tIHNoZWV0IChlLmcuIENULTAwMSkKICBmdWxsX25hbWUgdGV4dCBub3QgbnVsbCwKICBwcmltYXJ5X3Bob25lIHRleHQsCiAgbm9ybWFsaXplZF9waG9uZSB0ZXh0IHVuaXF1ZSwgICAgICAgIC0tIGRlZHVwZSBrZXkgKHN0cmlwIC0gYW5kIHNwYWNlcykKICBlbWFpbCB0ZXh0LAogIGxpbmVfaWQgdGV4dCwKICBmYl9uYW1lIHRleHQsCiAgcHJvdmluY2UgdGV4dCwKICBwcmVmZXJyZWRfY29udGFjdF90aW1lIHRleHQsCiAgZmlyc3Rfc291cmNlIGxlYWRfc291cmNlLAogIGZpcnN0X2xlYWRfZGF0ZSB0aW1lc3RhbXB0eiwKICBsYXRlc3RfbGVhZF9pZCB0ZXh0LAogIGludGVyZXN0IHRleHQsICAgICAgICAgICAgICAgICAgICAgICAtLSBJbnRlcmVzdC9Qcm9qZWN0IFR5cGUKICBidWRnZXRfcmFuZ2UgdGV4dCwKICBsYW5kX3N0YXR1cyB0ZXh0LAogIHRpbWVsaW5lIHRleHQsCiAgY3JtX3N0YWdlIGxlYWRfc3RhZ2UgZGVmYXVsdCAnbmV3JywKICBjb250YWN0ZWRfeWV0IGJvb2xlYW4gZGVmYXVsdCBmYWxzZSwKICBsYXN0X2NvbnRhY3RfZGF0ZSB0aW1lc3RhbXB0eiwKICBsYXN0X2NvbnRhY3RfY2hhbm5lbCBjaGFubmVsX3R5cGUsCiAgbGFzdF9jb250YWN0X291dGNvbWUgdGV4dCwKICBsYXRlc3RfY29udmVyc2F0aW9uX3N1bW1hcnkgdGV4dCwKICBuZXh0X2ZvbGxvd3VwX2RhdGUgdGltZXN0YW1wdHosCiAgbmV4dF9hY3Rpb24gdGV4dCwKICBvd25lciB0ZXh0LCAgICAgICAgICAgICAgICAgICAgICAgICAgLS0gdGVhbSBtZW1iZXIgbmFtZQogIHByaW9yaXR5IHByaW9yaXR5X3R5cGUgZGVmYXVsdCAnbWVkaXVtJywKICBkb19ub3RfY29udGFjdCBib29sZWFuIGRlZmF1bHQgZmFsc2UsCiAgbm90ZXMgdGV4dCwKICBhbGxfbGlua2VkX2xlYWRfaWRzIHRleHRbXSBkZWZhdWx0ICd7fScsCiAgbG9nX2NvdW50IGludCBkZWZhdWx0IDAsCiAgZGVsZXRlZF9hdCB0aW1lc3RhbXB0eiwKICBjcmVhdGVkX2F0IHRpbWVzdGFtcHR6IGRlZmF1bHQgbm93KCksCiAgdXBkYXRlZF9hdCB0aW1lc3RhbXB0eiBkZWZhdWx0IG5vdygpCik7CgpjcmVhdGUgaW5kZXggaWR4X2NvbnRhY3RzX3Bob25lIG9uIGNvbnRhY3RzKG5vcm1hbGl6ZWRfcGhvbmUpOwpjcmVhdGUgaW5kZXggaWR4X2NvbnRhY3RzX3N0YWdlIG9uIGNvbnRhY3RzKGNybV9zdGFnZSk7CmNyZWF0ZSBpbmRleCBpZHhfY29udGFjdHNfb3duZXIgb24gY29udGFjdHMob3duZXIpOwpjcmVhdGUgaW5kZXggaWR4X2NvbnRhY3RzX2RlbGV0ZWQgb24gY29udGFjdHMoZGVsZXRlZF9hdCkgd2hlcmUgZGVsZXRlZF9hdCBpcyBudWxsOwoKLS0gPT09PT09PT09PT09IExFQURTICgyOCBmaWVsZHMpID09PT09PT09PT09PQoKY3JlYXRlIHRhYmxlIGxlYWRzICgKICBpZCB1dWlkIHByaW1hcnkga2V5IGRlZmF1bHQgZ2VuX3JhbmRvbV91dWlkKCksCiAgbGVnYWN5X2lkIHRleHQgdW5pcXVlLCAgICAgICAgICAgICAgIC0tIExlYWQgSUQgZnJvbSBzaGVldCAoZS5nLiBMRC1NQVkyNi0wNjEpCiAgY29udGFjdF9pZCB1dWlkIHJlZmVyZW5jZXMgY29udGFjdHMoaWQpIG9uIGRlbGV0ZSBzZXQgbnVsbCwKICBsZWdhY3lfY29udGFjdF9pZCB0ZXh0LCAgICAgICAgICAgICAgLS0gb3JpZ2luYWwgc2hlZXQgQ29udGFjdCBJRCBmb3IgbWlncmF0aW9uIG1hcHBpbmcKICBsZWFkX2RhdGUgdGltZXN0YW1wdHogZGVmYXVsdCBub3coKSwKICBtb250aF90YWIgdGV4dCwKICBvcmlnaW5hbF9zdGF0dXNlcyB0ZXh0LAogIGNybV9zdGFnZSBsZWFkX3N0YWdlIGRlZmF1bHQgJ25ldycsCiAgcHJpb3JpdHkgcHJpb3JpdHlfdHlwZSBkZWZhdWx0ICdtZWRpdW0nLAogIGZ1bGxfbmFtZSB0ZXh0IG5vdCBudWxsLAogIHBob25lIHRleHQsCiAgZW1haWwgdGV4dCwKICBwcm92aW5jZSB0ZXh0LAogIHNvdXJjZSBsZWFkX3NvdXJjZSBkZWZhdWx0ICdGQUNFQk9PSycsCiAgaW50ZXJlc3QgdGV4dCwKICBwcmVmZXJyZWRfY29udGFjdF90aW1lIHRleHQsCiAgb3duZXIgdGV4dCwKICBuZXh0X2ZvbGxvd3VwX2RhdGUgdGltZXN0YW1wdHosCiAgbGFzdF9jb250YWN0X2RhdGUgdGltZXN0YW1wdHosCiAgbGFzdF9jb250YWN0X2NoYW5uZWwgY2hhbm5lbF90eXBlLAogIGxhc3RfY29udGFjdF9zdW1tYXJ5IHRleHQsCiAgZGVhbF92YWx1ZSBudW1lcmljKDEyLDIpLAogIHByb2JhYmlsaXR5X3BjdCBpbnQsCiAgbmV4dF9hY3Rpb24gdGV4dCwKICBhcmNoaXZlZCBib29sZWFuIGRlZmF1bHQgZmFsc2UsCiAgbWV0YV9sZWFkX2lkIHRleHQsICAgICAgICAgICAgICAgICAgIC0tIEZCIGxlYWRnZW4gSUQKICBkdXBsaWNhdGVfY2hlY2sgdGV4dCwgICAgICAgICAgICAgICAgLS0gbWF0Y2gga2V5IGZvciBkdXAgZGV0ZWN0aW9uCiAgY3JlYXRlZF9hdCB0aW1lc3RhbXB0eiBkZWZhdWx0IG5vdygpLAogIHVwZGF0ZWRfYXQgdGltZXN0YW1wdHogZGVmYXVsdCBub3coKQopOwoKY3JlYXRlIGluZGV4IGlkeF9sZWFkc19jb250YWN0IG9uIGxlYWRzKGNvbnRhY3RfaWQpOwpjcmVhdGUgaW5kZXggaWR4X2xlYWRzX3N0YWdlIG9uIGxlYWRzKGNybV9zdGFnZSk7CmNyZWF0ZSBpbmRleCBpZHhfbGVhZHNfc291cmNlIG9uIGxlYWRzKHNvdXJjZSk7CmNyZWF0ZSBpbmRleCBpZHhfbGVhZHNfb3duZXIgb24gbGVhZHMob3duZXIpOwpjcmVhdGUgaW5kZXggaWR4X2xlYWRzX2RhdGUgb24gbGVhZHMobGVhZF9kYXRlKTsKY3JlYXRlIGluZGV4IGlkeF9sZWFkc19tZXRhIG9uIGxlYWRzKG1ldGFfbGVhZF9pZCk7CgotLSA9PT09PT09PT09PT0gQ09OVkVSU0FUSU9OIExPR1MgPT09PT09PT09PT09CgpjcmVhdGUgdGFibGUgY29udmVyc2F0aW9uX2xvZ3MgKAogIGlkIHV1aWQgcHJpbWFyeSBrZXkgZGVmYXVsdCBnZW5fcmFuZG9tX3V1aWQoKSwKICBsZWdhY3lfaWQgdGV4dCB1bmlxdWUsCiAgbGVhZF9pZCB1dWlkIHJlZmVyZW5jZXMgbGVhZHMoaWQpIG9uIGRlbGV0ZSBjYXNjYWRlLAogIGNvbnRhY3RfaWQgdXVpZCByZWZlcmVuY2VzIGNvbnRhY3RzKGlkKSBvbiBkZWxldGUgY2FzY2FkZSwKICBsb2dnZWRfYXQgdGltZXN0YW1wdHogZGVmYXVsdCBub3coKSwKICBjaGFubmVsIGNoYW5uZWxfdHlwZSwKICBkaXJlY3Rpb24gZGlyZWN0aW9uX3R5cGUgZGVmYXVsdCAnSU4nLAogIHRlYW1fbWVtYmVyIHRleHQsCiAgb3V0Y29tZSB0ZXh0LAogIHN1bW1hcnkgdGV4dCwKICBuZXh0X2FjdGlvbiB0ZXh0LAogIG5leHRfZm9sbG93dXBfZGF0ZSB0aW1lc3RhbXB0eiwKICBhdHRhY2htZW50X2xpbmsgdGV4dCwKICBjcmVhdGVkX2F0IHRpbWVzdGFtcHR6IGRlZmF1bHQgbm93KCkKKTsKCmNyZWF0ZSBpbmRleCBpZHhfbG9nc19jb250YWN0IG9uIGNvbnZlcnNhdGlvbl9sb2dzKGNvbnRhY3RfaWQpOwpjcmVhdGUgaW5kZXggaWR4X2xvZ3NfbGVhZCBvbiBjb252ZXJzYXRpb25fbG9ncyhsZWFkX2lkKTsKY3JlYXRlIGluZGV4IGlkeF9sb2dzX2xvZ2dlZF9hdCBvbiBjb252ZXJzYXRpb25fbG9ncyhsb2dnZWRfYXQgZGVzYyk7CgotLSA9PT09PT09PT09PT0gRk9MTE9XIFVQUyA9PT09PT09PT09PT0KCmNyZWF0ZSB0YWJsZSBmb2xsb3dfdXBzICgKICBpZCB1dWlkIHByaW1hcnkga2V5IGRlZmF1bHQgZ2VuX3JhbmRvbV91dWlkKCksCiAgbGVnYWN5X2lkIHRleHQgdW5pcXVlLAogIGxlYWRfaWQgdXVpZCByZWZlcmVuY2VzIGxlYWRzKGlkKSBvbiBkZWxldGUgY2FzY2FkZSwKICBjb250YWN0X2lkIHV1aWQgcmVmZXJlbmNlcyBjb250YWN0cyhpZCkgb24gZGVsZXRlIGNhc2NhZGUsCiAgZHVlX2RhdGUgZGF0ZSwKICBkdWVfdGltZSB0aW1lLAogIHRhc2tfdHlwZSB0ZXh0LAogIG93bmVyIHRleHQsCiAgcHJpb3JpdHkgcHJpb3JpdHlfdHlwZSBkZWZhdWx0ICdtZWRpdW0nLAogIHN0YXR1cyBmb2xsb3d1cF9zdGF0dXMgZGVmYXVsdCAnb3BlbicsCiAgbGF0ZXN0X25vdGUgdGV4dCwKICBjb21wbGV0ZWRfYXQgdGltZXN0YW1wdHosCiAgY3JlYXRlZF9hdCB0aW1lc3RhbXB0eiBkZWZhdWx0IG5vdygpLAogIHVwZGF0ZWRfYXQgdGltZXN0YW1wdHogZGVmYXVsdCBub3coKQopOwoKY3JlYXRlIGluZGV4IGlkeF9mdV9jb250YWN0IG9uIGZvbGxvd191cHMoY29udGFjdF9pZCk7CmNyZWF0ZSBpbmRleCBpZHhfZnVfZHVlIG9uIGZvbGxvd191cHMoZHVlX2RhdGUsIHN0YXR1cyk7CmNyZWF0ZSBpbmRleCBpZHhfZnVfb3duZXIgb24gZm9sbG93X3Vwcyhvd25lciwgc3RhdHVzKTsKCi0tID09PT09PT09PT09PSBVUERBVEVEX0FUIFRSSUdHRVIgPT09PT09PT09PT09CgpjcmVhdGUgb3IgcmVwbGFjZSBmdW5jdGlvbiBzZXRfdXBkYXRlZF9hdCgpIHJldHVybnMgdHJpZ2dlciBhcyAkJApiZWdpbgogIG5ldy51cGRhdGVkX2F0ID0gbm93KCk7CiAgcmV0dXJuIG5ldzsKZW5kOwokJCBsYW5ndWFnZSBwbHBnc3FsOwoKY3JlYXRlIHRyaWdnZXIgdHJnX2NvbnRhY3RzX3VwZGF0ZWQgYmVmb3JlIHVwZGF0ZSBvbiBjb250YWN0cwogIGZvciBlYWNoIHJvdyBleGVjdXRlIGZ1bmN0aW9uIHNldF91cGRhdGVkX2F0KCk7CmNyZWF0ZSB0cmlnZ2VyIHRyZ19sZWFkc191cGRhdGVkIGJlZm9yZSB1cGRhdGUgb24gbGVhZHMKICBmb3IgZWFjaCByb3cgZXhlY3V0ZSBmdW5jdGlvbiBzZXRfdXBkYXRlZF9hdCgpOwpjcmVhdGUgdHJpZ2dlciB0cmdfZm9sbG93dXBzX3VwZGF0ZWQgYmVmb3JlIHVwZGF0ZSBvbiBmb2xsb3dfdXBzCiAgZm9yIGVhY2ggcm93IGV4ZWN1dGUgZnVuY3Rpb24gc2V0X3VwZGF0ZWRfYXQoKTsKCi0tID09PT09PT09PT09PSBSTFMgPT09PT09PT09PT09Ci0tIHN0YWZmIChhdXRoZW50aWNhdGVkKSBjYW4gcmVhZC93cml0ZTsgYWRtaW4gY2FuIGRlbGV0ZSAoc29mdCkuIHNlcnZpY2Vfcm9sZSBieXBhc3Nlcy4KCmFsdGVyIHRhYmxlIGNvbnRhY3RzIGVuYWJsZSByb3cgbGV2ZWwgc2VjdXJpdHk7CmFsdGVyIHRhYmxlIGxlYWRzIGVuYWJsZSByb3cgbGV2ZWwgc2VjdXJpdHk7CmFsdGVyIHRhYmxlIGNvbnZlcnNhdGlvbl9sb2dzIGVuYWJsZSByb3cgbGV2ZWwgc2VjdXJpdHk7CmFsdGVyIHRhYmxlIGZvbGxvd191cHMgZW5hYmxlIHJvdyBsZXZlbCBzZWN1cml0eTsKCmNyZWF0ZSBwb2xpY3kgImNvbnRhY3RzX3JlYWQiIG9uIGNvbnRhY3RzIGZvciBzZWxlY3QgdXNpbmcgKGF1dGgucm9sZSgpID0gJ2F1dGhlbnRpY2F0ZWQnKTsKY3JlYXRlIHBvbGljeSAiY29udGFjdHNfd3JpdGUiIG9uIGNvbnRhY3RzIGZvciBpbnNlcnQgd2l0aCBjaGVjayAoYXV0aC5yb2xlKCkgPSAnYXV0aGVudGljYXRlZCcpOwpjcmVhdGUgcG9saWN5ICJjb250YWN0c191cGRhdGUiIG9uIGNvbnRhY3RzIGZvciB1cGRhdGUgdXNpbmcgKGF1dGgucm9sZSgpID0gJ2F1dGhlbnRpY2F0ZWQnKTsKY3JlYXRlIHBvbGljeSAiY29udGFjdHNfZGVsZXRlIiBvbiBjb250YWN0cyBmb3IgZGVsZXRlIHVzaW5nIChhdXRoLmp3dCgpIC0+PiAncm9sZScgPSAnYWRtaW4nKTsKCmNyZWF0ZSBwb2xpY3kgImxlYWRzX3JlYWQiIG9uIGxlYWRzIGZvciBzZWxlY3QgdXNpbmcgKGF1dGgucm9sZSgpID0gJ2F1dGhlbnRpY2F0ZWQnKTsKY3JlYXRlIHBvbGljeSAibGVhZHNfd3JpdGUiIG9uIGxlYWRzIGZvciBpbnNlcnQgd2l0aCBjaGVjayAoYXV0aC5yb2xlKCkgPSAnYXV0aGVudGljYXRlZCcpOwpjcmVhdGUgcG9saWN5ICJsZWFkc191cGRhdGUiIG9uIGxlYWRzIGZvciB1cGRhdGUgdXNpbmcgKGF1dGgucm9sZSgpID0gJ2F1dGhlbnRpY2F0ZWQnKTsKY3JlYXRlIHBvbGljeSAibGVhZHNfZGVsZXRlIiBvbiBsZWFkcyBmb3IgZGVsZXRlIHVzaW5nIChhdXRoLmp3dCgpIC0+PiAncm9sZScgPSAnYWRtaW4nKTsKCmNyZWF0ZSBwb2xpY3kgImxvZ3NfcmVhZCIgb24gY29udmVyc2F0aW9uX2xvZ3MgZm9yIHNlbGVjdCB1c2luZyAoYXV0aC5yb2xlKCkgPSAnYXV0aGVudGljYXRlZCcpOwpjcmVhdGUgcG9saWN5ICJsb2dzX3dyaXRlIiBvbiBjb252ZXJzYXRpb25fbG9ncyBmb3IgaW5zZXJ0IHdpdGggY2hlY2sgKGF1dGgucm9sZSgpID0gJ2F1dGhlbnRpY2F0ZWQnKTsKY3JlYXRlIHBvbGljeSAibG9nc191cGRhdGUiIG9uIGNvbnZlcnNhdGlvbl9sb2dzIGZvciB1cGRhdGUgdXNpbmcgKGF1dGgucm9sZSgpID0gJ2F1dGhlbnRpY2F0ZWQnKTsKY3JlYXRlIHBvbGljeSAibG9nc19kZWxldGUiIG9uIGNvbnZlcnNhdGlvbl9sb2dzIGZvciBkZWxldGUgdXNpbmcgKGF1dGguand0KCkgLT4+ICdyb2xlJyA9ICdhZG1pbicpOwoKY3JlYXRlIHBvbGljeSAiZnVfcmVhZCIgb24gZm9sbG93X3VwcyBmb3Igc2VsZWN0IHVzaW5nIChhdXRoLnJvbGUoKSA9ICdhdXRoZW50aWNhdGVkJyk7CmNyZWF0ZSBwb2xpY3kgImZ1X3dyaXRlIiBvbiBmb2xsb3dfdXBzIGZvciBpbnNlcnQgd2l0aCBjaGVjayAoYXV0aC5yb2xlKCkgPSAnYXV0aGVudGljYXRlZCcpOwpjcmVhdGUgcG9saWN5ICJmdV91cGRhdGUiIG9uIGZvbGxvd191cHMgZm9yIHVwZGF0ZSB1c2luZyAoYXV0aC5yb2xlKCkgPSAnYXV0aGVudGljYXRlZCcpOwpjcmVhdGUgcG9saWN5ICJmdV9kZWxldGUiIG9uIGZvbGxvd191cHMgZm9yIGRlbGV0ZSB1c2luZyAoYXV0aC5qd3QoKSAtPj4gJ3JvbGUnID0gJ2FkbWluJyk7CgotLSA9PT09PT09PT09PT0gU0VFRDogbG9va3VwIHJlZmVyZW5jZSAoc3RhZ2VzKSA9PT09PT09PT09PT0KCmNyZWF0ZSB0YWJsZSBpZiBub3QgZXhpc3RzIHN0YWdlX2xvb2t1cCAoCiAga2V5IGxlYWRfc3RhZ2UgcHJpbWFyeSBrZXksCiAgbGFiZWxfdGggdGV4dCBub3QgbnVsbCwKICBjb2xvciB0ZXh0IG5vdCBudWxsCik7CgppbnNlcnQgaW50byBzdGFnZV9sb29rdXAgKGtleSwgbGFiZWxfdGgsIGNvbG9yKSB2YWx1ZXMKICAoJ25ldycsICfguYPguKvguKHguYgnLCAnIzY0NzQ4QicpLAogICgnY29udGFjdGVkJywgJ+C4leC4tOC4lOC4leC5iOC4reC5geC4peC5ieC4pycsICcjMDM2OUExJyksCiAgKCdxdWFsaWZpZWQnLCAn4Liq4LiZ4LmD4LiIJywgJyMxNTgwM0QnKSwKICAoJ3NpdGVfdmlzaXQnLCAn4LiZ4Lix4LiU4LiU4Li5JywgJyM2RDI4RDknKSwKICAoJ3Byb3Bvc2FsJywgJ+C5gOC4quC4meC4reC4o+C4suC4hOC4sicsICcjQjQ1MzA5JyksCiAgKCd3b24nLCAn4Lib4Li04LiU4LiB4Liy4Lij4LiC4Liy4LiiJywgJyMxNjY1MzQnKSwKICAoJ3VucXVhbGlmaWVkJywgJ+C5hOC4oeC5iOC4nOC5iOC4suC4mScsICcjNjQ3NDhCJyksCiAgKCdsb3N0JywgJ+C4q+C4peC4uOC4lCcsICcjQjkxQzFDJyksCiAgKCdkdXBsaWNhdGUnLCAn4LiL4LmJ4LizJywgJyM2NDc0OEInKSwKICAoJ25vX2Fuc3dlcicsICfguYTguKHguYjguJXguK3guJonLCAnI0MyNDEwQycpCm9uIGNvbmZsaWN0IChrZXkpIGRvIG5vdGhpbmc7Cg==
+-- Ink Homes CRM — schema (mirrors Google Sheet 1:1, per HWT-141 spec)
+-- 4 entities: contacts, leads, conversation_logs, follow_ups + lookup enums
+
+-- ============ ENUMS ============
+
+create type lead_stage as enum (
+  'new',            -- ใหม่ / Uncontacted
+  'contacted',      -- ติดต่อ / Intake
+  'qualified',      -- สนใจ / Qualified
+  'site_visit',     -- นัดดูโชว์รูม/ที่ดิน
+  'proposal',       -- เสนอราคา / Quote
+  'won',            -- ปิดการขาย
+  'unqualified',    -- ไม่ผ่าน
+  'lost',           -- หลุด
+  'duplicate',      -- ซ้ำ
+  'no_answer'       -- ไม่ตอบ
+);
+
+create type lead_source as enum (
+  'FACEBOOK', 'WEBSITE', 'LINE', 'CALL', 'OTHER'
+);
+
+create type channel_type as enum (
+  'PHONE', 'LINE', 'MESSENGER', 'WHATSAPP', 'EMAIL', 'SITE_FORM', 'OTHER'
+);
+
+create type direction_type as enum ('IN', 'OUT');
+
+create type priority_type as enum ('low', 'medium', 'high', 'urgent');
+
+create type followup_status as enum ('open', 'done', 'cancelled');
+
+-- ============ CONTACTS (30 fields) ============
+
+create table contacts (
+  id uuid primary key default gen_random_uuid(),
+  legacy_id text unique,               -- Contact ID from sheet (e.g. CT-001)
+  full_name text not null,
+  primary_phone text,
+  normalized_phone text unique,        -- dedupe key (strip - and spaces)
+  email text,
+  line_id text,
+  fb_name text,
+  province text,
+  preferred_contact_time text,
+  first_source lead_source,
+  first_lead_date timestamptz,
+  latest_lead_id text,
+  interest text,                       -- Interest/Project Type
+  budget_range text,
+  land_status text,
+  timeline text,
+  crm_stage lead_stage default 'new',
+  contacted_yet boolean default false,
+  last_contact_date timestamptz,
+  last_contact_channel channel_type,
+  last_contact_outcome text,
+  latest_conversation_summary text,
+  next_followup_date timestamptz,
+  next_action text,
+  owner text,                          -- team member name
+  priority priority_type default 'medium',
+  do_not_contact boolean default false,
+  notes text,
+  all_linked_lead_ids text[] default '{}',
+  log_count int default 0,
+  deleted_at timestamptz,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create index idx_contacts_phone on contacts(normalized_phone);
+create index idx_contacts_stage on contacts(crm_stage);
+create index idx_contacts_owner on contacts(owner);
+create index idx_contacts_deleted on contacts(deleted_at) where deleted_at is null;
+
+-- ============ LEADS (28 fields) ============
+
+create table leads (
+  id uuid primary key default gen_random_uuid(),
+  legacy_id text unique,               -- Lead ID from sheet (e.g. LD-MAY26-061)
+  contact_id uuid references contacts(id) on delete set null,
+  legacy_contact_id text,              -- original sheet Contact ID for migration mapping
+  lead_date timestamptz default now(),
+  month_tab text,
+  original_statuses text,
+  crm_stage lead_stage default 'new',
+  priority priority_type default 'medium',
+  full_name text not null,
+  phone text,
+  email text,
+  province text,
+  source lead_source default 'FACEBOOK',
+  interest text,
+  preferred_contact_time text,
+  owner text,
+  next_followup_date timestamptz,
+  last_contact_date timestamptz,
+  last_contact_channel channel_type,
+  last_contact_summary text,
+  deal_value numeric(12,2),
+  probability_pct int,
+  next_action text,
+  archived boolean default false,
+  meta_lead_id text,                   -- FB leadgen ID
+  duplicate_check text,                -- match key for dup detection
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create index idx_leads_contact on leads(contact_id);
+create index idx_leads_stage on leads(crm_stage);
+create index idx_leads_source on leads(source);
+create index idx_leads_owner on leads(owner);
+create index idx_leads_date on leads(lead_date);
+create index idx_leads_meta on leads(meta_lead_id);
+
+-- ============ CONVERSATION LOGS ============
+
+create table conversation_logs (
+  id uuid primary key default gen_random_uuid(),
+  legacy_id text unique,
+  lead_id uuid references leads(id) on delete cascade,
+  contact_id uuid references contacts(id) on delete cascade,
+  logged_at timestamptz default now(),
+  channel channel_type,
+  direction direction_type default 'IN',
+  team_member text,
+  outcome text,
+  summary text,
+  next_action text,
+  next_followup_date timestamptz,
+  attachment_link text,
+  created_at timestamptz default now()
+);
+
+create index idx_logs_contact on conversation_logs(contact_id);
+create index idx_logs_lead on conversation_logs(lead_id);
+create index idx_logs_logged_at on conversation_logs(logged_at desc);
+
+-- ============ FOLLOW UPS ============
+
+create table follow_ups (
+  id uuid primary key default gen_random_uuid(),
+  legacy_id text unique,
+  lead_id uuid references leads(id) on delete cascade,
+  contact_id uuid references contacts(id) on delete cascade,
+  due_date date,
+  due_time time,
+  task_type text,
+  owner text,
+  priority priority_type default 'medium',
+  status followup_status default 'open',
+  latest_note text,
+  completed_at timestamptz,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create index idx_fu_contact on follow_ups(contact_id);
+create index idx_fu_due on follow_ups(due_date, status);
+create index idx_fu_owner on follow_ups(owner, status);
+
+-- ============ UPDATED_AT TRIGGER ============
+
+create or replace function set_updated_at() returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger trg_contacts_updated before update on contacts
+  for each row execute function set_updated_at();
+create trigger trg_leads_updated before update on leads
+  for each row execute function set_updated_at();
+create trigger trg_followups_updated before update on follow_ups
+  for each row execute function set_updated_at();
+
+-- ============ RLS ============
+-- staff (authenticated) can read/write; admin can delete (soft). service_role bypasses.
+
+alter table contacts enable row level security;
+alter table leads enable row level security;
+alter table conversation_logs enable row level security;
+alter table follow_ups enable row level security;
+
+create policy "contacts_read" on contacts for select using (auth.role() = 'authenticated');
+create policy "contacts_write" on contacts for insert with check (auth.role() = 'authenticated');
+create policy "contacts_update" on contacts for update using (auth.role() = 'authenticated');
+create policy "contacts_delete" on contacts for delete using (auth.jwt() ->> 'role' = 'admin');
+
+create policy "leads_read" on leads for select using (auth.role() = 'authenticated');
+create policy "leads_write" on leads for insert with check (auth.role() = 'authenticated');
+create policy "leads_update" on leads for update using (auth.role() = 'authenticated');
+create policy "leads_delete" on leads for delete using (auth.jwt() ->> 'role' = 'admin');
+
+create policy "logs_read" on conversation_logs for select using (auth.role() = 'authenticated');
+create policy "logs_write" on conversation_logs for insert with check (auth.role() = 'authenticated');
+create policy "logs_update" on conversation_logs for update using (auth.role() = 'authenticated');
+create policy "logs_delete" on conversation_logs for delete using (auth.jwt() ->> 'role' = 'admin');
+
+create policy "fu_read" on follow_ups for select using (auth.role() = 'authenticated');
+create policy "fu_write" on follow_ups for insert with check (auth.role() = 'authenticated');
+create policy "fu_update" on follow_ups for update using (auth.role() = 'authenticated');
+create policy "fu_delete" on follow_ups for delete using (auth.jwt() ->> 'role' = 'admin');
+
+-- ============ SEED: lookup reference (stages) ============
+
+create table if not exists stage_lookup (
+  key lead_stage primary key,
+  label_th text not null,
+  color text not null
+);
+
+insert into stage_lookup (key, label_th, color) values
+  ('new', 'ใหม่', '#64748B'),
+  ('contacted', 'ติดต่อแล้ว', '#0369A1'),
+  ('qualified', 'สนใจ', '#15803D'),
+  ('site_visit', 'นัดดู', '#6D28D9'),
+  ('proposal', 'เสนอราคา', '#B45309'),
+  ('won', 'ปิดการขาย', '#166534'),
+  ('unqualified', 'ไม่ผ่าน', '#64748B'),
+  ('lost', 'หลุด', '#B91C1C'),
+  ('duplicate', 'ซ้ำ', '#64748B'),
+  ('no_answer', 'ไม่ตอบ', '#C2410C')
+on conflict (key) do nothing;

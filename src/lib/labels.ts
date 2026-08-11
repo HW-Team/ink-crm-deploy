@@ -1,1 +1,47 @@
-ZXhwb3J0IGNvbnN0IFNUQUdFX0xBQkVMUzogUmVjb3JkPHN0cmluZywgc3RyaW5nPiA9IHsKICBuZXc6ICLguYPguKvguKHguYgiLAogIGNvbnRhY3RlZDogIuC4leC4tOC4lOC4leC5iOC4reC5geC4peC5ieC4pyIsCiAgcXVhbGlmaWVkOiAi4Liq4LiZ4LmD4LiIIiwKICBzaXRlX3Zpc2l0OiAi4LiZ4Lix4LiU4LiU4Li5IiwKICBwcm9wb3NhbDogIuC5gOC4quC4meC4reC4o+C4suC4hOC4siIsCiAgd29uOiAi4Lib4Li04LiU4LiB4Liy4Lij4LiC4Liy4LiiIiwKICB1bnF1YWxpZmllZDogIuC5hOC4oeC5iOC4nOC5iOC4suC4mSIsCiAgbG9zdDogIuC4q+C4peC4uOC4lCIsCiAgZHVwbGljYXRlOiAi4LiL4LmJ4LizIiwKICBub19hbnN3ZXI6ICLguYTguKHguYjguJXguK3guJoiLAp9OwoKZXhwb3J0IGNvbnN0IFNUQUdFX0NMQVNTOiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+ID0gewogIG5ldzogInN0LW5ldyIsCiAgY29udGFjdGVkOiAic3QtY29udGFjdGVkIiwKICBxdWFsaWZpZWQ6ICJzdC1xdWFsaWZpZWQiLAogIHNpdGVfdmlzaXQ6ICJzdC1zaXRlX3Zpc2l0IiwKICBwcm9wb3NhbDogInN0LXByb3Bvc2FsIiwKICB3b246ICJzdC13b24iLAogIHVucXVhbGlmaWVkOiAic3QtdW5xdWFsaWZpZWQiLAogIGxvc3Q6ICJzdC1sb3N0IiwKICBkdXBsaWNhdGU6ICJzdC1kdXBsaWNhdGUiLAogIG5vX2Fuc3dlcjogInN0LW5vX2Fuc3dlciIsCn07CgpleHBvcnQgY29uc3QgU09VUkNFX0xBQkVMUzogUmVjb3JkPHN0cmluZywgc3RyaW5nPiA9IHsKICBGQUNFQk9PSzogIkZhY2Vib29rIiwKICBXRUJTSVRFOiAi4LmA4Lin4LmH4Lia4LmE4LiL4LiV4LmMIiwKICBMSU5FOiAiTElORSIsCiAgQ0FMTDogIuC5guC4l+C4oyIsCiAgT1RIRVI6ICLguK3guLfguYjguJnguYYiLAp9OwoKZXhwb3J0IGZ1bmN0aW9uIHRoRGF0ZShpc286IHN0cmluZyB8IG51bGwgfCB1bmRlZmluZWQpOiBzdHJpbmcgewogIGlmICghaXNvKSByZXR1cm4gIuKAlCI7CiAgY29uc3QgZCA9IG5ldyBEYXRlKGlzbyk7CiAgaWYgKGlzTmFOKGQuZ2V0VGltZSgpKSkgcmV0dXJuICLigJQiOwogIHJldHVybiBkLnRvTG9jYWxlRGF0ZVN0cmluZygidGgtVEgiLCB7IGRheTogIm51bWVyaWMiLCBtb250aDogInNob3J0IiwgeWVhcjogIm51bWVyaWMiIH0pOwp9CgpleHBvcnQgZnVuY3Rpb24gdGhEYXRlVGltZShpc286IHN0cmluZyB8IG51bGwgfCB1bmRlZmluZWQpOiBzdHJpbmcgewogIGlmICghaXNvKSByZXR1cm4gIuKAlCI7CiAgY29uc3QgZCA9IG5ldyBEYXRlKGlzbyk7CiAgaWYgKGlzTmFOKGQuZ2V0VGltZSgpKSkgcmV0dXJuICLigJQiOwogIHJldHVybiBkLnRvTG9jYWxlU3RyaW5nKCJ0aC1USCIsIHsgZGF5OiAibnVtZXJpYyIsIG1vbnRoOiAic2hvcnQiLCBob3VyOiAiMi1kaWdpdCIsIG1pbnV0ZTogIjItZGlnaXQiIH0pOwp9Cg==
+export const STAGE_LABELS: Record<string, string> = {
+  new: "ใหม่",
+  contacted: "ติดต่อแล้ว",
+  qualified: "สนใจ",
+  site_visit: "นัดดู",
+  proposal: "เสนอราคา",
+  won: "ปิดการขาย",
+  unqualified: "ไม่ผ่าน",
+  lost: "หลุด",
+  duplicate: "ซ้ำ",
+  no_answer: "ไม่ตอบ",
+};
+
+export const STAGE_CLASS: Record<string, string> = {
+  new: "st-new",
+  contacted: "st-contacted",
+  qualified: "st-qualified",
+  site_visit: "st-site_visit",
+  proposal: "st-proposal",
+  won: "st-won",
+  unqualified: "st-unqualified",
+  lost: "st-lost",
+  duplicate: "st-duplicate",
+  no_answer: "st-no_answer",
+};
+
+export const SOURCE_LABELS: Record<string, string> = {
+  FACEBOOK: "Facebook",
+  WEBSITE: "เว็บไซต์",
+  LINE: "LINE",
+  CALL: "โทร",
+  OTHER: "อื่นๆ",
+};
+
+export function thDate(iso: string | null | undefined): string {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  return d.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" });
+}
+
+export function thDateTime(iso: string | null | undefined): string {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  return d.toLocaleString("th-TH", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+}
