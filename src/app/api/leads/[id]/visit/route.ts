@@ -9,7 +9,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   if (!me) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
 
-  let body: { due_date?: string; due_time?: string; note?: string };
+  let body: { due_date?: string; due_time?: string; note?: string; location?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "invalid JSON" }, { status: 400 }); }
   const dueDate = body.due_date ?? "";
   if (!dueDate) return NextResponse.json({ error: "due_date required" }, { status: 400 });
@@ -21,9 +21,9 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     if (!lead) return NextResponse.json({ error: "lead not found" }, { status: 404 });
 
     const fu = await qOne(
-      `insert into follow_ups (contact_id, lead_id, due_date, due_time, task_type, owner, owner_id, priority, status, latest_note)
-       values ($1,$2,$3,$4,'นัดดูโชว์รูม/ที่ดิน',$5,$6,'high','open',$7) returning *`,
-      [lead.contact_id, id, dueDate, body.due_time || null, me.full_name, me.id, body.note || null]
+      `insert into follow_ups (contact_id, lead_id, due_date, due_time, task_type, owner, owner_id, priority, status, latest_note, location)
+       values ($1,$2,$3,$4,'นัดดูโชว์รูม/ที่ดิน',$5,$6,'high','open',$7,$8) returning *`,
+      [lead.contact_id, id, dueDate, body.due_time || null, me.full_name, me.id, body.note || null, body.location || null]
     );
 
     // stage bump: only move forward (never backwards from won/lost)

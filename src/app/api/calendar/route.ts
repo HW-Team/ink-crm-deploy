@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   try {
     const events = await q(
       `select fu.id, fu.lead_id, fu.contact_id, fu.due_date, fu.due_time, fu.task_type,
-              fu.status, fu.latest_note, fu.owner,
+              fu.status, fu.latest_note, fu.owner, fu.location, fu.confirmed,
               c.full_name as contact_name, c.primary_phone,
               l.full_name as lead_name, l.crm_stage
        from follow_ups fu
