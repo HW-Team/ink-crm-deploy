@@ -1,1 +1,34 @@
-aW1wb3J0IHR5cGUgeyBNZXRhZGF0YSB9IGZyb20gIm5leHQiOwppbXBvcnQgeyBOb3RvX1NhbnNfVGhhaSwgSmV0QnJhaW5zX01vbm8gfSBmcm9tICJuZXh0L2ZvbnQvZ29vZ2xlIjsKaW1wb3J0ICIuL2dsb2JhbHMuY3NzIjsKaW1wb3J0IFNpZGViYXIgZnJvbSAiQC9jb21wb25lbnRzL1NpZGViYXIiOwoKY29uc3Qgbm90byA9IE5vdG9fU2Fuc19UaGFpKHsKICBzdWJzZXRzOiBbInRoYWkiLCAibGF0aW4iXSwKICB2YXJpYWJsZTogIi0tZm9udC1ub3RvIiwKICB3ZWlnaHQ6IFsiNDAwIiwgIjUwMCIsICI2MDAiLCAiNzAwIl0sCn0pOwoKY29uc3QgamV0YnJhaW5zID0gSmV0QnJhaW5zX01vbm8oewogIHN1YnNldHM6IFsibGF0aW4iXSwKICB2YXJpYWJsZTogIi0tZm9udC1tb25vIiwKICB3ZWlnaHQ6IFsiNDAwIiwgIjUwMCIsICI3MDAiXSwKfSk7CgpleHBvcnQgY29uc3QgbWV0YWRhdGE6IE1ldGFkYXRhID0gewogIHRpdGxlOiAiSW5rIEhvbWVzIENSTSIsCiAgZGVzY3JpcHRpb246ICJJbnRlcm5hbCBDUk0gZm9yIEluayBIb21lcyDigJQgbGVhZHMsIGNvbnRhY3RzLCBjb252ZXJzYXRpb25zLCBmb2xsb3ctdXBzIiwKfTsKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFJvb3RMYXlvdXQoeyBjaGlsZHJlbiB9OiB7IGNoaWxkcmVuOiBSZWFjdC5SZWFjdE5vZGUgfSkgewogIHJldHVybiAoCiAgICA8aHRtbCBsYW5nPSJ0aCIgY2xhc3NOYW1lPXtgJHtub3RvLnZhcmlhYmxlfSAke2pldGJyYWlucy52YXJpYWJsZX0gaC1mdWxsIGFudGlhbGlhc2VkYH0+CiAgICAgIDxib2R5IGNsYXNzTmFtZT0ibWluLWgtZnVsbCBiZy1bI0Y2RjhGQV0gdGV4dC1bIzBGMTcyQV0gZm9udC1zYW5zIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBtaW4taC1zY3JlZW4iPgogICAgICAgICAgPFNpZGViYXIgLz4KICAgICAgICAgIDxtYWluIGNsYXNzTmFtZT0iZmxleC0xIG1pbi13LTAgcHgtNiBweS02IG1kOnB4LTggbWQ6cHktOCI+e2NoaWxkcmVufTwvbWFpbj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9ib2R5PgogICAgPC9odG1sPgogICk7Cn0K
+import type { Metadata } from "next";
+import { Noto_Sans_Thai, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import Sidebar from "@/components/Sidebar";
+
+const noto = Noto_Sans_Thai({
+  subsets: ["thai", "latin"],
+  variable: "--font-noto",
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "Ink Homes CRM",
+  description: "Internal CRM for Ink Homes — leads, contacts, conversations, follow-ups",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="th" className={`${noto.variable} ${jetbrains.variable} h-full antialiased`}>
+      <body className="min-h-full bg-[#F6F8FA] text-[#0F172A] font-sans">
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <main className="flex-1 min-w-0 px-6 py-6 md:px-8 md:py-8">{children}</main>
+        </div>
+      </body>
+    </html>
+  );
+}

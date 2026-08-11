@@ -1,1 +1,99 @@
-InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IFN0YWdlQmFkZ2UgZnJvbSAiLi9TdGFnZUJhZGdlIjsKCmNvbnN0IExBTkVTID0gWwogIHsga2V5OiAibmV3IiwgbGFiZWw6ICLguYPguKvguKHguYgiIH0sCiAgeyBrZXk6ICJjb250YWN0ZWQiLCBsYWJlbDogIuC4leC4tOC4lOC4leC5iOC4reC5geC4peC5ieC4pyIgfSwKICB7IGtleTogInF1YWxpZmllZCIsIGxhYmVsOiAi4Liq4LiZ4LmD4LiIIiB9LAogIHsga2V5OiAic2l0ZV92aXNpdCIsIGxhYmVsOiAi4LiZ4Lix4LiU4LiU4Li5IiB9LAogIHsga2V5OiAicHJvcG9zYWwiLCBsYWJlbDogIuC5gOC4quC4meC4reC4o+C4suC4hOC4siIgfSwKICB7IGtleTogIndvbiIsIGxhYmVsOiAi4Lib4Li04LiU4LiB4Liy4Lij4LiC4Liy4LiiIiB9LApdOwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gQm9hcmQoKSB7CiAgY29uc3QgW2xhbmVzLCBzZXRMYW5lc10gPSB1c2VTdGF0ZTxSZWNvcmQ8c3RyaW5nLCBhbnlbXT4+KHt9KTsKICBjb25zdCBbbG9hZGluZywgc2V0TG9hZGluZ10gPSB1c2VTdGF0ZSh0cnVlKTsKICBjb25zdCBbZHJhZ2dpbmcsIHNldERyYWdnaW5nXSA9IHVzZVN0YXRlPHN0cmluZyB8IG51bGw+KG51bGwpOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgZmV0Y2goIi9hcGkvYm9hcmQiKQogICAgICAudGhlbigocikgPT4gci5qc29uKCkpCiAgICAgIC50aGVuKChkKSA9PiB7CiAgICAgICAgY29uc3QgZ3JvdXBlZDogUmVjb3JkPHN0cmluZywgYW55W10+ID0ge307CiAgICAgICAgZm9yIChjb25zdCBsYW5lIG9mIExBTkVTKSBncm91cGVkW2xhbmUua2V5XSA9IFtdOwogICAgICAgIGZvciAoY29uc3QgbGVhZCBvZiBkLmxlYWRzID8/IFtdKSB7CiAgICAgICAgICBpZiAoZ3JvdXBlZFtsZWFkLmNybV9zdGFnZV0pIGdyb3VwZWRbbGVhZC5jcm1fc3RhZ2VdLnB1c2gobGVhZCk7CiAgICAgICAgICBlbHNlIGdyb3VwZWQubm9fYW5zd2VyID0gWy4uLihncm91cGVkLm5vX2Fuc3dlciA/PyBbXSksIGxlYWRdOwogICAgICAgIH0KICAgICAgICBzZXRMYW5lcyhncm91cGVkKTsKICAgICAgfSkKICAgICAgLmZpbmFsbHkoKCkgPT4gc2V0TG9hZGluZyhmYWxzZSkpOwogIH0sIFtdKTsKCiAgY29uc3Qgb25Ecm9wID0gYXN5bmMgKHN0YWdlOiBzdHJpbmcsIGxlYWRJZDogc3RyaW5nKSA9PiB7CiAgICBzZXREcmFnZ2luZyhudWxsKTsKICAgIC8vIG9wdGltaXN0aWMKICAgIHNldExhbmVzKChwcmV2KSA9PiB7CiAgICAgIGNvbnN0IG5leHQ6IFJlY29yZDxzdHJpbmcsIGFueVtdPiA9IHt9OwogICAgICBmb3IgKGNvbnN0IGxhbmUgb2YgTEFORVMpIG5leHRbbGFuZS5rZXldID0gWy4uLihwcmV2W2xhbmUua2V5XSA/PyBbXSldOwogICAgICBsZXQgbW92ZWQ6IGFueSA9IG51bGw7CiAgICAgIGZvciAoY29uc3QgayBvZiBPYmplY3Qua2V5cyhwcmV2KSkgewogICAgICAgIGNvbnN0IGlkeCA9IHByZXZba10uZmluZEluZGV4KChsKSA9PiBsLmlkID09PSBsZWFkSWQpOwogICAgICAgIGlmIChpZHggPj0gMCkgeyBtb3ZlZCA9IHByZXZba11baWR4XTsgfQogICAgICB9CiAgICAgIGlmIChtb3ZlZCkgewogICAgICAgIG5leHRbc3RhZ2VdID0gW21vdmVkLCAuLi5uZXh0W3N0YWdlXV07CiAgICAgICAgZm9yIChjb25zdCBrIG9mIE9iamVjdC5rZXlzKG5leHQpKSBuZXh0W2tdID0gbmV4dFtrXS5maWx0ZXIoKGwpID0+IGwuaWQgIT09IGxlYWRJZCk7CiAgICAgICAgbmV4dFtzdGFnZV0gPSBuZXh0W3N0YWdlXS5maWx0ZXIoQm9vbGVhbik7CiAgICAgIH0KICAgICAgcmV0dXJuIG5leHQ7CiAgICB9KTsKICAgIGF3YWl0IGZldGNoKGAvYXBpL2xlYWRzLyR7bGVhZElkfS9zdGFnZWAsIHsKICAgICAgbWV0aG9kOiAiUEFUQ0giLAogICAgICBoZWFkZXJzOiB7ICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiIgfSwKICAgICAgYm9keTogSlNPTi5zdHJpbmdpZnkoeyBzdGFnZSB9KSwKICAgIH0pOwogIH07CgogIGlmIChsb2FkaW5nKSByZXR1cm4gPHAgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtWyM2NDc0OEJdIj7guIHguLPguKXguLHguIfguYLguKvguKXguJQuLi48L3A+OwoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTEgbWQ6Z3JpZC1jb2xzLTMgeGw6Z3JpZC1jb2xzLTYgZ2FwLTQiPgogICAgICB7TEFORVMubWFwKChsYW5lKSA9PiAoCiAgICAgICAgPGRpdgogICAgICAgICAga2V5PXtsYW5lLmtleX0KICAgICAgICAgIGNsYXNzTmFtZT0ibGFuZSIKICAgICAgICAgIG9uRHJhZ092ZXI9eyhlKSA9PiBlLnByZXZlbnREZWZhdWx0KCl9CiAgICAgICAgICBvbkRyb3A9eyhlKSA9PiB7CiAgICAgICAgICAgIGNvbnN0IGlkID0gZS5kYXRhVHJhbnNmZXIuZ2V0RGF0YSgidGV4dC9wbGFpbiIpOwogICAgICAgICAgICBpZiAoaWQpIG9uRHJvcChsYW5lLmtleSwgaWQpOwogICAgICAgICAgfX0KICAgICAgICA+CiAgICAgICAgICA8aDM+e2xhbmUubGFiZWx9IDxzcGFuIGNsYXNzTmFtZT0idGV4dC1bIzk0QTNCOF0gZm9udC1ub3JtYWwiPih7KGxhbmVzW2xhbmUua2V5XSA/PyBbXSkubGVuZ3RofSk8L3NwYW4+PC9oMz4KICAgICAgICAgIHsobGFuZXNbbGFuZS5rZXldID8/IFtdKS5tYXAoKGxlYWQpID0+ICgKICAgICAgICAgICAgPGRpdgogICAgICAgICAgICAgIGtleT17bGVhZC5pZH0KICAgICAgICAgICAgICBjbGFzc05hbWU9ImxhbmUtY2FyZCIKICAgICAgICAgICAgICBkcmFnZ2FibGUKICAgICAgICAgICAgICBvbkRyYWdTdGFydD17KGUpID0+IHsKICAgICAgICAgICAgICAgIGUuZGF0YVRyYW5zZmVyLnNldERhdGEoInRleHQvcGxhaW4iLCBsZWFkLmlkKTsKICAgICAgICAgICAgICAgIHNldERyYWdnaW5nKGxlYWQuaWQpOwogICAgICAgICAgICAgIH19CiAgICAgICAgICAgICAgc3R5bGU9e3sgb3BhY2l0eTogZHJhZ2dpbmcgPT09IGxlYWQuaWQgPyAwLjUgOiAxIH19CiAgICAgICAgICAgID4KICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9ImZvbnQtbWVkaXVtIHRleHQtWyMwRjE3MkFdIHRleHQtc20gdHJ1bmNhdGUiPntsZWFkLmZ1bGxfbmFtZX08L3A+CiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJmb250LW1vbm8gdGV4dC14cyB0ZXh0LVsjOTRBM0I4XSBtdC0wLjUgdHJ1bmNhdGUiPntsZWFkLnBob25lID8/ICLigJQifTwvcD4KICAgICAgICAgICAgICB7bGVhZC5pbnRlcmVzdCAmJiA8cCBjbGFzc05hbWU9InRleHQteHMgdGV4dC1bIzY0NzQ4Ql0gbXQtMSB0cnVuY2F0ZSI+e2xlYWQuaW50ZXJlc3R9PC9wPn0KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMS41Ij48U3RhZ2VCYWRnZSBzdGFnZT17bGVhZC5jcm1fc3RhZ2V9IC8+PC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgKSl9CiAgICAgICAgICB7KGxhbmVzW2xhbmUua2V5XSA/PyBbXSkubGVuZ3RoID09PSAwICYmICgKICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LXhzIHRleHQtWyM5NEEzQjhdIHB4LTIgcHktMyI+4Lin4LmI4Liy4LiHPC9wPgogICAgICAgICAgKX0KICAgICAgICA8L2Rpdj4KICAgICAgKSl9CiAgICA8L2Rpdj4KICApOwp9Cg==
+"use client";
+
+import { useEffect, useState } from "react";
+import StageBadge from "./StageBadge";
+
+const LANES = [
+  { key: "new", label: "ใหม่" },
+  { key: "contacted", label: "ติดต่อแล้ว" },
+  { key: "qualified", label: "สนใจ" },
+  { key: "site_visit", label: "นัดดู" },
+  { key: "proposal", label: "เสนอราคา" },
+  { key: "won", label: "ปิดการขาย" },
+];
+
+export default function Board() {
+  const [lanes, setLanes] = useState<Record<string, any[]>>({});
+  const [loading, setLoading] = useState(true);
+  const [dragging, setDragging] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/board")
+      .then((r) => r.json())
+      .then((d) => {
+        const grouped: Record<string, any[]> = {};
+        for (const lane of LANES) grouped[lane.key] = [];
+        for (const lead of d.leads ?? []) {
+          if (grouped[lead.crm_stage]) grouped[lead.crm_stage].push(lead);
+          else grouped.no_answer = [...(grouped.no_answer ?? []), lead];
+        }
+        setLanes(grouped);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const onDrop = async (stage: string, leadId: string) => {
+    setDragging(null);
+    // optimistic
+    setLanes((prev) => {
+      const next: Record<string, any[]> = {};
+      for (const lane of LANES) next[lane.key] = [...(prev[lane.key] ?? [])];
+      let moved: any = null;
+      for (const k of Object.keys(prev)) {
+        const idx = prev[k].findIndex((l) => l.id === leadId);
+        if (idx >= 0) { moved = prev[k][idx]; }
+      }
+      if (moved) {
+        next[stage] = [moved, ...next[stage]];
+        for (const k of Object.keys(next)) next[k] = next[k].filter((l) => l.id !== leadId);
+        next[stage] = next[stage].filter(Boolean);
+      }
+      return next;
+    });
+    await fetch(`/api/leads/${leadId}/stage`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stage }),
+    });
+  };
+
+  if (loading) return <p className="text-sm text-[#64748B]">กำลังโหลด...</p>;
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4">
+      {LANES.map((lane) => (
+        <div
+          key={lane.key}
+          className="lane"
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            const id = e.dataTransfer.getData("text/plain");
+            if (id) onDrop(lane.key, id);
+          }}
+        >
+          <h3>{lane.label} <span className="text-[#94A3B8] font-normal">({(lanes[lane.key] ?? []).length})</span></h3>
+          {(lanes[lane.key] ?? []).map((lead) => (
+            <div
+              key={lead.id}
+              className="lane-card"
+              draggable
+              onDragStart={(e) => {
+                e.dataTransfer.setData("text/plain", lead.id);
+                setDragging(lead.id);
+              }}
+              style={{ opacity: dragging === lead.id ? 0.5 : 1 }}
+            >
+              <p className="font-medium text-[#0F172A] text-sm truncate">{lead.full_name}</p>
+              <p className="font-mono text-xs text-[#94A3B8] mt-0.5 truncate">{lead.phone ?? "—"}</p>
+              {lead.interest && <p className="text-xs text-[#64748B] mt-1 truncate">{lead.interest}</p>}
+              <div className="mt-1.5"><StageBadge stage={lead.crm_stage} /></div>
+            </div>
+          ))}
+          {(lanes[lane.key] ?? []).length === 0 && (
+            <p className="text-xs text-[#94A3B8] px-2 py-3">ว่าง</p>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}

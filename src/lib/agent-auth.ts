@@ -1,1 +1,13 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKCi8vIEFnZW50IEFQSSBhdXRoIOKAlCBkZWRpY2F0ZWQga2V5IGZyb20gZW52LCBjaGVja2VkIG9uIGV2ZXJ5IGFnZW50IHJvdXRlCmV4cG9ydCBmdW5jdGlvbiBjaGVja0FnZW50S2V5KHJlcTogTmV4dFJlcXVlc3QpOiBib29sZWFuIHsKICBjb25zdCBrZXkgPSBwcm9jZXNzLmVudi5JTktfQUdFTlRfS0VZOwogIGlmICgha2V5KSByZXR1cm4gZmFsc2U7CiAgY29uc3QgcHJvdmlkZWQgPSByZXEuaGVhZGVycy5nZXQoJ3gtaW5rLWFnZW50LWtleScpIHx8IHJlcS5oZWFkZXJzLmdldCgnYXV0aG9yaXphdGlvbicpPy5yZXBsYWNlKC9eQmVhcmVyXHMrL2ksICcnKTsKICByZXR1cm4gcHJvdmlkZWQgPT09IGtleTsKfQoKZXhwb3J0IGZ1bmN0aW9uIHVuYXV0aG9yaXplZCgpOiBOZXh0UmVzcG9uc2UgewogIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAnVW5hdXRob3JpemVkJyB9LCB7IHN0YXR1czogNDAxIH0pOwp9Cg==
+import { NextRequest, NextResponse } from 'next/server';
+
+// Agent API auth — dedicated key from env, checked on every agent route
+export function checkAgentKey(req: NextRequest): boolean {
+  const key = process.env.INK_AGENT_KEY;
+  if (!key) return false;
+  const provided = req.headers.get('x-ink-agent-key') || req.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
+  return provided === key;
+}
+
+export function unauthorized(): NextResponse {
+  return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+}

@@ -1,1 +1,109 @@
-IyBJbmsgQ1JNIOKAlCBBZ2VudCBBUEkgKEhXVC0xNDMpCgpSRVNUIEFQSSBmb3IgdGhlICoqSW5rIGFnZW50KiogKEhlcm1lcywgRGVlcFNlZWssIGluay1wcmVmYWIgd29ya3NwYWNlKS4gRXZlcnkgcmVxdWVzdCBtdXN0IGNhcnJ5IHRoZSBhZ2VudCBrZXk6CgpgYGAKeC1pbmstYWdlbnQta2V5OiA8SU5LX0FHRU5UX0tFWT4KYGBgCgpCYXNlIFVSTDogYGh0dHBzOi8vY3JtLmluay1ob21lcy5jb21gIChwcm9kdWN0aW9uKSDCtyBgaHR0cDovL2xvY2FsaG9zdDozMDAwYCAoZGV2KQoKLS0tCgojIyAxLiBGaW5kIGNvbnRhY3QgYnkgcGhvbmUKCmBgYApHRVQgL2FwaS9hZ2VudC9jb250YWN0cz9waG9uZT0wODEtMjM0LTU2NzgKYGBgCgpSZXR1cm5zIGNvbnRhY3QgKyBhbGwgbGlua2VkIGxlYWRzLiBQaG9uZSBpcyBub3JtYWxpemVkIChzdHJpcCBkYXNoZXMsICs2NiDihpIgMCkuCgoqKjIwMDoqKgpgYGBqc29uCnsgImNvbnRhY3QiOiB7ICJpZCI6ICIuLi4iLCAiZnVsbF9uYW1lIjogIi4uLiIsICJub3JtYWxpemVkX3Bob25lIjogIjA4MTIzNDU2NzgiLCAibGVhZHMiOiBbLi4uXSB9IH0KYGBgCioqMjAwOioqIGB7ICJjb250YWN0IjogbnVsbCB9YCDigJQgbm90IGZvdW5kCgojIyAyLiBDcmVhdGUgbGVhZCAoYXV0by1saW5rL2RlZHVwZSBjb250YWN0KQoKYGBgClBPU1QgL2FwaS9hZ2VudC9sZWFkcwpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24KCnsKICAiZnVsbF9uYW1lIjogIuC4quC4oeC4iuC4suC4oiDguYPguIjguJTguLUiLAogICJwaG9uZSI6ICIwODEtMjM0LTU2NzgiLAogICJzb3VyY2UiOiAiRkFDRUJPT0siLCAgICAgICAgICAvLyBGQUNFQk9PSyB8IFdFQlNJVEUgfCBMSU5FIHwgQ0FMTAogICJpbnRlcmVzdCI6ICLguJrguYnguLLguJnguYDguJTguLXguYjguKLguKcgMiDguIrguLHguYnguJkiLAogICJwcm92aW5jZSI6ICLguYDguIrguLXguKLguIfguYPguKvguKHguYgiLAogICJtZXRhX2xlYWRfaWQiOiAiRkJfbGVhZGdlbl9pZF8xMjMiCn0KYGBgCgpDcmVhdGVzIG9yIHJldXNlcyBhIGNvbnRhY3QgYnkgbm9ybWFsaXplZCBwaG9uZS4gKioyMDE6KioKYGBganNvbgp7ICJsZWFkIjogeyAiaWQiOiAiLi4uIiwgImNybV9zdGFnZSI6ICJuZXciLCAuLi4gfSwgImNvbnRhY3RfaWQiOiAiLi4uIiB9CmBgYAoKIyMgMy4gQnVtcCBsZWFkIHN0YWdlCgpgYGAKUEFUQ0ggL2FwaS9hZ2VudC9sZWFkcy86aWQvc3RhZ2UKQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi9qc29uCgp7ICJzdGFnZSI6ICJxdWFsaWZpZWQiIH0KYGBgCgpWYWxpZCBzdGFnZXM6IGBuZXcsIGNvbnRhY3RlZCwgcXVhbGlmaWVkLCBzaXRlX3Zpc2l0LCBwcm9wb3NhbCwgd29uLCB1bnF1YWxpZmllZCwgbG9zdCwgZHVwbGljYXRlLCBub19hbnN3ZXJgCgojIyA0LiBMb2cgYSBjb252ZXJzYXRpb24KCmBgYApQT1NUIC9hcGkvYWdlbnQvY29udGFjdHMvOmNvbnRhY3RJZC9jb252ZXJzYXRpb25zCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgoKewogICJjaGFubmVsIjogIkxJTkUiLCAgICAgICAgICAgIC8vIFBIT05FIHwgTElORSB8IE1FU1NFTkdFUiB8IEVNQUlMIHwgU0lURV9GT1JNCiAgImRpcmVjdGlvbiI6ICJPVVQiLCAgICAgICAgICAgLy8gSU4gfCBPVVQKICAic3VtbWFyeSI6ICLguJnguLHguJTguJTguLnguYLguIrguKfguYzguKPguLnguKHguYDguKrguLLguKPguYzguJnguLXguYkgMTAg4LmC4Lih4LiHIiwKICAib3V0Y29tZSI6ICLguJnguLHguJTguKrguLPguYDguKPguYfguIgiLAogICJuZXh0X2FjdGlvbiI6ICLguYLguJfguKPguKLguLfguJnguKLguLHguJnguIHguYjguK3guJnguKfguLHguJnguJnguLHguJQiLAogICJuZXh0X2ZvbGxvd3VwX2RhdGUiOiAiMjAyNi0wOC0xNFQwOTowMDowMFoiLAogICJ0ZWFtX21lbWJlciI6ICJpbmstYWdlbnQiCn0KYGBgCgpBbHNvIHVwZGF0ZXMgdGhlIGNvbnRhY3QncyBgbGFzdF9jb250YWN0XypgIGZpZWxkcyArIGBjb250YWN0ZWRfeWV0PXRydWVgLgoKIyMgNS4gTGlzdCBkdWUgZm9sbG93LXVwcwoKYGBgCkdFVCAvYXBpL2FnZW50L2ZvbGxvdy11cHM/ZHVlX2JlZm9yZT0yMDI2LTA4LTExJm93bmVyPeC4iuC4t+C5iOC4rQpgYGAKCioqMjAwOioqCmBgYGpzb24KeyAiZm9sbG93X3VwcyI6IFsgeyAiaWQiOiAiLi4uIiwgImR1ZV9kYXRlIjogIjIwMjYtMDgtMTEiLCAiY29udGFjdHMiOiB7Li4ufSwgImxlYWRzIjogey4uLn0gfSBdIH0KYGBgCgotLS0KCiMjIEhlcm1lcyB0b29sIGNvbmZpZyAoZm9yIGluay1wcmVmYWItYWdlbnQpCgpXaXJlIGFzIG5hdGl2ZSB0b29scyBpbiB0aGUgSW5rIGFnZW50J3MgSGVybWVzIHByb2ZpbGUg4oCUIFJFU1QgKyBrZXkgcGF0dGVybjoKCmBgYHlhbWwKdG9vbHM6CiAgLSBuYW1lOiBpbmtfZmluZF9jb250YWN0CiAgICBjb21tYW5kOiBjdXJsIC1zIC1IICJ4LWluay1hZ2VudC1rZXk6ICRJTktfQUdFTlRfS0VZIiAiaHR0cHM6Ly9jcm0uaW5rLWhvbWVzLmNvbS9hcGkvYWdlbnQvY29udGFjdHM/cGhvbmU9JDEiCiAgLSBuYW1lOiBpbmtfY3JlYXRlX2xlYWQKICAgIGNvbW1hbmQ6IGN1cmwgLXMgLVggUE9TVCAtSCAieC1pbmstYWdlbnQta2V5OiAkSU5LX0FHRU5UX0tFWSIgLUggIkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbiIgLWQgIiQxIiAiaHR0cHM6Ly9jcm0uaW5rLWhvbWVzLmNvbS9hcGkvYWdlbnQvbGVhZHMiCiAgLSBuYW1lOiBpbmtfYnVtcF9zdGFnZQogICAgY29tbWFuZDogY3VybCAtcyAtWCBQQVRDSCAtSCAieC1pbmstYWdlbnQta2V5OiAkSU5LX0FHRU5UX0tFWSIgLUggIkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbiIgLWQgIiQxIiAiaHR0cHM6Ly9jcm0uaW5rLWhvbWVzLmNvbS9hcGkvYWdlbnQvbGVhZHMvJDIvc3RhZ2UiCiAgLSBuYW1lOiBpbmtfbG9nX2NvbnZlcnNhdGlvbgogICAgY29tbWFuZDogY3VybCAtcyAtWCBQT1NUIC1IICJ4LWluay1hZ2VudC1rZXk6ICRJTktfQUdFTlRfS0VZIiAtSCAiQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi9qc29uIiAtZCAiJDEiICJodHRwczovL2NybS5pbmstaG9tZXMuY29tL2FwaS9hZ2VudC9jb250YWN0cy8kMi9jb252ZXJzYXRpb25zIgogIC0gbmFtZTogaW5rX2xpc3RfZm9sbG93dXBzCiAgICBjb21tYW5kOiBjdXJsIC1zIC1IICJ4LWluay1hZ2VudC1rZXk6ICRJTktfQUdFTlRfS0VZIiAiaHR0cHM6Ly9jcm0uaW5rLWhvbWVzLmNvbS9hcGkvYWdlbnQvZm9sbG93LXVwcyIKYGBgCgpBY2NlcHRhbmNlIGxvb3AgKEhXVC0xNDMpOiAqKmZpbmQgbGVhZCBieSBwaG9uZSDihpIgbG9nIGNvbnZlcnNhdGlvbiDihpIgYnVtcCBzdGFnZSDihpIgdmlzaWJsZSBpbiB3ZWIgVUkgaW5zdGFudGx5LioqCg==
+# Ink CRM — Agent API (HWT-143)
+
+REST API for the **Ink agent** (Hermes, DeepSeek, ink-prefab workspace). Every request must carry the agent key:
+
+```
+x-ink-agent-key: <INK_AGENT_KEY>
+```
+
+Base URL: `https://crm.ink-homes.com` (production) · `http://localhost:3000` (dev)
+
+---
+
+## 1. Find contact by phone
+
+```
+GET /api/agent/contacts?phone=081-234-5678
+```
+
+Returns contact + all linked leads. Phone is normalized (strip dashes, +66 → 0).
+
+**200:**
+```json
+{ "contact": { "id": "...", "full_name": "...", "normalized_phone": "0812345678", "leads": [...] } }
+```
+**200:** `{ "contact": null }` — not found
+
+## 2. Create lead (auto-link/dedupe contact)
+
+```
+POST /api/agent/leads
+Content-Type: application/json
+
+{
+  "full_name": "สมชาย ใจดี",
+  "phone": "081-234-5678",
+  "source": "FACEBOOK",          // FACEBOOK | WEBSITE | LINE | CALL
+  "interest": "บ้านเดี่ยว 2 ชั้น",
+  "province": "เชียงใหม่",
+  "meta_lead_id": "FB_leadgen_id_123"
+}
+```
+
+Creates or reuses a contact by normalized phone. **201:**
+```json
+{ "lead": { "id": "...", "crm_stage": "new", ... }, "contact_id": "..." }
+```
+
+## 3. Bump lead stage
+
+```
+PATCH /api/agent/leads/:id/stage
+Content-Type: application/json
+
+{ "stage": "qualified" }
+```
+
+Valid stages: `new, contacted, qualified, site_visit, proposal, won, unqualified, lost, duplicate, no_answer`
+
+## 4. Log a conversation
+
+```
+POST /api/agent/contacts/:contactId/conversations
+Content-Type: application/json
+
+{
+  "channel": "LINE",            // PHONE | LINE | MESSENGER | EMAIL | SITE_FORM
+  "direction": "OUT",           // IN | OUT
+  "summary": "นัดดูโชว์รูมเสาร์นี้ 10 โมง",
+  "outcome": "นัดสำเร็จ",
+  "next_action": "โทรยืนยันก่อนวันนัด",
+  "next_followup_date": "2026-08-14T09:00:00Z",
+  "team_member": "ink-agent"
+}
+```
+
+Also updates the contact's `last_contact_*` fields + `contacted_yet=true`.
+
+## 5. List due follow-ups
+
+```
+GET /api/agent/follow-ups?due_before=2026-08-11&owner=ชื่อ
+```
+
+**200:**
+```json
+{ "follow_ups": [ { "id": "...", "due_date": "2026-08-11", "contacts": {...}, "leads": {...} } ] }
+```
+
+---
+
+## Hermes tool config (for ink-prefab-agent)
+
+Wire as native tools in the Ink agent's Hermes profile — REST + key pattern:
+
+```yaml
+tools:
+  - name: ink_find_contact
+    command: curl -s -H "x-ink-agent-key: $INK_AGENT_KEY" "https://crm.ink-homes.com/api/agent/contacts?phone=$1"
+  - name: ink_create_lead
+    command: curl -s -X POST -H "x-ink-agent-key: $INK_AGENT_KEY" -H "Content-Type: application/json" -d "$1" "https://crm.ink-homes.com/api/agent/leads"
+  - name: ink_bump_stage
+    command: curl -s -X PATCH -H "x-ink-agent-key: $INK_AGENT_KEY" -H "Content-Type: application/json" -d "$1" "https://crm.ink-homes.com/api/agent/leads/$2/stage"
+  - name: ink_log_conversation
+    command: curl -s -X POST -H "x-ink-agent-key: $INK_AGENT_KEY" -H "Content-Type: application/json" -d "$1" "https://crm.ink-homes.com/api/agent/contacts/$2/conversations"
+  - name: ink_list_followups
+    command: curl -s -H "x-ink-agent-key: $INK_AGENT_KEY" "https://crm.ink-homes.com/api/agent/follow-ups"
+```
+
+Acceptance loop (HWT-143): **find lead by phone → log conversation → bump stage → visible in web UI instantly.**

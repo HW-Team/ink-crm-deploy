@@ -1,1 +1,273 @@
-LS0tCnZlcnNpb246IGFscGhhCm5hbWU6IEluayBIb21lcyBDUk0KZGVzY3JpcHRpb246IERhdGEtZGVuc2UgTElHSFQtdGhlbWUgQ1JNIGZvciB0aGUgSW5rIHRlYW0gYW5kIHRoZSBJbmsgYWdlbnQg4oCUIGNsZWFuIHdoaXRlIGNhbnZhcywgY3lhbiBhcyB0aGUgc2luZ2xlIGludGVyYWN0aW9uIGNvbG9yLCBOb3RvIFNhbnMgVGhhaSBmb3IgVGhhaSBjb3B5LCBxdWlldCBzdXJmYWNlcyBzbyA4MDArIGxlYWRzIHN0YXkgc2Nhbm5hYmxlLiBDWiBjaG9zZSBsaWdodCBvdmVyIGRhcmsgKCLguYTguKHguYjguIrguK3guJrguJTguLPguYbguKHguLHguJnguIfguYjguKfguIciKS4KY29sb3JzOgogIGJhY2tncm91bmQ6ICIjRjZGOEZBIgogIHN1cmZhY2U6ICIjRkZGRkZGIgogIHN1cmZhY2UtcmFpc2VkOiAiI0VFRjJGNyIKICBib3JkZXI6ICIjRTJFOEYwIgogIHRleHQtcHJpbWFyeTogIiMwRjE3MkEiCiAgdGV4dC1zZWNvbmRhcnk6ICIjMzM0MTU1IgogIHRleHQtbXV0ZWQ6ICIjNUI2QjdDIgogIHByaW1hcnk6ICIjMEU3NDkwIgogIG9uLWFjY2VudDogIiNGRkZGRkYiCiAgc3VjY2VzczogIiMxNTgwM0QiCiAgd2FybmluZzogIiNCNDUzMDkiCiAgZGFuZ2VyOiAiI0I5MUMxQyIKICBzdGFnZS1uZXc6ICIjNjQ3NDhCIgogIHN0YWdlLWNvbnRhY3RlZDogIiMwMzY5QTEiCiAgc3RhZ2UtcXVhbGlmaWVkOiAiIzE1ODAzRCIKICBzdGFnZS1zaXRldmlzaXQ6ICIjNkQyOEQ5IgogIHN0YWdlLXByb3Bvc2FsOiAiI0I0NTMwOSIKICBzdGFnZS13b246ICIjMTY2NTM0IgogIHN0YWdlLXVucXVhbGlmaWVkOiAiIzY0NzQ4QiIKICBzdGFnZS1sb3N0OiAiI0I5MUMxQyIKICBzdGFnZS1kdXBsaWNhdGU6ICIjNjQ3NDhCIgogIHN0YWdlLW5vYW5zd2VyOiAiI0MyNDEwQyIKdHlwb2dyYXBoeToKICBmb250LWZhbWlseToKICAgIGZvbnRGYW1pbHk6ICJOb3RvIFNhbnMgVGhhaSwgSW50ZXIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIKICBoMToKICAgIGZvbnRGYW1pbHk6ICJOb3RvIFNhbnMgVGhhaSwgSW50ZXIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIKICAgIGZvbnRTaXplOiAxLjc1cmVtCiAgICBmb250V2VpZ2h0OiA3MDAKICAgIGxpbmVIZWlnaHQ6IDEuMjUKICAgIGxldHRlclNwYWNpbmc6ICItMC4wMWVtIgogIGgyOgogICAgZm9udEZhbWlseTogIk5vdG8gU2FucyBUaGFpLCBJbnRlciwgc3lzdGVtLXVpLCBzYW5zLXNlcmlmIgogICAgZm9udFNpemU6IDEuMzc1cmVtCiAgICBmb250V2VpZ2h0OiA2MDAKICAgIGxpbmVIZWlnaHQ6IDEuMwogIGgzOgogICAgZm9udEZhbWlseTogIk5vdG8gU2FucyBUaGFpLCBJbnRlciwgc3lzdGVtLXVpLCBzYW5zLXNlcmlmIgogICAgZm9udFNpemU6IDEuMTI1cmVtCiAgICBmb250V2VpZ2h0OiA2MDAKICAgIGxpbmVIZWlnaHQ6IDEuMzUKICBib2R5LW1kOgogICAgZm9udEZhbWlseTogIk5vdG8gU2FucyBUaGFpLCBJbnRlciwgc3lzdGVtLXVpLCBzYW5zLXNlcmlmIgogICAgZm9udFNpemU6IDAuOTM3NXJlbQogICAgZm9udFdlaWdodDogNDAwCiAgICBsaW5lSGVpZ2h0OiAxLjYKICBib2R5LXNtOgogICAgZm9udEZhbWlseTogIk5vdG8gU2FucyBUaGFpLCBJbnRlciwgc3lzdGVtLXVpLCBzYW5zLXNlcmlmIgogICAgZm9udFNpemU6IDAuODEyNXJlbQogICAgZm9udFdlaWdodDogNDAwCiAgICBsaW5lSGVpZ2h0OiAxLjU1CiAgdGFibGUtY2VsbDoKICAgIGZvbnRGYW1pbHk6ICJOb3RvIFNhbnMgVGhhaSwgSW50ZXIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIKICAgIGZvbnRTaXplOiAwLjg3NXJlbQogICAgZm9udFdlaWdodDogNDAwCiAgICBsaW5lSGVpZ2h0OiAxLjQKICBsYWJlbDoKICAgIGZvbnRGYW1pbHk6ICJOb3RvIFNhbnMgVGhhaSwgSW50ZXIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIKICAgIGZvbnRTaXplOiAwLjc1cmVtCiAgICBmb250V2VpZ2h0OiA2MDAKICAgIGxpbmVIZWlnaHQ6IDEuMwogICAgbGV0dGVyU3BhY2luZzogIjAuMDRlbSIKICBtb25vOgogICAgZm9udEZhbWlseTogIkpldEJyYWlucyBNb25vLCB1aS1tb25vc3BhY2UsIG1vbm9zcGFjZSIKICAgIGZvbnRTaXplOiAwLjgxMjVyZW0KICAgIGZvbnRXZWlnaHQ6IDQwMAogICAgbGluZUhlaWdodDogMS40CnJvdW5kZWQ6CiAgc206IDZweAogIG1kOiAxMHB4CiAgbGc6IDE0cHgKICBmdWxsOiA5OTk5cHgKc3BhY2luZzoKICB4czogNHB4CiAgc206IDhweAogIG1kOiAxNnB4CiAgbGc6IDI0cHgKICB4bDogMzJweApjb21wb25lbnRzOgogIGJ1dHRvbi1wcmltYXJ5OgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5wcmltYXJ5fSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMub24tYWNjZW50fSIKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5ib2R5LW1kfSIKICAgIHJvdW5kZWQ6ICJ7cm91bmRlZC5tZH0iCiAgICBwYWRkaW5nOiAxMHB4IDE4cHgKICBidXR0b24tcHJpbWFyeS1ob3ZlcjoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuc3RhZ2UtY29udGFjdGVkfSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMub24tYWNjZW50fSIKICAgIHJvdW5kZWQ6ICJ7cm91bmRlZC5tZH0iCiAgICBwYWRkaW5nOiAxMHB4IDE4cHgKICBidXR0b24tc2Vjb25kYXJ5OgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdXJmYWNlLXJhaXNlZH0iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLnRleHQtc2Vjb25kYXJ5fSIKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5ib2R5LW1kfSIKICAgIHJvdW5kZWQ6ICJ7cm91bmRlZC5tZH0iCiAgICBwYWRkaW5nOiAxMHB4IDE4cHgKICBjYXJkOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdXJmYWNlfSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMudGV4dC1zZWNvbmRhcnl9IgogICAgcm91bmRlZDogIntyb3VuZGVkLmxnfSIKICBjYXJkLWhvdmVyOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdXJmYWNlLXJhaXNlZH0iCiAgICByb3VuZGVkOiAie3JvdW5kZWQubGd9IgogIHRhYmxlLWhlYWRlcjoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuc3VyZmFjZS1yYWlzZWR9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy50ZXh0LW11dGVkfSIKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5sYWJlbH0iCiAgICBwYWRkaW5nOiAxMHB4IDEycHgKICB0YWJsZS1yb3c6CiAgICBiYWNrZ3JvdW5kQ29sb3I6ICJ7Y29sb3JzLnN1cmZhY2V9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy50ZXh0LXNlY29uZGFyeX0iCiAgICB0eXBvZ3JhcGh5OiAie3R5cG9ncmFwaHkudGFibGUtY2VsbH0iCiAgdGFibGUtcm93LWhvdmVyOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdXJmYWNlLXJhaXNlZH0iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLnRleHQtcHJpbWFyeX0iCiAgaW5wdXQ6CiAgICBiYWNrZ3JvdW5kQ29sb3I6ICJ7Y29sb3JzLnN1cmZhY2V9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy50ZXh0LXByaW1hcnl9IgogICAgdHlwb2dyYXBoeTogInt0eXBvZ3JhcGh5LmJvZHktbWR9IgogICAgcm91bmRlZDogIntyb3VuZGVkLm1kfSIKICAgIHBhZGRpbmc6IDlweCAxMnB4CiAgaW5wdXQtZm9jdXM6CiAgICBiYWNrZ3JvdW5kQ29sb3I6ICJ7Y29sb3JzLnN1cmZhY2V9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy50ZXh0LXByaW1hcnl9IgogICAgcm91bmRlZDogIntyb3VuZGVkLm1kfSIKICAgIHBhZGRpbmc6IDlweCAxMnB4CiAgc2lkZWJhcjoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuc3VyZmFjZX0iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLnRleHQtbXV0ZWR9IgogIHNpZGViYXItYWN0aXZlOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdXJmYWNlfSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMucHJpbWFyeX0iCiAgICByb3VuZGVkOiAie3JvdW5kZWQubWR9IgogICAgcGFkZGluZzogOHB4IDEycHgKICBiYWRnZS1uZXV0cmFsOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdGFnZS1uZXd9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy5vbi1hY2NlbnR9IgogICAgcm91bmRlZDogIntyb3VuZGVkLmZ1bGx9IgogICAgcGFkZGluZzogMnB4IDEwcHgKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5sYWJlbH0iCiAgYmFkZ2UtY29udGFjdGVkOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdGFnZS1jb250YWN0ZWR9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy5vbi1hY2NlbnR9IgogICAgcm91bmRlZDogIntyb3VuZGVkLmZ1bGx9IgogICAgcGFkZGluZzogMnB4IDEwcHgKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5sYWJlbH0iCiAgYmFkZ2Utc3VjY2VzczoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuc3VjY2Vzc30iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLm9uLWFjY2VudH0iCiAgICByb3VuZGVkOiAie3JvdW5kZWQuZnVsbH0iCiAgICBwYWRkaW5nOiAycHggMTBweAogICAgdHlwb2dyYXBoeTogInt0eXBvZ3JhcGh5LmxhYmVsfSIKICBiYWRnZS1zaXRldmlzaXQ6CiAgICBiYWNrZ3JvdW5kQ29sb3I6ICJ7Y29sb3JzLnN0YWdlLXNpdGV2aXNpdH0iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLm9uLWFjY2VudH0iCiAgICByb3VuZGVkOiAie3JvdW5kZWQuZnVsbH0iCiAgICBwYWRkaW5nOiAycHggMTBweAogICAgdHlwb2dyYXBoeTogInt0eXBvZ3JhcGh5LmxhYmVsfSIKICBiYWRnZS13YXJuaW5nOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy53YXJuaW5nfSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMub24tYWNjZW50fSIKICAgIHJvdW5kZWQ6ICJ7cm91bmRlZC5mdWxsfSIKICAgIHBhZGRpbmc6IDJweCAxMHB4CiAgICB0eXBvZ3JhcGh5OiAie3R5cG9ncmFwaHkubGFiZWx9IgogIGJhZGdlLWRhbmdlcjoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuZGFuZ2VyfSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMub24tYWNjZW50fSIKICAgIHJvdW5kZWQ6ICJ7cm91bmRlZC5mdWxsfSIKICAgIHBhZGRpbmc6IDJweCAxMHB4CiAgICB0eXBvZ3JhcGh5OiAie3R5cG9ncmFwaHkubGFiZWx9IgogIGJhZGdlLXdvbjoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuc3RhZ2Utd29ufSIKICAgIHRleHRDb2xvcjogIntjb2xvcnMub24tYWNjZW50fSIKICAgIHJvdW5kZWQ6ICJ7cm91bmRlZC5mdWxsfSIKICAgIHBhZGRpbmc6IDJweCAxMHB4CiAgICB0eXBvZ3JhcGh5OiAie3R5cG9ncmFwaHkubGFiZWx9IgogIGJhZGdlLXVucXVhbGlmaWVkOgogICAgYmFja2dyb3VuZENvbG9yOiAie2NvbG9ycy5zdGFnZS11bnF1YWxpZmllZH0iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLm9uLWFjY2VudH0iCiAgICByb3VuZGVkOiAie3JvdW5kZWQuZnVsbH0iCiAgICBwYWRkaW5nOiAycHggMTBweAogICAgdHlwb2dyYXBoeTogInt0eXBvZ3JhcGh5LmxhYmVsfSIKICBiYWRnZS1kdXBsaWNhdGU6CiAgICBiYWNrZ3JvdW5kQ29sb3I6ICJ7Y29sb3JzLnN0YWdlLWR1cGxpY2F0ZX0iCiAgICB0ZXh0Q29sb3I6ICJ7Y29sb3JzLm9uLWFjY2VudH0iCiAgICByb3VuZGVkOiAie3JvdW5kZWQuZnVsbH0iCiAgICBwYWRkaW5nOiAycHggMTBweAogICAgdHlwb2dyYXBoeTogInt0eXBvZ3JhcGh5LmxhYmVsfSIKICBiYWRnZS1ub2Fuc3dlcjoKICAgIGJhY2tncm91bmRDb2xvcjogIntjb2xvcnMuc3RhZ2Utbm9hbnN3ZXJ9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy5vbi1hY2NlbnR9IgogICAgcm91bmRlZDogIntyb3VuZGVkLmZ1bGx9IgogICAgcGFkZGluZzogMnB4IDEwcHgKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5sYWJlbH0iCiAga3BpLWNhcmQ6CiAgICBiYWNrZ3JvdW5kQ29sb3I6ICJ7Y29sb3JzLnN1cmZhY2V9IgogICAgdGV4dENvbG9yOiAie2NvbG9ycy50ZXh0LXByaW1hcnl9IgogICAgcm91bmRlZDogIntyb3VuZGVkLmxnfSIKICAgIHBhZGRpbmc6IDE2cHggMjBweAogIGtwaS12YWx1ZToKICAgIHRleHRDb2xvcjogIntjb2xvcnMudGV4dC1wcmltYXJ5fSIKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5oMX0iCiAga3BpLWxhYmVsOgogICAgdGV4dENvbG9yOiAie2NvbG9ycy50ZXh0LW11dGVkfSIKICAgIHR5cG9ncmFwaHk6ICJ7dHlwb2dyYXBoeS5sYWJlbH0iCi0tLQoKIyMgT3ZlcnZpZXcKCkluayBIb21lcyBDUk0gaXMgYSAqKmxpZ2h0KiosIGRhdGEtZGVuc2UgYXBwbGljYXRpb24gKENaIGV4cGxpY2l0bHkgcmVqZWN0ZWQgdGhlIGRhcmsgbmF2eSB0aGVtZTogIuC5hOC4oeC5iOC4iuC4reC4muC4lOC4s+C5huC4oeC4seC4meC4h+C5iOC4p+C4hyIpLiBUaGUgdGVhbSBzdGFyZXMgYXQgaHVuZHJlZHMgb2YgbGVhZHMgYSBkYXksIHNvIHRoZSBkZXNpZ24gcHJpb3JpdGl6ZXMgc2Nhbm5hYmlsaXR5OiBhIGNsZWFuIHdoaXRlL2dyYXkgY2FudmFzIChgI0Y2RjhGQWApIHdpdGggd2hpdGUgc3VyZmFjZSBjYXJkcywgaGFpcmxpbmUgYCNFMkU4RjBgIGJvcmRlcnMsIE9ORSBjeWFuIGludGVyYWN0aW9uIGNvbG9yIChgIzA4OTFCMmAsIGRhcmtlbmVkIGZyb20gYCMyMmQzZWVgIGZvciBXQ0FHIG9uIHdoaXRlKSwgYW5kIHN0YWdlLWNvZGVkIGJhZGdlcyB3aXRoIHdoaXRlIHRleHQuIFRoYWkgaXMgdGhlIHByaW1hcnkgVUkgbGFuZ3VhZ2Ug4oCUIGV2ZXJ5dGhpbmcgcmVuZGVycyBpbiBOb3RvIFNhbnMgVGhhaS4KClRoZSBkZXNpZ24gYmFyIGlzIG5vbi1uZWdvdGlhYmxlOiBubyBnZW5lcmljIEFJLWRlZmF1bHQgbGF5b3V0cywgbm8gdGVtcGxhdGVkIGRhc2hib2FyZHMuIEV2ZXJ5IHNjcmVlbiBzaGlwcyBhZ2FpbnN0IHRoZXNlIHRva2Vucy4KCiMjIENvbG9ycwoKLSAqKkJhY2tncm91bmQgKGAjRjZGOEZBYCkqKiDigJQgbGlnaHQgZ3JheS13aGl0ZSBjYW52YXMuIEFwcCBjaHJvbWUsIHBhZ2UgYmFja2dyb3VuZC4KLSAqKlN1cmZhY2UgKGAjRkZGRkZGYCkqKiDigJQgY2FyZHMsIHRhYmxlcywgcGFuZWxzLCBzaWRlYmFyLgotICoqU3VyZmFjZSByYWlzZWQgKGAjRUVGMkY3YCkqKiDigJQgaG92ZXIgc3RhdGVzLCB0YWJsZSBoZWFkZXJzLCBhY3RpdmUgbmF2LgotICoqQm9yZGVyIChgI0UyRThGMGApKiog4oCUIGhhaXJsaW5lIGRpdmlkZXJzLiBUaGUgbGlnaHQgdGhlbWUgbGl2ZXMgb24gdGhpbiBsaW5lcyBhbmQgc3BhY2UsIG5vdCBzaGFkb3dzLgotICoqUHJpbWFyeSAoYCMwODkxQjJgKSoqIOKAlCBjeWFuLTcwMC4gVEhFIGludGVyYWN0aW9uIGNvbG9yOiBwcmltYXJ5IGJ1dHRvbnMsIGxpbmtzLCBhY3RpdmUgbmF2LCBmb2N1cyByaW5ncy4gRGFyayBlbm91Z2ggZm9yIHdoaXRlIHRleHQgKFdDQUcgQUEgfjU6MSkuIFVzZWQgc3BhcmluZ2x5LgotICoqT24tYWNjZW50IChgI0ZGRkZGRmApKiog4oCUIHRleHQgb24gY3lhbi9zdGFnZS1jb2xvcmVkIGZpbGxzLgotICoqU3VjY2VzcyAvIFdhcm5pbmcgLyBEYW5nZXIqKiDigJQgc2VtYW50aWMgc3RhdHVzIGNvbG9ycywgaW5zaWRlIGJhZGdlcyBhbmQgZm9sbG93LXVwIGR1ZSBzdGF0ZXMuCi0gKipTdGFnZSBjb2xvcnMqKiDigJQgZGFya2VuZWQgZm9yIGxpZ2h0IGJhY2tncm91bmRzIHdpdGggd2hpdGUgdGV4dCAoY29udGFjdGVkIGAjMDI4NEM3YCwgcXVhbGlmaWVkIGAjMTZBMzRBYCwgc2l0ZSB2aXNpdCBgIzdDM0FFRGAsIHByb3Bvc2FsIGAjRDk3NzA2YCwgd29uIGAjMTU4MDNEYCwgbG9zdCBgI0RDMjYyNmAsIG5vLWFuc3dlciBgI0VBNTgwQ2ApLgoKIyMgVHlwb2dyYXBoeQoKLSAqKk5vdG8gU2FucyBUaGFpKiogZm9yIGFsbCBUaGFpIGNvcHksICoqSW50ZXIqKiBmb3IgTGF0aW4vZGlnaXRzIOKAlCBvbmUgZm9udCBzdGFjay4KLSBEYXRhIHRhYmxlcyB1c2UgYHRhYmxlLWNlbGxgICgwLjg3NXJlbSkg4oCUIGRlbnNlIGJ1dCBsZWdpYmxlLgotIExhYmVscyBzbWFsbCAoMC43NXJlbSksIHVwcGVyY2FzZS10cmFja2VkLCBtdXRlZC4KLSBNb25vIChgSmV0QnJhaW5zIE1vbm9gKSBvbmx5IGZvciBJRHMgYW5kIHBob25lIG51bWJlcnMuCgojIyBMYXlvdXQgJiBTcGFjaW5nCgotIFNwYWNpbmcgc2NhbGU6IDQgLyA4IC8gMTYgLyAyNCAvIDMycHguIDE2cHggZGVmYXVsdCBndXR0ZXIgYmV0d2VlbiBjYXJkczsgMjRweCBiZXR3ZWVuIHNlY3Rpb25zLgotIE1heCBjb250ZW50IHdpZHRoIH4xMjgwcHggZm9yIGxpc3QgcGFnZXM7IGRhc2hib2FyZHMgc3RyZXRjaCB3aWRlci4KLSBMZWZ0IHNpZGViYXIgKGNvbGxhcHNpYmxlIG9uIG1vYmlsZSk6IOC4p+C4seC4meC4meC4teC5iSDCtyDguYHguJTguIrguJrguK3guKPguYzguJQgwrcg4Lil4Li14LiUIMK3IOC4muC4reC4o+C5jOC4lCDCtyDguJvguI/guLTguJfguLTguJkgwrcg4LiE4Lit4LiZ4LmB4LiX4LiB4LiV4LmMIMK3IOC4leC4tOC4lOC4leC4suC4oS4KLSBNb2JpbGUtZmlyc3Q6IGJvdHRvbSBuYXYgb24gcGhvbmVzLCB0YWJsZXMgZGVncmFkZSB0byBzdGFja2VkIGNhcmRzLgoKIyMgRWxldmF0aW9uICYgRGVwdGgKCi0gTGlnaHQgdGhlbWU6IHN1YnRsZSBlbGV2YXRpb24gdmlhIHN1cmZhY2Ugc3RlcHMgKyAxcHggYm9yZGVycy4gU2hhZG93cyBvbmx5IG9uIGZsb2F0aW5nIGVsZW1lbnRzIChtb2RhbHMsIHRvYXN0cywgR29vZ2xlIGxvZ2luIGJ1dHRvbikg4oCUIHRpbnRlZCB0byB0aGUgYmcgaHVlLCBuZXZlciBwdXJlIGJsYWNrLgoKIyMgU2hhcGVzCgotIENhcmRzL3BhbmVscyAxNHB4OyBidXR0b25zL2lucHV0cyAxMHB4OyBiYWRnZXMgcGlsbDsgdGFibGUgcm93cyBmdWxsLWJsZWVkLgoKIyMgQ29tcG9uZW50cwoKLSAqKkJ1dHRvbiBwcmltYXJ5Kiog4oCUIGN5YW4tNzAwIGZpbGwsIHdoaXRlIHRleHQuIE9uZSBwZXIgdmlldy4gSG92ZXI6IGAjMDI4NEM3YC4KLSAqKkJ1dHRvbiBzZWNvbmRhcnkqKiDigJQgcmFpc2VkIHN1cmZhY2UsIHNlY29uZGFyeSB0ZXh0LCBoYWlybGluZSBib3JkZXIuCi0gKipDYXJkKiog4oCUIHdoaXRlIHN1cmZhY2UsIGhhaXJsaW5lIGJvcmRlci4gS1BJIGNhcmRzOiBiaWcgYm9sZCBkYXJrIHZhbHVlLCBtdXRlZCB0cmFja2VkIGxhYmVsLgotICoqVGFibGUqKiDigJQgcmFpc2VkIGhlYWRlciB3aXRoIHRyYWNrZWQgc21hbGwgY2FwcywgaGFpcmxpbmUgcm93IGRpdmlkZXJzLCBob3ZlciBoaWdobGlnaHQsIHN0YWdlIGJhZGdlcyBpbmxpbmUuCi0gKipJbnB1dCoqIOKAlCB3aGl0ZSBpbnB1dCwgaGFpcmxpbmUgYm9yZGVyLCBjeWFuIGZvY3VzIGJvcmRlci4gTGFiZWxzIGFib3ZlLgotICoqU2lkZWJhcioqIOKAlCB3aGl0ZSBzdXJmYWNlOyBhY3RpdmUgaXRlbSA9IHJhaXNlZCArIGN5YW4gdGV4dCB3aXRoIGxlZnQgaW5kaWNhdG9yIGJhci4KLSAqKkJhZGdlcyoqIOKAlCBwaWxsOyB3aGl0ZSB0ZXh0IG9uIHN0YWdlL3NlbWFudGljIGNvbG9ycy4KLSAqKktQSSBjYXJkKiog4oCUIGxhcmdlIGJvbGQgbnVtYmVyIChuZWFyLWJsYWNrKSwgc21hbGwgbXV0ZWQgbGFiZWwuCgojIyBEbydzIGFuZCBEb24ndHMKCi0gRG8gdXNlIGN5YW4gZm9yIE9ORSBpbnRlcmFjdGlvbiBwZXIgdmlldyDigJQgcHJpbWFyeSBhY3Rpb24sIGZvY3VzZWQgZmllbGQsIGFjdGl2ZSBuYXYuCi0gRG8ga2VlcCB0aGUgY2FudmFzIGxpZ2h0IGFuZCB0aGUgZGF0YSBkYXJrOiBuZWFyLWJsYWNrIGZvciBudW1iZXJzLCBzbGF0ZSBmb3IgYm9keSwgbXV0ZWQgZm9yIG1ldGFkYXRhLgotIERvIHVzZSBzdGFnZSBiYWRnZXMgd2l0aCB3aGl0ZSB0ZXh0IGZvciBzdGFnZSB2YWx1ZXMuCi0gRG8ga2VlcCB0YWJsZXMgZGVuc2Ug4oCUIDAuODc1cmVtLCB0aWdodCByb3dzLgotIERvbid0IHVzZSBkYXJrIHNlY3Rpb25zIGluc2lkZSB0aGUgbGlnaHQgYXBwIChsb2dpbiwgZHJhd2VycywgbW9kYWxzIGFsbCBzdGF5IGxpZ2h0KS4KLSBEb24ndCB1c2UgaGVhdnkgc2hhZG93cyBvciBncmFkaWVudHMgZm9yIGRlcHRoIOKAlCBoYWlybGluZSBib3JkZXJzIGFuZCBzdXJmYWNlIHN0ZXBzLgotIERvbid0IHJlbmRlciBUaGFpIGluIGFueSBBSS1nZW5lcmF0ZWQgaW1hZ2U7IFRoYWkgaXMgYWx3YXlzIHJlYWwgdGV4dCBpbiBOb3RvIFNhbnMgVGhhaS4KLSBEb24ndCBhZGQgY2hhcnQgbGlicmFyaWVzIGZvciB2MSBLUElzIOKAlCBDU1MgYmFycyBhbmQgYmlnIG51bWJlcnMgYXJlIGVub3VnaC4KLSBEb24ndCBzaGlwIGEgbGF5b3V0IHRoYXQgbG9va3MgdGVtcGxhdGVkLiBJZiBpdCBsb29rcyBsaWtlIGEgZ2VuZXJpYyBhZG1pbiB0ZW1wbGF0ZSwgaXQgZmFpbHMgcmV2aWV3Lgo=
+---
+version: alpha
+name: Ink Homes CRM
+description: Data-dense LIGHT-theme CRM for the Ink team and the Ink agent — clean white canvas, cyan as the single interaction color, Noto Sans Thai for Thai copy, quiet surfaces so 800+ leads stay scannable. CZ chose light over dark ("ไม่ชอบดำๆมันง่วง").
+colors:
+  background: "#F6F8FA"
+  surface: "#FFFFFF"
+  surface-raised: "#EEF2F7"
+  border: "#E2E8F0"
+  text-primary: "#0F172A"
+  text-secondary: "#334155"
+  text-muted: "#5B6B7C"
+  primary: "#0E7490"
+  on-accent: "#FFFFFF"
+  success: "#15803D"
+  warning: "#B45309"
+  danger: "#B91C1C"
+  stage-new: "#64748B"
+  stage-contacted: "#0369A1"
+  stage-qualified: "#15803D"
+  stage-sitevisit: "#6D28D9"
+  stage-proposal: "#B45309"
+  stage-won: "#166534"
+  stage-unqualified: "#64748B"
+  stage-lost: "#B91C1C"
+  stage-duplicate: "#64748B"
+  stage-noanswer: "#C2410C"
+typography:
+  font-family:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+  h1:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 1.75rem
+    fontWeight: 700
+    lineHeight: 1.25
+    letterSpacing: "-0.01em"
+  h2:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 1.375rem
+    fontWeight: 600
+    lineHeight: 1.3
+  h3:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 1.125rem
+    fontWeight: 600
+    lineHeight: 1.35
+  body-md:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 0.9375rem
+    fontWeight: 400
+    lineHeight: 1.6
+  body-sm:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 0.8125rem
+    fontWeight: 400
+    lineHeight: 1.55
+  table-cell:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 0.875rem
+    fontWeight: 400
+    lineHeight: 1.4
+  label:
+    fontFamily: "Noto Sans Thai, Inter, system-ui, sans-serif"
+    fontSize: 0.75rem
+    fontWeight: 600
+    lineHeight: 1.3
+    letterSpacing: "0.04em"
+  mono:
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontSize: 0.8125rem
+    fontWeight: 400
+    lineHeight: 1.4
+rounded:
+  sm: 6px
+  md: 10px
+  lg: 14px
+  full: 9999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 32px
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-accent}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.md}"
+    padding: 10px 18px
+  button-primary-hover:
+    backgroundColor: "{colors.stage-contacted}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.md}"
+    padding: 10px 18px
+  button-secondary:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.text-secondary}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.md}"
+    padding: 10px 18px
+  card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-secondary}"
+    rounded: "{rounded.lg}"
+  card-hover:
+    backgroundColor: "{colors.surface-raised}"
+    rounded: "{rounded.lg}"
+  table-header:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.text-muted}"
+    typography: "{typography.label}"
+    padding: 10px 12px
+  table-row:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-secondary}"
+    typography: "{typography.table-cell}"
+  table-row-hover:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.text-primary}"
+  input:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-primary}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.md}"
+    padding: 9px 12px
+  input-focus:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-primary}"
+    rounded: "{rounded.md}"
+    padding: 9px 12px
+  sidebar:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-muted}"
+  sidebar-active:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.md}"
+    padding: 8px 12px
+  badge-neutral:
+    backgroundColor: "{colors.stage-new}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-contacted:
+    backgroundColor: "{colors.stage-contacted}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-success:
+    backgroundColor: "{colors.success}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-sitevisit:
+    backgroundColor: "{colors.stage-sitevisit}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-warning:
+    backgroundColor: "{colors.warning}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-danger:
+    backgroundColor: "{colors.danger}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-won:
+    backgroundColor: "{colors.stage-won}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-unqualified:
+    backgroundColor: "{colors.stage-unqualified}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-duplicate:
+    backgroundColor: "{colors.stage-duplicate}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  badge-noanswer:
+    backgroundColor: "{colors.stage-noanswer}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.full}"
+    padding: 2px 10px
+    typography: "{typography.label}"
+  kpi-card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-primary}"
+    rounded: "{rounded.lg}"
+    padding: 16px 20px
+  kpi-value:
+    textColor: "{colors.text-primary}"
+    typography: "{typography.h1}"
+  kpi-label:
+    textColor: "{colors.text-muted}"
+    typography: "{typography.label}"
+---
+
+## Overview
+
+Ink Homes CRM is a **light**, data-dense application (CZ explicitly rejected the dark navy theme: "ไม่ชอบดำๆมันง่วง"). The team stares at hundreds of leads a day, so the design prioritizes scannability: a clean white/gray canvas (`#F6F8FA`) with white surface cards, hairline `#E2E8F0` borders, ONE cyan interaction color (`#0891B2`, darkened from `#22d3ee` for WCAG on white), and stage-coded badges with white text. Thai is the primary UI language — everything renders in Noto Sans Thai.
+
+The design bar is non-negotiable: no generic AI-default layouts, no templated dashboards. Every screen ships against these tokens.
+
+## Colors
+
+- **Background (`#F6F8FA`)** — light gray-white canvas. App chrome, page background.
+- **Surface (`#FFFFFF`)** — cards, tables, panels, sidebar.
+- **Surface raised (`#EEF2F7`)** — hover states, table headers, active nav.
+- **Border (`#E2E8F0`)** — hairline dividers. The light theme lives on thin lines and space, not shadows.
+- **Primary (`#0891B2`)** — cyan-700. THE interaction color: primary buttons, links, active nav, focus rings. Dark enough for white text (WCAG AA ~5:1). Used sparingly.
+- **On-accent (`#FFFFFF`)** — text on cyan/stage-colored fills.
+- **Success / Warning / Danger** — semantic status colors, inside badges and follow-up due states.
+- **Stage colors** — darkened for light backgrounds with white text (contacted `#0284C7`, qualified `#16A34A`, site visit `#7C3AED`, proposal `#D97706`, won `#15803D`, lost `#DC2626`, no-answer `#EA580C`).
+
+## Typography
+
+- **Noto Sans Thai** for all Thai copy, **Inter** for Latin/digits — one font stack.
+- Data tables use `table-cell` (0.875rem) — dense but legible.
+- Labels small (0.75rem), uppercase-tracked, muted.
+- Mono (`JetBrains Mono`) only for IDs and phone numbers.
+
+## Layout & Spacing
+
+- Spacing scale: 4 / 8 / 16 / 24 / 32px. 16px default gutter between cards; 24px between sections.
+- Max content width ~1280px for list pages; dashboards stretch wider.
+- Left sidebar (collapsible on mobile): วันนี้ · แดชบอร์ด · ลีด · บอร์ด · ปฏิทิน · คอนแทกต์ · ติดตาม.
+- Mobile-first: bottom nav on phones, tables degrade to stacked cards.
+
+## Elevation & Depth
+
+- Light theme: subtle elevation via surface steps + 1px borders. Shadows only on floating elements (modals, toasts, Google login button) — tinted to the bg hue, never pure black.
+
+## Shapes
+
+- Cards/panels 14px; buttons/inputs 10px; badges pill; table rows full-bleed.
+
+## Components
+
+- **Button primary** — cyan-700 fill, white text. One per view. Hover: `#0284C7`.
+- **Button secondary** — raised surface, secondary text, hairline border.
+- **Card** — white surface, hairline border. KPI cards: big bold dark value, muted tracked label.
+- **Table** — raised header with tracked small caps, hairline row dividers, hover highlight, stage badges inline.
+- **Input** — white input, hairline border, cyan focus border. Labels above.
+- **Sidebar** — white surface; active item = raised + cyan text with left indicator bar.
+- **Badges** — pill; white text on stage/semantic colors.
+- **KPI card** — large bold number (near-black), small muted label.
+
+## Do's and Don'ts
+
+- Do use cyan for ONE interaction per view — primary action, focused field, active nav.
+- Do keep the canvas light and the data dark: near-black for numbers, slate for body, muted for metadata.
+- Do use stage badges with white text for stage values.
+- Do keep tables dense — 0.875rem, tight rows.
+- Don't use dark sections inside the light app (login, drawers, modals all stay light).
+- Don't use heavy shadows or gradients for depth — hairline borders and surface steps.
+- Don't render Thai in any AI-generated image; Thai is always real text in Noto Sans Thai.
+- Don't add chart libraries for v1 KPIs — CSS bars and big numbers are enough.
+- Don't ship a layout that looks templated. If it looks like a generic admin template, it fails review.

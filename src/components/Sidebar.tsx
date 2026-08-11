@@ -1,1 +1,74 @@
-InVzZSBjbGllbnQiOwoKaW1wb3J0IExpbmsgZnJvbSAibmV4dC9saW5rIjsKaW1wb3J0IHsgdXNlUGF0aG5hbWUgfSBmcm9tICJuZXh0L25hdmlnYXRpb24iOwppbXBvcnQgeyB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKCmNvbnN0IG5hdiA9IFsKICB7IGhyZWY6ICIvIiwgbGFiZWw6ICLguKfguLHguJnguJnguLXguYkiLCBpY29uOiAi4peOIiB9LAogIHsgaHJlZjogIi9kYXNoYm9hcmQiLCBsYWJlbDogIuC5geC4lOC4iuC4muC4reC4o+C5jOC4lCIsIGljb246ICLilqQiIH0sCiAgeyBocmVmOiAiL2xlYWRzIiwgbGFiZWw6ICLguKXguLXguJQiLCBpY29uOiAi4peIIiB9LAogIHsgaHJlZjogIi9ib2FyZCIsIGxhYmVsOiAi4Lia4Lit4Lij4LmM4LiUIiwgaWNvbjogIuKWpiIgfSwKICB7IGhyZWY6ICIvY2FsZW5kYXIiLCBsYWJlbDogIuC4m+C4j+C4tOC4l+C4tOC4mSIsIGljb246ICLil6siIH0sCiAgeyBocmVmOiAiL2NvbnRhY3RzIiwgbGFiZWw6ICLguITguK3guJnguYHguJfguIHguJXguYwiLCBpY29uOiAi4peJIiB9LAogIHsgaHJlZjogIi9mb2xsb3d1cHMiLCBsYWJlbDogIuC4leC4tOC4lOC4leC4suC4oSIsIGljb246ICLimLAiIH0sCl07CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBTaWRlYmFyKCkgewogIGNvbnN0IHBhdGhuYW1lID0gdXNlUGF0aG5hbWUoKTsKICBjb25zdCBbb3Blbiwgc2V0T3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7CgogIGNvbnN0IGlzQWN0aXZlID0gKGhyZWY6IHN0cmluZykgPT4KICAgIGhyZWYgPT09ICIvIiA/IHBhdGhuYW1lID09PSAiLyIgOiBwYXRobmFtZS5zdGFydHNXaXRoKGhyZWYpOwoKICByZXR1cm4gKAogICAgPD4KICAgICAgey8qIG1vYmlsZSB0b3AgYmFyICovfQogICAgICA8aGVhZGVyIGNsYXNzTmFtZT0ibWQ6aGlkZGVuIGZpeGVkIHRvcC0wIGluc2V0LXgtMCB6LTQwIGJnLXdoaXRlIGJvcmRlci1iIGJvcmRlci1bI0UyRThGMF0gaC0xNCBmbGV4IGl0ZW1zLWNlbnRlciBweC00Ij4KICAgICAgICA8YnV0dG9uCiAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRPcGVuKCFvcGVuKX0KICAgICAgICAgIGFyaWEtbGFiZWw9IuC5gOC4oeC4meC4uSIKICAgICAgICAgIGNsYXNzTmFtZT0idGV4dC1bIzMzNDE1NV0gdGV4dC14bCIKICAgICAgICA+CiAgICAgICAgICDimLAKICAgICAgICA8L2J1dHRvbj4KICAgICAgICA8c3BhbiBjbGFzc05hbWU9Im1sLTMgZm9udC1zZW1pYm9sZCB0ZXh0LVsjMEYxNzJBXSI+SW5rIEhvbWVzIENSTTwvc3Bhbj4KICAgICAgPC9oZWFkZXI+CgogICAgICB7Lyogc2lkZWJhciAqL30KICAgICAgPGFzaWRlCiAgICAgICAgY2xhc3NOYW1lPXtgZml4ZWQgbWQ6c3RpY2t5IHRvcC0xNCBtZDp0b3AtMCB6LTMwIGgtW2NhbGMoMTAwdmgtMy41cmVtKV0gbWQ6aC1zY3JlZW4gdy01NiBiZy13aGl0ZSBib3JkZXItciBib3JkZXItWyNFMkU4RjBdIGZsZXggZmxleC1jb2wgdHJhbnNpdGlvbi10cmFuc2Zvcm0gbWQ6dHJhbnNsYXRlLXgtMCAkewogICAgICAgICAgb3BlbiA/ICJ0cmFuc2xhdGUteC0wIiA6ICItdHJhbnNsYXRlLXgtZnVsbCIKICAgICAgICB9YH0KICAgICAgPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJweC01IHB0LTYgcGItNCBoaWRkZW4gbWQ6YmxvY2siPgogICAgICAgICAgPHAgY2xhc3NOYW1lPSJmb250LWJvbGQgdGV4dC1bIzBGMTcyQV0gdGV4dC1sZyBsZWFkaW5nLXRpZ2h0Ij5JbmsgSG9tZXM8L3A+CiAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtWyM2NDc0OEJdIHRleHQteHMgdHJhY2tpbmctd2lkZSBtdC0wLjUiPkNSTSDguKDguLLguKLguYPguJk8L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPG5hdiBjbGFzc05hbWU9ImZsZXgtMSBweC0zIHB5LTIgc3BhY2UteS0wLjUiPgogICAgICAgICAge25hdi5tYXAoKGl0ZW0pID0+IHsKICAgICAgICAgICAgY29uc3QgYWN0aXZlID0gaXNBY3RpdmUoaXRlbS5ocmVmKTsKICAgICAgICAgICAgcmV0dXJuICgKICAgICAgICAgICAgICA8TGluawogICAgICAgICAgICAgICAga2V5PXtpdGVtLmhyZWZ9CiAgICAgICAgICAgICAgICBocmVmPXtpdGVtLmhyZWZ9CiAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRPcGVuKGZhbHNlKX0KICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZsZXggaXRlbXMtY2VudGVyIGdhcC0zIHJvdW5kZWQtbWQgcHgtMyBweS0yIHRleHQtc20gdHJhbnNpdGlvbi1jb2xvcnMgJHsKICAgICAgICAgICAgICAgICAgYWN0aXZlCiAgICAgICAgICAgICAgICAgICAgPyAiYmctWyNFRUYyRjddIHRleHQtWyMwRTc0OTBdIGZvbnQtc2VtaWJvbGQiCiAgICAgICAgICAgICAgICAgICAgOiAidGV4dC1bIzY0NzQ4Ql0gaG92ZXI6YmctWyNGNkY4RkFdIGhvdmVyOnRleHQtWyMzMzQxNTVdIgogICAgICAgICAgICAgICAgfWB9CiAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ3LTQgdGV4dC1jZW50ZXIgdGV4dC1iYXNlIGxlYWRpbmctbm9uZSI+e2l0ZW0uaWNvbn08L3NwYW4+CiAgICAgICAgICAgICAgICB7aXRlbS5sYWJlbH0KICAgICAgICAgICAgICA8L0xpbms+CiAgICAgICAgICAgICk7CiAgICAgICAgICB9KX0KICAgICAgICA8L25hdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icHgtNSBweS00IGJvcmRlci10IGJvcmRlci1bI0UyRThGMF0gdGV4dC14cyB0ZXh0LVsjOTRBM0I4XSI+CiAgICAgICAgICBJbmsgdGVhbSDCtyB2MQogICAgICAgIDwvZGl2PgogICAgICA8L2FzaWRlPgogICAgPC8+CiAgKTsKfQo=
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+const nav = [
+  { href: "/", label: "วันนี้", icon: "◎" },
+  { href: "/dashboard", label: "แดชบอร์ด", icon: "▤" },
+  { href: "/leads", label: "ลีด", icon: "◈" },
+  { href: "/board", label: "บอร์ด", icon: "▦" },
+  { href: "/calendar", label: "ปฏิทิน", icon: "◫" },
+  { href: "/contacts", label: "คอนแทกต์", icon: "◉" },
+  { href: "/followups", label: "ติดตาม", icon: "☰" },
+];
+
+export default function Sidebar() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  return (
+    <>
+      {/* mobile top bar */}
+      <header className="md:hidden fixed top-0 inset-x-0 z-40 bg-white border-b border-[#E2E8F0] h-14 flex items-center px-4">
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label="เมนู"
+          className="text-[#334155] text-xl"
+        >
+          ☰
+        </button>
+        <span className="ml-3 font-semibold text-[#0F172A]">Ink Homes CRM</span>
+      </header>
+
+      {/* sidebar */}
+      <aside
+        className={`fixed md:sticky top-14 md:top-0 z-30 h-[calc(100vh-3.5rem)] md:h-screen w-56 bg-white border-r border-[#E2E8F0] flex flex-col transition-transform md:translate-x-0 ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="px-5 pt-6 pb-4 hidden md:block">
+          <p className="font-bold text-[#0F172A] text-lg leading-tight">Ink Homes</p>
+          <p className="text-[#64748B] text-xs tracking-wide mt-0.5">CRM ภายใน</p>
+        </div>
+        <nav className="flex-1 px-3 py-2 space-y-0.5">
+          {nav.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
+                  active
+                    ? "bg-[#EEF2F7] text-[#0E7490] font-semibold"
+                    : "text-[#64748B] hover:bg-[#F6F8FA] hover:text-[#334155]"
+                }`}
+              >
+                <span className="w-4 text-center text-base leading-none">{item.icon}</span>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="px-5 py-4 border-t border-[#E2E8F0] text-xs text-[#94A3B8]">
+          Ink team · v1
+        </div>
+      </aside>
+    </>
+  );
+}

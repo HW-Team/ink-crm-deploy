@@ -1,1 +1,27 @@
-IyBJbmsgSG9tZXMgQ1JNCgpJbnRlcm5hbCBDUk0gZm9yIEluayAoSW5rIEhvbWVzKS4gT25lIHNvdXJjZSBvZiB0cnV0aCBmb3IgKipsZWFkcywgY29udGFjdHMsIGNvbnZlcnNhdGlvbnMsIGFuZCBmb2xsb3ctdXBzKiog4oCUIHVzZWQgYnkgdGhlIEluayB0ZWFtICh3ZWIgYXBwKSBhbmQgdGhlIEluayBhZ2VudCAoQVBJKS4KCiMjIFN0YWNrCgotICoqQmFja2VuZDoqKiBTdXBhYmFzZSAoUG9zdGdyZXMpIOKAlCBzY2hlbWEgbWlycm9ycyB0aGUgbGVnYWN5IEdvb2dsZSBTaGVldCAxOjEKLSAqKldlYiBhcHA6KiogTmV4dC5qcyAoZGVwbG95OiBDb29saWZ5KQotICoqQWdlbnQgYWNjZXNzOioqIFJFU1QgQVBJICsgZGVkaWNhdGVkIHNlcnZpY2Uga2V5IChIZXJtZXMgdG9vbCBjb25maWcgZm9yIHRoZSBJbmsgYWdlbnQpCgojIyBXb3Jrc3RyZWFtcyAoTXVsdGljYSDigJQg8J+PoCBJbmsgSG9tZXMgQ1JNKQoKfCBJRCB8IFRhc2sgfAp8LS0tfC0tLXwKfCBIV1QtMTQxIHwgQmFja2VuZCDigJQgU3VwYWJhc2Ugc2NoZW1hICsgQVBJIHwKfCBIV1QtMTQyIHwgV2ViIGFwcCDigJQgTmV4dC5qcyBDUk0gVUkgfAp8IEhXVC0xNDMgfCBBZ2VudC1hY2Nlc3MgQVBJICsgSGVybWVzIHRvb2wgY29uZmlnIHwKfCBIV1QtMTQ0IHwgTWlncmF0ZSBHb29nbGUgU2hlZXQgZGF0YSDihpIgQ1JNICg4MDYgbGVhZHMgLyA0NDAgY29udGFjdHMgLyA3NzggZm9sbG93LXVwcykgfAp8IEhXVC0xNDUgfCBSZXdpcmUgRkIgKyBQYXlsb2FkIHdlYmhvb2tzIOKGkiBuZXcgQ1JNIHwKCiMjIFNvdXJjZSBvZiB0cnV0aCAobGVnYWN5KQoKR29vZ2xlIFNoZWV0OiBbSW5rIFByZWZhYiBDUk1dKGh0dHBzOi8vZG9jcy5nb29nbGUuY29tL3NwcmVhZHNoZWV0cy9kLzFNaVVrRWtwdHE5aEtMNndpcTVSaDVZeWdNNHVOcUp1eUhLMVlzSE55U2tJKSDigJQgcmVhZC1vbmx5IGFyY2hpdmUgYWZ0ZXIgY3V0b3Zlci4KCiMjIEJ1aWxkIHJlcG9ydAoKaHR0cHM6Ly9hc3RyYWwtZmFibGUtd2duZy5oZXJlLm5vdy8K
+# Ink Homes CRM
+
+Internal CRM for Ink (Ink Homes). One source of truth for **leads, contacts, conversations, and follow-ups** — used by the Ink team (web app) and the Ink agent (API).
+
+## Stack
+
+- **Backend:** Supabase (Postgres) — schema mirrors the legacy Google Sheet 1:1
+- **Web app:** Next.js (deploy: Coolify)
+- **Agent access:** REST API + dedicated service key (Hermes tool config for the Ink agent)
+
+## Workstreams (Multica — 🏠 Ink Homes CRM)
+
+| ID | Task |
+|---|---|
+| HWT-141 | Backend — Supabase schema + API |
+| HWT-142 | Web app — Next.js CRM UI |
+| HWT-143 | Agent-access API + Hermes tool config |
+| HWT-144 | Migrate Google Sheet data → CRM (806 leads / 440 contacts / 778 follow-ups) |
+| HWT-145 | Rewire FB + Payload webhooks → new CRM |
+
+## Source of truth (legacy)
+
+Google Sheet: [Ink Prefab CRM](https://docs.google.com/spreadsheets/d/1MiUkEkptq9hKL6wiq5Rh5YygM4uNqJuyHK1YsHNySkI) — read-only archive after cutover.
+
+## Build report
+
+https://astral-fable-wgng.here.now/
