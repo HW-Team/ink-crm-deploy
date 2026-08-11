@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function NewLeadPage() {
   const router = useRouter();
-  const [form, setForm] = useState({ full_name: "", phone: "", source: "FACEBOOK", interest: "", province: "", owner: "" });
+  const [form, setForm] = useState({ full_name: "", phone: "", source: "FACEBOOK", interest: "", province: "" });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -23,7 +23,8 @@ export default function NewLeadPage() {
     });
     if (res.ok) {
       const d = await res.json();
-      router.push(`/leads/${d.lead.id}`);
+      router.push(`/leads?tab=inbox`);
+      router.refresh();
     } else {
       const d = await res.json().catch(() => ({}));
       setError(d.error ?? "เกิดข้อผิดพลาด");
@@ -35,7 +36,7 @@ export default function NewLeadPage() {
     <div className="max-w-xl space-y-6">
       <header>
         <h1 className="text-2xl font-bold text-[#0F172A]">ลีดใหม่</h1>
-        <p className="text-sm text-[#64748B]">เพิ่มลีดด้วยมือ</p>
+        <p className="text-sm text-[#64748B]">เพิ่มลีดด้วยมือ ลีดจะเข้ากล่องรอรับงานก่อนเข้าบอร์ด</p>
       </header>
 
       <form onSubmit={submit} className="card space-y-4">
@@ -64,10 +65,6 @@ export default function NewLeadPage() {
         <div>
           <label className="inp-label">จังหวัด</label>
           <input className="inp" value={form.province} onChange={set("province")} placeholder="กรุงเทพฯ" />
-        </div>
-        <div>
-          <label className="inp-label">เจ้าของ</label>
-          <input className="inp" value={form.owner} onChange={set("owner")} placeholder="ชื่อทีม" />
         </div>
 
         {error && <p className="text-sm text-[#B91C1C]">{error}</p>}

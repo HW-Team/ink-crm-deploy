@@ -1,13 +1,15 @@
 import { q } from "@/lib/supabase";
 import { thDate } from "@/lib/labels";
 import StageBadge from "@/components/StageBadge";
+import ClaimButton from "@/components/ClaimButton";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function TodayPage() {
   const today = new Date().toISOString().slice(0, 10);
 
-  const [followUps, newLeads, totalLeadsRows] = await Promise.all([
+  const [followUps, newLeads, totalLeadsRows, inboxRows] = await Promise.all([
     q(
       `select fu.*, c.full_name as contact_name, c.primary_phone,
               l.full_name as lead_name, l.crm_stage
@@ -24,6 +26,7 @@ export default async function TodayPage() {
       [`${today}T00:00:00`]
     ),
     q(`select count(*)::int as n from leads`),
+    q(`select l.* from leads l where l.owner_id is null order by l.lead_date desc limit 8`),
   ]);
 
   const totalLeads = totalLeadsRows[0]?.n ?? 0;
@@ -47,10 +50,35 @@ export default async function TodayPage() {
           <div className="kpi-label">ลีดใหม่วันนี้</div>
         </div>
         <div>
+          <div className="kpi-value">{inboxRows.length}</div>
+          <div className="kpi-label">รอรับงาน</div>
+        </div>
+        <div>
           <div className="kpi-value">{totalLeads}</div>
           <div className="kpi-label">ลีดทั้งหมด</div>
         </div>
       </div>
+
+      {inboxRows.length > 0 && (
+        <section>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-lg font-semibold text-[#0F172A]">ลีดรอรับงาน</h2>
+            <Link href="/leads?tab=inbox" className="text-sm font-medium text-[#0E7490] hover:underline">ดูทั้งหมด</Link>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {inboxRows.map((l: any) => (
+              <div key={l.id} className="card flex items-center justify-between gap-3 !py-3">
+                <div className="min-w-0">
+                  <p className="font-medium text-[#0F172A] text-sm truncate">{l.full_name}</p>
+                  <p className="font-mono text-xs text-[#64748B] mt-0.5 truncate">{l.phone ?? "—"}</p>
+                  {l.interest && <p className="text-xs text-[#94A3B8] mt-0.5 truncate">{l.interest}</p>}
+                </div>
+                <ClaimButton leadId={l.id} />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section>
         <h2 className="text-lg font-semibold text-[#0F172A] mb-3">ติดตามครบกำหนด</h2>
