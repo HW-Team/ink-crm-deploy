@@ -40,9 +40,9 @@ export default function LoginPage() {
 
         <form onSubmit={submit} className="card space-y-4">
           <div>
-            <label className="inp-label">อีเมล</label>
-            <input className="inp" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-              placeholder="somchai@inkhomes.co" autoComplete="email" />
+            <label className="inp-label">ชื่อผู้ใช้ / อีเมล</label>
+            <input className="inp" type="text" required value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin" autoComplete="username" />
           </div>
           <div>
             <label className="inp-label">รหัสผ่าน</label>
