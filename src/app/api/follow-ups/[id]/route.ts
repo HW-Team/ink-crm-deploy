@@ -42,10 +42,11 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     if (!fu) return NextResponse.json({ error: "follow-up not found" }, { status: 404 });
 
     // ยืนยันนัด → auto-log so it shows in the lead's history
+    // NOTE: channel must be in channel_type enum ('PHONE','LINE','MESSENGER','WHATSAPP','EMAIL','SITE_FORM','OTHER')
     if (body.confirmed === true && !before.confirmed) {
       await qRun(
         `insert into conversation_logs (contact_id, lead_id, channel, direction, team_member, user_id, summary)
-         values ($1,$2,'SYSTEM','out',$3,$4,$5)`,
+         values ($1,$2,'OTHER','OUT',$3,$4,$5)`,
         [before.contact_id, before.lead_id, me.full_name, me.id, "ยืนยันนัดแล้ว (ผ่านปฏิทิน)"]
       );
     }
