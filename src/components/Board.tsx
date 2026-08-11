@@ -98,7 +98,20 @@ export default function Board() {
                 <p className="font-medium text-[#0F172A] text-sm truncate">{lead.full_name}</p>
                 <p className="font-mono text-xs text-[#94A3B8] mt-0.5 truncate">{lead.phone ?? "—"}</p>
                 {lead.interest && <p className="text-xs text-[#64748B] mt-1 truncate">{lead.interest}</p>}
-                <div className="mt-1.5"><StageBadge stage={lead.crm_stage} /></div>
+                <div className="mt-1.5 flex items-center justify-between gap-1">
+                  <StageBadge stage={lead.crm_stage} />
+                  <select
+                    value={lead.crm_stage}
+                    onChange={(e) => onDrop(e.target.value, lead.id)}
+                    className="text-[11px] border border-[#E2E8F0] rounded px-1.5 py-0.5 bg-white text-[#334155] focus:outline-none focus:border-[#0E7490]"
+                    title="เลื่อนสเตจ"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {[...LANES.map((l) => l.key), "no_answer", "lost", "duplicate", "unqualified"].map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             ))}
             {(lanes[lane.key] ?? []).length === 0 && (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 
 export const metadata: Metadata = {
   title: "Ink Homes CRM",
@@ -18,8 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full bg-[#F6F8FA] text-[#0F172A] font-sans">
         <div className="flex min-h-screen">
           <Sidebar />
-          <main className="flex-1 min-w-0 px-6 py-6 md:px-8 md:py-8">{children}</main>
+          <main className="flex-1 min-w-0 px-4 py-5 md:px-8 md:py-8 pb-24 md:pb-8">{children}</main>
         </div>
+        <MobileNav />
       </body>
     </html>
   );
