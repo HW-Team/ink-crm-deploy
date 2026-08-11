@@ -50,7 +50,7 @@ export default function LoginPage() {
               placeholder="••••••••" autoComplete="current-password" />
           </div>
           {error && <p className="text-sm text-[#B91C1C]">{error}</p>}
-          <button className="btn-primary w-full" disabled={busy}>
+          <button type="submit" className="btn-primary w-full" disabled={busy}>
             {busy ? "กำลังเข้า..." : "เข้าสู่ระบบ"}
           </button>
         </form>
