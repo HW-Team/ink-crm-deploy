@@ -1,10 +1,12 @@
 # Ink Homes CRM — production Dockerfile (multi-stage)
-FROM node:20-alpine AS deps
+# node:22-slim (glibc) — alpine/musl broke Turbopack's next.config.ts load on Coolify (Aug 2026);
+# glibc is the env where the config load is proven. @supabase/* also requires node >=22.
+FROM node:22-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev || npm install
 
-FROM node:20-alpine AS builder
+FROM node:22-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
