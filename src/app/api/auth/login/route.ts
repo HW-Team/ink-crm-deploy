@@ -9,10 +9,10 @@ export async function POST(req: NextRequest) {
   try { body = await req.json(); } catch { return NextResponse.json({ error: "invalid JSON" }, { status: 400 }); }
   const email = String(body.email ?? "").trim().toLowerCase();
   const password = String(body.password ?? "");
-  if (!email || !password) return NextResponse.json({ error: "กรอกอีเมลและรหัสผ่าน" }, { status: 400 });
+  if (!email || !password) return NextResponse.json({ error: "กรอกชื่อผู้ใช้และรหัสผ่าน" }, { status: 400 });
 
   const user = await qOne<{ id: string; password_hash: string | null; active: boolean }>(
-    `select id, password_hash, active from users where email = $1`,
+    `select id, password_hash, active from users where email = $1 or lower(full_name) = lower($1)`,
     [email]
   );
   if (!user || !user.password_hash || !user.active) {

@@ -37,16 +37,34 @@ export async function POST(req: NextRequest) {
 }
 
 async function seedUsers(): Promise<string[]> {
-  const seeds = [
-    { email: 'somchai@inkhomes.co', full_name: 'สมชาย ใจดี', role: 'sales' },
-    { email: 'nid@inkhomes.co', full_name: 'นิด นิลวรรณ', role: 'sales' },
-    { email: 'manager@inkhomes.co', full_name: 'ผู้จัดการ Ink', role: 'manager' },
-    { email: 'ink-agent@inkhomes.co', full_name: 'Ink Agent', role: 'agent' },
-  ];
   const password = process.env.SEED_PASSWORD || 'ink-crm-2026';
   const hash = await bcrypt.hash(password, 10);
   const seeded: string[] = [];
-  for (const s of seeds) {
+
+  // Admin account — upsert (name "admin" so login works with just "admin")
+  const admin = await qOne<{ id: string }>(
+    `select id from users where email = 'admin@inkhomes.co' or lower(full_name) = 'admin' or email = 'manager@inkhomes.co'`
+  );
+  if (admin) {
+    await qRun(
+      `update users set email = 'admin@inkhomes.co', full_name = 'Admin', role = 'manager', password_hash = $1 where id = $2`,
+      [hash, admin.id]
+    );
+  } else {
+    await qRun(
+      `insert into users (email, full_name, role, password_hash) values ('admin@inkhomes.co','Admin','manager',$1)`,
+      [hash]
+    );
+  }
+  seeded.push('admin');
+
+  // Other staff (skip existing, don't touch passwords)
+  const others = [
+    { email: 'somchai@inkhomes.co', full_name: 'สมชาย ใจดี', role: 'sales' },
+    { email: 'nid@inkhomes.co', full_name: 'นิด นิลวรรณ', role: 'sales' },
+    { email: 'ink-agent@inkhomes.co', full_name: 'Ink Agent', role: 'agent' },
+  ];
+  for (const s of others) {
     const existing = await qOne(`select id from users where email = $1`, [s.email]);
     if (existing) continue;
     await qRun(
