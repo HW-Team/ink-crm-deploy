@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function VisitButton({ leadId }: { leadId: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ due_date: "", due_time: "", note: "" });
+  const [form, setForm] = useState({ due_date: "", due_time: "", note: "", location: "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -44,6 +44,10 @@ export default function VisitButton({ leadId }: { leadId: string }) {
           <label className="inp-label">เวลา</label>
           <input className="inp" type="time" value={form.due_time} onChange={(e) => setForm((f) => ({ ...f, due_time: e.target.value }))} />
         </div>
+      </div>
+      <div>
+        <label className="inp-label">สถานที่</label>
+        <input className="inp" value={form.location} onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))} placeholder="โชว์รูม / ที่อยู่หน้างาน" />
       </div>
       <div>
         <label className="inp-label">หมายเหตุ</label>

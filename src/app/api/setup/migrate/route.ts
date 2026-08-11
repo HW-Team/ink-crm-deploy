@@ -28,6 +28,11 @@ export async function POST(req: NextRequest) {
     await qRun(raw2);
     applied.push('0002');
 
+    // 0003: calendar UX — follow_ups.location + confirmed (ยืนยันนัด)
+    const raw3 = fs.readFileSync(path.join(base, '0003_calendar.sql'), 'utf8');
+    await qRun(raw3);
+    applied.push('0003');
+
     // Seed staff accounts (skip existing emails)
     const seeded = await seedUsers();
     return NextResponse.json({ message: 'schema applied', migrations: applied, seeded }, { status: 201 });
