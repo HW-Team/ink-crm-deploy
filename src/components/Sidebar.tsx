@@ -11,11 +11,10 @@ export default async function Sidebar() {
   if (parsed) {
     try {
       me = await qOne<{ full_name: string; role: string }>(
-        `select full_name, role from users where id = $1 and active = true`, [parsed.uid]
+        `select full_name, role from users where id = $1`,
+        [parsed.uid]
       );
-    } catch {
-      me = null; // pre-migration / DB hiccup — degrade gracefully
-    }
+    } catch { me = null; }
   }
 
   const links = [
@@ -27,6 +26,9 @@ export default async function Sidebar() {
     { href: "/contacts", label: "คอนแทกต์", icon: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" },
     { href: "/followups", label: "ติดตาม", icon: "M12 3a9 9 0 1 0 9 9M12 7v5l3 2" },
   ];
+  if (me?.role === "manager") {
+    links.push({ href: "/admin/users", label: "ตั้งค่า", icon: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm7.4-3a7.4 7.4 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7.3 7.3 0 0 0-2-1.2L14.6 3h-4l-.4 2.7a7.3 7.3 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5a7.4 7.4 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-1a7.3 7.3 0 0 0 2 1.2l.4 2.7h4l.4-2.7a7.3 7.3 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z" });
+  }
 
   return (
     <aside className="w-56 shrink-0 border-r border-[#E2E8F0] bg-white hidden md:flex flex-col sticky top-0 h-screen">

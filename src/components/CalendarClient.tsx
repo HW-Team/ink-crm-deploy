@@ -41,6 +41,9 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
   const [view, setView] = useState<"month" | "week" | "day">("month");
   const [events, setEvents] = useState<Event[]>([]);
   const [leads, setLeads] = useState<LeadOpt[]>([]);
+  const [users, setUsers] = useState<{ id: string; full_name: string; role: string; active: boolean }[]>([]);
+  const [meId, setMeId] = useState<string>("");
+  const [owner, setOwner] = useState("all");
   const [loading, setLoading] = useState(true);
   const [dragId, setDragId] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
@@ -63,15 +66,17 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
 
   const load = useCallback(async () => {
     setLoading(true);
-    const r = await fetch(`/api/calendar?from=${range.from}&to=${range.to}`);
+    const r = await fetch(`/api/calendar?from=${range.from}&to=${range.to}&owner=${owner}`);
     const d = await r.json();
     setEvents(d.events ?? []);
     setLoading(false);
-  }, [range]);
+  }, [range, owner]);
 
   useEffect(() => { load(); }, [load]);
   useEffect(() => {
     fetch("/api/leads?limit=500").then((r) => r.json()).then((d) => setLeads(d.leads ?? []));
+    fetch("/api/auth/me").then((r) => r.json()).then((d) => { if (d.user) setMeId(d.user.id); });
+    fetch("/api/users").then((r) => r.json()).then((d) => setUsers(d.users ?? []));
   }, []);
 
   const today = new Date().toISOString().slice(0, 10);
@@ -154,6 +159,28 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-1 bg-[#EEF2F7] rounded-lg p-1">
+          {([["all", "ทุกคน"], ["me", "ฉัน"]] as const).map(([k, label]) => (
+            <button key={k} onClick={() => setOwner(k)}
+              className={`px-3 py-1.5 text-sm rounded-md font-medium ${owner === k ? "bg-white text-[#0E7490] shadow-sm" : "text-[#64748B]"}`}>
+              {label}
+            </button>
+          ))}
+        </div>
+        <select
+          className="inp !w-auto !py-1.5 text-sm"
+          value={owner === "me" || owner === "all" ? "all" : owner}
+          onChange={(e) => setOwner(e.target.value)}
+        >
+          <option value="all">ทุกคน</option>
+          {users.filter((u) => u.active).map((u) => (
+            <option key={u.id} value={u.id}>{u.full_name}{u.role === "agent" ? " (AI)" : ""}</option>
+          ))}
+        </select>
+        {meId && owner === "me" && <span className="text-xs text-[#94A3B8]">เฉพาะงานของฉัน</span>}
       </div>
 
       {view === "month" && (

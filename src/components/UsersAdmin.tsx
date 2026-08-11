@@ -1,0 +1,150 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+type UserRow = { id: string; email: string; full_name: string; role: string; active: boolean; owned_leads?: number; open_followups?: number };
+
+const ROLES = [
+  { value: "sales", label: "พนักงานขาย" },
+  { value: "manager", label: "ผู้จัดการ" },
+  { value: "agent", label: "AI Agent" },
+];
+
+export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: string }) {
+  const router = useRouter();
+  const [form, setForm] = useState({ full_name: "", email: "", role: "sales", password: "" });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [pwOpen, setPwOpen] = useState<string | null>(null);
+  const [pw, setPw] = useState("");
+
+  const flash = (m: string) => { setNotice(m); setTimeout(() => setNotice(""), 2500); };
+
+  const create = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true); setError("");
+    const res = await fetch("/api/users", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    if (res.ok) {
+      setForm({ full_name: "", email: "", role: "sales", password: "" });
+      flash("สร้างผู้ใช้แล้ว");
+      router.refresh();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      setError(d.error ?? "สร้างไม่สำเร็จ");
+    }
+    setBusy(false);
+  };
+
+  const update = async (u: UserRow, patch: Record<string, unknown>) => {
+    const res = await fetch(`/api/users/${u.id}`, {
+      method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch),
+    });
+    if (res.ok) { flash("บันทึกแล้ว"); router.refresh(); }
+    else {
+      const d = await res.json().catch(() => ({}));
+      flash(d.error ?? "บันทึกไม่สำเร็จ");
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      {notice && (
+        <div className="bg-[#DCFCE7] text-[#166534] text-sm font-medium rounded-lg px-4 py-2.5">{notice}</div>
+      )}
+
+      <section className="card max-w-xl">
+        <h2 className="text-base font-semibold text-[#0F172A] mb-4">เพิ่มผู้ใช้ใหม่</h2>
+        <form onSubmit={create} className="space-y-3">
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div>
+              <label className="inp-label">ชื่อ *</label>
+              <input className="inp" required value={form.full_name} onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))} placeholder="ชื่อ-นามสกุล" />
+            </div>
+            <div>
+              <label className="inp-label">อีเมล *</label>
+              <input className="inp" type="email" required value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} placeholder="name@inkhomes.co" />
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div>
+              <label className="inp-label">สิทธิ์</label>
+              <select className="inp" value={form.role} onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}>
+                {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="inp-label">รหัสผ่านเริ่มต้น *</label>
+              <input className="inp" required minLength={4} value={form.password} onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))} placeholder="อย่างน้อย 4 ตัว" />
+            </div>
+          </div>
+          {error && <p className="text-sm text-[#B91C1C]">{error}</p>}
+          <button className="btn-primary" disabled={busy}>{busy ? "กำลังสร้าง..." : "สร้างผู้ใช้"}</button>
+        </form>
+      </section>
+
+      <section className="card overflow-x-auto p-0">
+        <h2 className="text-base font-semibold text-[#0F172A] px-6 pt-5 pb-2">ทีม ({users.length})</h2>
+        <table className="tbl">
+          <thead>
+            <tr><th>ชื่อ</th><th>อีเมล</th><th>สิทธิ์</th><th>งาน</th><th>สถานะ</th><th>จัดการ</th></tr>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr key={u.id}>
+                <td className="font-medium text-[#0F172A]">{u.full_name}{u.id === meId ? " (คุณ)" : ""}</td>
+                <td className="text-[13px]">{u.email}</td>
+                <td>
+                  <select
+                    className="text-[13px] border border-[#E2E8F0] rounded px-2 py-1 bg-white"
+                    value={u.role}
+                    disabled={u.id === meId}
+                    onChange={(e) => update(u, { role: e.target.value })}
+                  >
+                    {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
+                  </select>
+                </td>
+                <td className="text-[13px] text-[#64748B]">{u.owned_leads ?? 0} ลีด · {u.open_followups ?? 0} ติดตาม</td>
+                <td>
+                  <button
+                    className={`text-[12px] font-medium rounded-full px-2.5 py-0.5 ${u.active ? "bg-[#DCFCE7] text-[#166534]" : "bg-[#FEE2E2] text-[#B91C1C]"}`}
+                    disabled={u.id === meId}
+                    onClick={() => update(u, { active: !u.active })}
+                  >
+                    {u.active ? "ใช้งาน" : "ปิด"}
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn-secondary !py-1 !px-2.5 !text-xs"
+                    onClick={() => { setPwOpen(u.id); setPw(""); }}
+                  >
+                    เปลี่ยนรหัส
+                  </button>
+                  {pwOpen === u.id && (
+                    <span className="inline-flex items-center gap-1.5 ml-2">
+                      <input
+                        className="text-[13px] border border-[#E2E8F0] rounded px-2 py-1 w-28"
+                        type="password" minLength={4} value={pw} placeholder="ใหม่" autoFocus
+                        onChange={(e) => setPw(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && pw.length >= 4) { update(u, { password: pw }); setPwOpen(null); }
+                        }}
+                      />
+                      <button className="btn-primary !py-1 !px-2.5 !text-xs" disabled={pw.length < 4}
+                        onClick={() => { update(u, { password: pw }); setPwOpen(null); }}>ตั้ง</button>
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  );
+}

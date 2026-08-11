@@ -2,6 +2,20 @@ import crypto from "node:crypto";
 import { cookies } from "next/headers";
 import { qOne } from "@/lib/supabase";
 
+// Password hashing: native scrypt (fast). Format: scrypt$<salt>$<hash>
+export function scryptHash(password: string): string {
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = crypto.scryptSync(password, salt, 64).toString("hex");
+  return `scrypt$${salt}$${hash}`;
+}
+export function scryptVerify(password: string, stored: string): boolean {
+  const parts = stored.split("$");
+  if (parts.length !== 3 || parts[0] !== "scrypt") return false;
+  const test = crypto.scryptSync(password, parts[1], 64);
+  const want = Buffer.from(parts[2], "hex");
+  return test.length === want.length && crypto.timingSafeEqual(test, want);
+}
+
 // Minimal session: HMAC-signed cookie (no external auth dependency).
 // SESSION_SECRET must be set in app env (Coolify) — generated at deploy.
 const SECRET = process.env.SESSION_SECRET || "dev-secret-change-me";
