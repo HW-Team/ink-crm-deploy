@@ -1,1 +1,109 @@
-aW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICJAL2xpYi9zdXBhYmFzZSI7CmltcG9ydCBTdGFnZUJhZGdlIGZyb20gIkAvY29tcG9uZW50cy9TdGFnZUJhZGdlIjsKaW1wb3J0IHsgU09VUkNFX0xBQkVMUyB9IGZyb20gIkAvbGliL2xhYmVscyI7CgpleHBvcnQgY29uc3QgZHluYW1pYyA9ICJmb3JjZS1keW5hbWljIjsKCmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIERhc2hib2FyZFBhZ2UoKSB7CiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwoKICBjb25zdCBbbGVhZHMsIGNvbnRhY3RzLCBmb2xsb3dVcHNdID0gYXdhaXQgUHJvbWlzZS5hbGwoWwogICAgc2IuZnJvbSgibGVhZHMiKS5zZWxlY3QoImNybV9zdGFnZSwgc291cmNlIikubGltaXQoNTAwMCksCiAgICBzYi5mcm9tKCJjb250YWN0cyIpLnNlbGVjdCgiaWQiLCB7IGNvdW50OiAiZXhhY3QiLCBoZWFkOiB0cnVlIH0pLAogICAgc2IuZnJvbSgiZm9sbG93X3VwcyIpLnNlbGVjdCgiaWQiLCB7IGNvdW50OiAiZXhhY3QiLCBoZWFkOiB0cnVlIH0pLmVxKCJzdGF0dXMiLCAib3BlbiIpLAogIF0pOwoKICBjb25zdCBsZWFkUm93cyA9IGxlYWRzLmRhdGEgPz8gW107CiAgY29uc3QgdG90YWxMZWFkcyA9IGxlYWRSb3dzLmxlbmd0aDsKICBjb25zdCBieVN0YWdlID0gbmV3IE1hcDxzdHJpbmcsIG51bWJlcj4oKTsKICBjb25zdCBieVNvdXJjZSA9IG5ldyBNYXA8c3RyaW5nLCBudW1iZXI+KCk7CiAgZm9yIChjb25zdCBsIG9mIGxlYWRSb3dzKSB7CiAgICBieVN0YWdlLnNldChsLmNybV9zdGFnZSwgKGJ5U3RhZ2UuZ2V0KGwuY3JtX3N0YWdlKSA/PyAwKSArIDEpOwogICAgYnlTb3VyY2Uuc2V0KGwuc291cmNlLCAoYnlTb3VyY2UuZ2V0KGwuc291cmNlKSA/PyAwKSArIDEpOwogIH0KICBjb25zdCBvcGVuRm9sbG93VXBzID0gZm9sbG93VXBzLmNvdW50ID8/IDA7CiAgY29uc3QgdG90YWxDb250YWN0cyA9IGNvbnRhY3RzLmNvdW50ID8/IDA7CgogIGNvbnN0IHN0YWdlT3JkZXIgPSBbIm5ldyIsICJjb250YWN0ZWQiLCAicXVhbGlmaWVkIiwgInNpdGVfdmlzaXQiLCAicHJvcG9zYWwiLCAid29uIiwgInVucXVhbGlmaWVkIiwgImxvc3QiLCAibm9fYW5zd2VyIiwgImR1cGxpY2F0ZSJdOwogIGNvbnN0IHN0YWdlTGFiZWxzOiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+ID0gewogICAgbmV3OiAi4LmD4Lir4Lih4LmIIiwgY29udGFjdGVkOiAi4LiV4Li04LiU4LiV4LmI4Lit4LmB4Lil4LmJ4LinIiwgcXVhbGlmaWVkOiAi4Liq4LiZ4LmD4LiIIiwgc2l0ZV92aXNpdDogIuC4meC4seC4lOC4lOC4uSIsCiAgICBwcm9wb3NhbDogIuC5gOC4quC4meC4reC4o+C4suC4hOC4siIsIHdvbjogIuC4m+C4tOC4lOC4geC4suC4o+C4guC4suC4oiIsIHVucXVhbGlmaWVkOiAi4LmE4Lih4LmI4Lic4LmI4Liy4LiZIiwgbG9zdDogIuC4q+C4peC4uOC4lCIsCiAgICBub19hbnN3ZXI6ICLguYTguKHguYjguJXguK3guJoiLCBkdXBsaWNhdGU6ICLguIvguYnguLMiLAogIH07CiAgY29uc3QgcXVhbGlmaWVkID0gYnlTdGFnZS5nZXQoInF1YWxpZmllZCIpID8/IDA7CiAgY29uc3QgdW5jb250YWN0ZWQgPSBieVN0YWdlLmdldCgibmV3IikgPz8gMDsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTYiPgogICAgICA8aGVhZGVyPgogICAgICAgIDxoMSBjbGFzc05hbWU9InRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LVsjMEYxNzJBXSI+4LmB4LiU4LiK4Lia4Lit4Lij4LmM4LiUPC9oMT4KICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtc20gdGV4dC1bIzY0NzQ4Ql0iPuC4oOC4suC4nuC4o+C4p+C4oSBDUk08L3A+CiAgICAgIDwvaGVhZGVyPgoKICAgICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTIgbWQ6Z3JpZC1jb2xzLTQgZ2FwLTQiPgogICAgICAgIHtbCiAgICAgICAgICB7IGxhYmVsOiAi4Lil4Li14LiU4LiX4Lix4LmJ4LiH4Lir4Lih4LiUIiwgdmFsdWU6IHRvdGFsTGVhZHMgfSwKICAgICAgICAgIHsgbGFiZWw6ICLguITguK3guJnguYHguJfguIHguJXguYwiLCB2YWx1ZTogdG90YWxDb250YWN0cyB9LAogICAgICAgICAgeyBsYWJlbDogIuC4leC4tOC4lOC4leC4suC4oeC4hOC5ieC4suC4hyIsIHZhbHVlOiBvcGVuRm9sbG93VXBzIH0sCiAgICAgICAgICB7IGxhYmVsOiAi4Liq4LiZ4LmD4LiIIiwgdmFsdWU6IHF1YWxpZmllZCB9LAogICAgICAgIF0ubWFwKChrKSA9PiAoCiAgICAgICAgICA8ZGl2IGtleT17ay5sYWJlbH0gY2xhc3NOYW1lPSJjYXJkIj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImtwaS12YWx1ZSI+e2sudmFsdWUudG9Mb2NhbGVTdHJpbmcoKX08L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImtwaS1sYWJlbCI+e2subGFiZWx9PC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICApKX0KICAgICAgPC9kaXY+CgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBtZDpncmlkLWNvbHMtMiBnYXAtNiI+CiAgICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPSJjYXJkIj4KICAgICAgICAgIDxoMiBjbGFzc05hbWU9InRleHQtYmFzZSBmb250LXNlbWlib2xkIHRleHQtWyMwRjE3MkFdIG1iLTQiPlBpcGVsaW5lIOC4leC4suC4oeC4quC5gOC4leC4iDwvaDI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic3BhY2UteS0zIj4KICAgICAgICAgICAge3N0YWdlT3JkZXIubWFwKChzKSA9PiB7CiAgICAgICAgICAgICAgY29uc3QgbiA9IGJ5U3RhZ2UuZ2V0KHMpID8/IDA7CiAgICAgICAgICAgICAgY29uc3QgcGN0ID0gdG90YWxMZWFkcyA/IE1hdGgucm91bmQoKG4gLyB0b3RhbExlYWRzKSAqIDEwMCkgOiAwOwogICAgICAgICAgICAgIHJldHVybiAoCiAgICAgICAgICAgICAgICA8ZGl2IGtleT17c30gY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMyI+CiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ3LTI0IHRleHQtc20gdGV4dC1bIzMzNDE1NV0gc2hyaW5rLTAiPntzdGFnZUxhYmVsc1tzXX08L2Rpdj4KICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InBiYXIgZmxleC0xIj48ZGl2IHN0eWxlPXt7IHdpZHRoOiBgJHtwY3R9JWAgfX0gLz48L2Rpdj4KICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InctMTAgdGV4dC1yaWdodCB0ZXh0LXNtIGZvbnQtc2VtaWJvbGQgdGV4dC1bIzBGMTcyQV0iPntufTwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgKTsKICAgICAgICAgICAgfSl9CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L3NlY3Rpb24+CgogICAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT0iY2FyZCI+CiAgICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LWJhc2UgZm9udC1zZW1pYm9sZCB0ZXh0LVsjMEYxNzJBXSBtYi00Ij7guYHguKvguKXguYjguIfguJfguLXguYjguKHguLI8L2gyPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNwYWNlLXktMyI+CiAgICAgICAgICAgIHtbLi4uYnlTb3VyY2UuZW50cmllcygpXS5zb3J0KChhLCBiKSA9PiBiWzFdIC0gYVsxXSkubWFwKChbc3JjLCBuXSkgPT4gewogICAgICAgICAgICAgIGNvbnN0IHBjdCA9IHRvdGFsTGVhZHMgPyBNYXRoLnJvdW5kKChuIC8gdG90YWxMZWFkcykgKiAxMDApIDogMDsKICAgICAgICAgICAgICByZXR1cm4gKAogICAgICAgICAgICAgICAgPGRpdiBrZXk9e3NyY30gY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMyI+CiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ3LTI0IHRleHQtc20gdGV4dC1bIzMzNDE1NV0gc2hyaW5rLTAiPntTT1VSQ0VfTEFCRUxTW3NyY10gPz8gc3JjfTwvZGl2PgogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icGJhciBmbGV4LTEiPjxkaXYgc3R5bGU9e3sgd2lkdGg6IGAke3BjdH0lYCB9fSAvPjwvZGl2PgogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idy0xMCB0ZXh0LXJpZ2h0IHRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LVsjMEYxNzJBXSI+e259PC9kaXY+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICApOwogICAgICAgICAgICB9KX0KICAgICAgICAgICAge2J5U291cmNlLnNpemUgPT09IDAgJiYgPHAgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtWyM5NEEzQjhdIj7guKLguLHguIfguYTguKHguYjguKHguLXguILguYnguK3guKHguLnguKU8L3A+fQogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9zZWN0aW9uPgogICAgICA8L2Rpdj4KCiAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT0iY2FyZCBvdmVyZmxvdy14LWF1dG8gcC0wIj4KICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LWJhc2UgZm9udC1zZW1pYm9sZCB0ZXh0LVsjMEYxNzJBXSBweC02IHB0LTUgcGItMiI+4Lil4Li14LiU4Lil4LmI4Liy4Liq4Li44LiUPC9oMj4KICAgICAgICA8dGFibGUgY2xhc3NOYW1lPSJ0YmwiPgogICAgICAgICAgPHRoZWFkPgogICAgICAgICAgICA8dHI+PHRoPuC4iuC4t+C5iOC4rTwvdGg+PHRoPuC4quC5gOC4leC4iDwvdGg+PHRoPuC5geC4q+C4peC5iOC4hzwvdGg+PHRoPuC5gOC4iOC5ieC4suC4guC4reC4hzwvdGg+PC90cj4KICAgICAgICAgIDwvdGhlYWQ+CiAgICAgICAgICA8dGJvZHk+CiAgICAgICAgICAgIHtsZWFkUm93cy5zbGljZSgwLCAxMCkubWFwKChsOiBhbnkpID0+ICgKICAgICAgICAgICAgICA8dHIga2V5PXtsLmlkfT4KICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9ImZvbnQtbWVkaXVtIHRleHQtWyMwRjE3MkFdIj57bC5mdWxsX25hbWV9PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD48U3RhZ2VCYWRnZSBzdGFnZT17bC5jcm1fc3RhZ2V9IC8+PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD57U09VUkNFX0xBQkVMU1tsLnNvdXJjZV0gPz8gbC5zb3VyY2V9PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD57bC5vd25lciA/PyAi4oCUIn08L3RkPgogICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC90Ym9keT4KICAgICAgICA8L3RhYmxlPgogICAgICA8L3NlY3Rpb24+CiAgICA8L2Rpdj4KICApOwp9Cg==
+import { q } from "@/lib/supabase";
+import StageBadge from "@/components/StageBadge";
+import { SOURCE_LABELS } from "@/lib/labels";
+
+export const dynamic = "force-dynamic";
+
+export default async function DashboardPage() {
+  const [leadRows, contactsRows, followUpsRows] = await Promise.all([
+    q(`select crm_stage, source, full_name, owner from leads limit 5000`),
+    q(`select count(*)::int as n from contacts`),
+    q(`select count(*)::int as n from follow_ups where status = 'open'`),
+  ]);
+
+  const totalLeads = leadRows.length;
+  const byStage = new Map<string, number>();
+  const bySource = new Map<string, number>();
+  for (const l of leadRows) {
+    byStage.set(l.crm_stage, (byStage.get(l.crm_stage) ?? 0) + 1);
+    bySource.set(l.source, (bySource.get(l.source) ?? 0) + 1);
+  }
+  const openFollowUps = followUpsRows[0]?.n ?? 0;
+  const totalContacts = contactsRows[0]?.n ?? 0;
+
+  const stageOrder = ["new", "contacted", "qualified", "site_visit", "proposal", "won", "unqualified", "lost", "no_answer", "duplicate"];
+  const stageLabels: Record<string, string> = {
+    new: "ใหม่", contacted: "ติดต่อแล้ว", qualified: "สนใจ", site_visit: "นัดดู",
+    proposal: "เสนอราคา", won: "ปิดการขาย", unqualified: "ไม่ผ่าน", lost: "หลุด",
+    no_answer: "ไม่ตอบ", duplicate: "ซ้ำ",
+  };
+  const qualified = byStage.get("qualified") ?? 0;
+
+  return (
+    <div className="space-y-6">
+      <header>
+        <h1 className="text-2xl font-bold text-[#0F172A]">แดชบอร์ด</h1>
+        <p className="text-sm text-[#64748B]">ภาพรวม CRM</p>
+      </header>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: "ลีดทั้งหมด", value: totalLeads },
+          { label: "คอนแทกต์", value: totalContacts },
+          { label: "ติดตามค้าง", value: openFollowUps },
+          { label: "สนใจ", value: qualified },
+        ].map((k) => (
+          <div key={k.label} className="card">
+            <div className="kpi-value">{k.value.toLocaleString()}</div>
+            <div className="kpi-label">{k.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <section className="card">
+          <h2 className="text-base font-semibold text-[#0F172A] mb-4">Pipeline ตามสเตจ</h2>
+          <div className="space-y-3">
+            {stageOrder.map((s) => {
+              const n = byStage.get(s) ?? 0;
+              const pct = totalLeads ? Math.round((n / totalLeads) * 100) : 0;
+              return (
+                <div key={s} className="flex items-center gap-3">
+                  <div className="w-24 text-sm text-[#334155] shrink-0">{stageLabels[s]}</div>
+                  <div className="pbar flex-1"><div style={{ width: `${pct}%` }} /></div>
+                  <div className="w-10 text-right text-sm font-semibold text-[#0F172A]">{n}</div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="card">
+          <h2 className="text-base font-semibold text-[#0F172A] mb-4">แหล่งที่มา</h2>
+          <div className="space-y-3">
+            {[...bySource.entries()].sort((a, b) => b[1] - a[1]).map(([src, n]) => {
+              const pct = totalLeads ? Math.round((n / totalLeads) * 100) : 0;
+              return (
+                <div key={src} className="flex items-center gap-3">
+                  <div className="w-24 text-sm text-[#334155] shrink-0">{SOURCE_LABELS[src] ?? src}</div>
+                  <div className="pbar flex-1"><div style={{ width: `${pct}%` }} /></div>
+                  <div className="w-10 text-right text-sm font-semibold text-[#0F172A]">{n}</div>
+                </div>
+              );
+            })}
+            {bySource.size === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีข้อมูล</p>}
+          </div>
+        </section>
+      </div>
+
+      <section className="card overflow-x-auto p-0">
+        <h2 className="text-base font-semibold text-[#0F172A] px-6 pt-5 pb-2">ลีดล่าสุด</h2>
+        <table className="tbl">
+          <thead>
+            <tr><th>ชื่อ</th><th>สเตจ</th><th>แหล่ง</th><th>เจ้าของ</th></tr>
+          </thead>
+          <tbody>
+            {leadRows.slice(0, 10).map((l: any) => (
+              <tr key={l.id}>
+                <td className="font-medium text-[#0F172A]">{l.full_name}</td>
+                <td><StageBadge stage={l.crm_stage} /></td>
+                <td>{SOURCE_LABELS[l.source] ?? l.source}</td>
+                <td>{l.owner ?? "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  );
+}

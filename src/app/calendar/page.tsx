@@ -1,1 +1,59 @@
-aW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICJAL2xpYi9zdXBhYmFzZSI7CmltcG9ydCB7IHRoRGF0ZSB9IGZyb20gIkAvbGliL2xhYmVscyI7CmltcG9ydCBTdGFnZUJhZGdlIGZyb20gIkAvY29tcG9uZW50cy9TdGFnZUJhZGdlIjsKCmV4cG9ydCBjb25zdCBkeW5hbWljID0gImZvcmNlLWR5bmFtaWMiOwoKZXhwb3J0IGRlZmF1bHQgYXN5bmMgZnVuY3Rpb24gQ2FsZW5kYXJQYWdlKCkgewogIGNvbnN0IHNiID0gY3JlYXRlQWRtaW5DbGllbnQoKTsKICBjb25zdCB7IGRhdGE6IGZvbGxvd1VwcyB9ID0gYXdhaXQgc2IKICAgIC5mcm9tKCJmb2xsb3dfdXBzIikKICAgIC5zZWxlY3QoIiosIGNvbnRhY3RzKGZ1bGxfbmFtZSwgcHJpbWFyeV9waG9uZSkiKQogICAgLmVxKCJzdGF0dXMiLCAib3BlbiIpCiAgICAub3JkZXIoImR1ZV9kYXRlIikKICAgIC5saW1pdCgyMDApOwoKICAvLyBncm91cCBieSBtb250aAogIGNvbnN0IGJ5TW9udGggPSBuZXcgTWFwPHN0cmluZywgYW55W10+KCk7CiAgZm9yIChjb25zdCBmdSBvZiBmb2xsb3dVcHMgPz8gW10pIHsKICAgIGNvbnN0IGtleSA9IGZ1LmR1ZV9kYXRlID8gU3RyaW5nKGZ1LmR1ZV9kYXRlKS5zbGljZSgwLCA3KSA6ICLguYTguKHguYjguKHguLXguIHguLPguKvguJnguJQiOwogICAgaWYgKCFieU1vbnRoLmhhcyhrZXkpKSBieU1vbnRoLnNldChrZXksIFtdKTsKICAgIGJ5TW9udGguZ2V0KGtleSkhLnB1c2goZnUpOwogIH0KICBjb25zdCBtb250aHMgPSBbLi4uYnlNb250aC5lbnRyaWVzKCldLnNvcnQoKGEsIGIpID0+IGFbMF0ubG9jYWxlQ29tcGFyZShiWzBdKSk7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0ic3BhY2UteS02Ij4KICAgICAgPGhlYWRlcj4KICAgICAgICA8aDEgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC1bIzBGMTcyQV0iPuC4m+C4j+C4tOC4l+C4tOC4mTwvaDE+CiAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtWyM2NDc0OEJdIj7guJnguLHguJTguKvguKHguLLguKLguYHguKXguLDguJXguLTguJTguJXguLLguKHguJXguLLguKHguYDguJTguLfguK3guJk8L3A+CiAgICAgIDwvaGVhZGVyPgoKICAgICAge21vbnRocy5sZW5ndGggPT09IDAgJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJjYXJkIj48cCBjbGFzc05hbWU9InRleHQtc20gdGV4dC1bIzk0QTNCOF0iPuC5hOC4oeC5iOC4oeC4teC4meC4seC4lOC4q+C4oeC4suC4ouC4hOC5ieC4suC4hzwvcD48L2Rpdj4KICAgICAgKX0KCiAgICAgIDxkaXYgY2xhc3NOYW1lPSJncmlkIG1kOmdyaWQtY29scy0yIHhsOmdyaWQtY29scy0zIGdhcC00Ij4KICAgICAgICB7bW9udGhzLm1hcCgoW21vbnRoLCBpdGVtc10pID0+IHsKICAgICAgICAgIGNvbnN0IFt5LCBtXSA9IG1vbnRoLnNwbGl0KCItIik7CiAgICAgICAgICBjb25zdCBtb250aE5hbWUgPSBuZXcgRGF0ZShOdW1iZXIoeSksIE51bWJlcihtKSAtIDEsIDEpLnRvTG9jYWxlRGF0ZVN0cmluZygidGgtVEgiLCB7IG1vbnRoOiAibG9uZyIsIHllYXI6ICJudW1lcmljIiB9KTsKICAgICAgICAgIHJldHVybiAoCiAgICAgICAgICAgIDxzZWN0aW9uIGtleT17bW9udGh9IGNsYXNzTmFtZT0iY2FyZCI+CiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT0idGV4dC1iYXNlIGZvbnQtc2VtaWJvbGQgdGV4dC1bIzBGMTcyQV0gbWItMyI+e21vbnRoTmFtZX0gPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LVsjOTRBM0I4XSBmb250LW5vcm1hbCI+KHtpdGVtcy5sZW5ndGh9KTwvc3Bhbj48L2gyPgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTIiPgogICAgICAgICAgICAgICAge2l0ZW1zLm1hcCgoZnU6IGFueSkgPT4gKAogICAgICAgICAgICAgICAgICA8ZGl2IGtleT17ZnUuaWR9IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIHRleHQtc20gYm9yZGVyIGJvcmRlci1bI0UyRThGMF0gcm91bmRlZC1tZCBweC0zIHB5LTIiPgogICAgICAgICAgICAgICAgICAgIDxkaXY+CiAgICAgICAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9ImZvbnQtbWVkaXVtIHRleHQtWyMwRjE3MkFdIj57ZnUuY29udGFjdHM/LmZ1bGxfbmFtZSA/PyAi4oCUIn08L3A+CiAgICAgICAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQteHMgdGV4dC1bIzY0NzQ4Ql0iPnt0aERhdGUoZnUuZHVlX2RhdGUpfXtmdS5kdWVfdGltZSA/IGAgJHtmdS5kdWVfdGltZX1gIDogIiJ9IMK3IHtmdS50YXNrX3R5cGUgPz8gIuC4leC4tOC4lOC4leC4suC4oSJ9PC9wPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iZm9udC1tb25vIHRleHQteHMgdGV4dC1bIzk0QTNCOF0iPntmdS5jb250YWN0cz8ucHJpbWFyeV9waG9uZSA/PyAiIn08L3NwYW4+CiAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgKSl9CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvc2VjdGlvbj4KICAgICAgICAgICk7CiAgICAgICAgfSl9CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQo=
+import { q } from "@/lib/supabase";
+import { thDate } from "@/lib/labels";
+
+export const dynamic = "force-dynamic";
+
+export default async function CalendarPage() {
+  const followUps = await q(
+    `select fu.*, c.full_name as contact_name, c.primary_phone
+     from follow_ups fu
+     left join contacts c on c.id = fu.contact_id
+     where fu.status = 'open'
+     order by fu.due_date limit 200`
+  );
+
+  // group by month
+  const byMonth = new Map<string, any[]>();
+  for (const fu of followUps) {
+    const key = fu.due_date ? String(fu.due_date).slice(0, 7) : "ไม่มีกำหนด";
+    if (!byMonth.has(key)) byMonth.set(key, []);
+    byMonth.get(key)!.push(fu);
+  }
+  const months = [...byMonth.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+
+  return (
+    <div className="space-y-6">
+      <header>
+        <h1 className="text-2xl font-bold text-[#0F172A]">ปฏิทิน</h1>
+        <p className="text-sm text-[#64748B]">นัดหมายและติดตามตามเดือน</p>
+      </header>
+
+      {months.length === 0 && (
+        <div className="card"><p className="text-sm text-[#94A3B8]">ไม่มีนัดหมายค้าง</p></div>
+      )}
+
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {months.map(([month, items]) => {
+          const [y, m] = month.split("-");
+          const monthName = new Date(Number(y), Number(m) - 1, 1).toLocaleDateString("th-TH", { month: "long", year: "numeric" });
+          return (
+            <section key={month} className="card">
+              <h2 className="text-base font-semibold text-[#0F172A] mb-3">{monthName} <span className="text-[#94A3B8] font-normal">({items.length})</span></h2>
+              <div className="space-y-2">
+                {items.map((fu: any) => (
+                  <div key={fu.id} className="flex items-center justify-between text-sm border border-[#E2E8F0] rounded-md px-3 py-2">
+                    <div>
+                      <p className="font-medium text-[#0F172A]">{fu.contact_name ?? "—"}</p>
+                      <p className="text-xs text-[#64748B]">{thDate(fu.due_date)}{fu.due_time ? ` ${fu.due_time}` : ""} · {fu.task_type ?? "ติดตาม"}</p>
+                    </div>
+                    <span className="font-mono text-xs text-[#94A3B8]">{fu.primary_phone ?? ""}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

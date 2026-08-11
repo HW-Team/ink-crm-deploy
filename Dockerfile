@@ -1,1 +1,25 @@
-IyBJbmsgSG9tZXMgQ1JNIOKAlCBwcm9kdWN0aW9uIERvY2tlcmZpbGUgKG11bHRpLXN0YWdlKQpGUk9NIG5vZGU6MjAtYWxwaW5lIEFTIGRlcHMKV09SS0RJUiAvYXBwCkNPUFkgcGFja2FnZS5qc29uIHBhY2thZ2UtbG9jay5qc29uIC4vClJVTiBucG0gY2kgLS1vbWl0PWRldiB8fCBucG0gaW5zdGFsbAoKRlJPTSBub2RlOjIwLWFscGluZSBBUyBidWlsZGVyCldPUktESVIgL2FwcApDT1BZIC0tZnJvbT1kZXBzIC9hcHAvbm9kZV9tb2R1bGVzIC4vbm9kZV9tb2R1bGVzCkNPUFkgLiAuCkVOViBORVhUX1RFTEVNRVRSWV9ESVNBQkxFRD0xClJVTiBucG0gcnVuIGJ1aWxkCgpGUk9NIG5vZGU6MjAtYWxwaW5lIEFTIHJ1bm5lcgpXT1JLRElSIC9hcHAKRU5WIE5PREVfRU5WPXByb2R1Y3Rpb24KRU5WIE5FWFRfVEVMRU1FVFJZX0RJU0FCTEVEPTEKQ09QWSAtLWZyb209YnVpbGRlciAvYXBwLy5uZXh0IC4vLm5leHQKQ09QWSAtLWZyb209YnVpbGRlciAvYXBwL25vZGVfbW9kdWxlcyAuL25vZGVfbW9kdWxlcwpDT1BZIC0tZnJvbT1idWlsZGVyIC9hcHAvcHVibGljIC4vcHVibGljCkNPUFkgLS1mcm9tPWJ1aWxkZXIgL2FwcC9wYWNrYWdlLmpzb24gLi9wYWNrYWdlLmpzb24KQ09QWSAtLWZyb209YnVpbGRlciAvYXBwL25leHQuY29uZmlnLnRzIC4vbmV4dC5jb25maWcudHMKRVhQT1NFIDMwMDAKQ01EIFsibnBtIiwgInJ1biIsICJzdGFydCJdCg==
+# Ink Homes CRM — production Dockerfile (multi-stage)
+FROM node:20-alpine AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev || npm install
+
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/next.config.ts ./next.config.ts
+COPY --from=builder /app/supabase ./supabase
+EXPOSE 3000
+CMD ["npm", "run", "start"]

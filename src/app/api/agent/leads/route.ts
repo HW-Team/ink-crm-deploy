@@ -1,1 +1,57 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQsIG5vcm1hbGl6ZVBob25lIH0gZnJvbSAnQC9saWIvc3VwYWJhc2UnOwppbXBvcnQgeyBjaGVja0FnZW50S2V5LCB1bmF1dGhvcml6ZWQgfSBmcm9tICdAL2xpYi9hZ2VudC1hdXRoJzsKCi8vIFBPU1QgL2FwaS9hZ2VudC9sZWFkcyAg4oCUIGNyZWF0ZSBsZWFkLCBhdXRvLWNyZWF0ZS9saW5rIGNvbnRhY3QgKGRlZHVwZSBieSBub3JtYWxpemVkIHBob25lKQpleHBvcnQgYXN5bmMgZnVuY3Rpb24gUE9TVChyZXE6IE5leHRSZXF1ZXN0KSB7CiAgaWYgKCFjaGVja0FnZW50S2V5KHJlcSkpIHJldHVybiB1bmF1dGhvcml6ZWQoKTsKCiAgbGV0IGJvZHk6IFJlY29yZDxzdHJpbmcsIHVua25vd24+OwogIHRyeSB7IGJvZHkgPSBhd2FpdCByZXEuanNvbigpOyB9IGNhdGNoIHsgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICdpbnZhbGlkIEpTT04nIH0sIHsgc3RhdHVzOiA0MDAgfSk7IH0KCiAgY29uc3QgZnVsbE5hbWUgPSBTdHJpbmcoYm9keS5mdWxsX25hbWUgPz8gYm9keS5uYW1lID8/ICcnKS50cmltKCk7CiAgY29uc3QgcGhvbmUgPSBTdHJpbmcoYm9keS5waG9uZSA/PyAnJykudHJpbSgpOwogIGlmICghZnVsbE5hbWUpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAnZnVsbF9uYW1lIHJlcXVpcmVkJyB9LCB7IHN0YXR1czogNDAwIH0pOwoKICBjb25zdCBzYiA9IGNyZWF0ZUFkbWluQ2xpZW50KCk7CiAgY29uc3Qgbm9ybSA9IG5vcm1hbGl6ZVBob25lKHBob25lKTsKICBjb25zdCBzb3VyY2UgPSBTdHJpbmcoYm9keS5zb3VyY2UgPz8gJ0ZBQ0VCT09LJykudG9VcHBlckNhc2UoKSBhcyBuZXZlcjsKCiAgLy8gZmluZCBvciBjcmVhdGUgY29udGFjdAogIGxldCBjb250YWN0SWQ6IHN0cmluZyB8IG51bGwgPSBudWxsOwogIGlmIChub3JtKSB7CiAgICBjb25zdCB7IGRhdGE6IGV4aXN0aW5nIH0gPSBhd2FpdCBzYi5mcm9tKCdjb250YWN0cycpLnNlbGVjdCgnaWQnKS5lcSgnbm9ybWFsaXplZF9waG9uZScsIG5vcm0pLm1heWJlU2luZ2xlKCk7CiAgICBpZiAoZXhpc3RpbmcpIHsKICAgICAgY29udGFjdElkID0gZXhpc3RpbmcuaWQ7CiAgICB9IGVsc2UgewogICAgICBjb25zdCB7IGRhdGE6IG5ld0NvbnRhY3QsIGVycm9yOiBjRXJyIH0gPSBhd2FpdCBzYi5mcm9tKCdjb250YWN0cycpLmluc2VydCh7CiAgICAgICAgZnVsbF9uYW1lOiBmdWxsTmFtZSwKICAgICAgICBwcmltYXJ5X3Bob25lOiBwaG9uZSB8fCBudWxsLAogICAgICAgIG5vcm1hbGl6ZWRfcGhvbmU6IG5vcm0sCiAgICAgICAgZmlyc3Rfc291cmNlOiBzb3VyY2UsCiAgICAgICAgZmlyc3RfbGVhZF9kYXRlOiBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCksCiAgICAgICAgY3JtX3N0YWdlOiAnbmV3JywKICAgICAgfSkuc2VsZWN0KCdpZCcpLnNpbmdsZSgpOwogICAgICBpZiAoY0VycikgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IGNFcnIubWVzc2FnZSB9LCB7IHN0YXR1czogNTAwIH0pOwogICAgICBjb250YWN0SWQgPSBuZXdDb250YWN0LmlkOwogICAgfQogIH0KCiAgY29uc3QgeyBkYXRhOiBsZWFkLCBlcnJvciB9ID0gYXdhaXQgc2IuZnJvbSgnbGVhZHMnKS5pbnNlcnQoewogICAgY29udGFjdF9pZDogY29udGFjdElkLAogICAgZnVsbF9uYW1lOiBmdWxsTmFtZSwKICAgIHBob25lOiBwaG9uZSB8fCBudWxsLAogICAgc291cmNlLAogICAgaW50ZXJlc3Q6IGJvZHkuaW50ZXJlc3QgPyBTdHJpbmcoYm9keS5pbnRlcmVzdCkgOiBudWxsLAogICAgcHJvdmluY2U6IGJvZHkucHJvdmluY2UgPyBTdHJpbmcoYm9keS5wcm92aW5jZSkgOiBudWxsLAogICAgbWV0YV9sZWFkX2lkOiBib2R5Lm1ldGFfbGVhZF9pZCA/IFN0cmluZyhib2R5Lm1ldGFfbGVhZF9pZCkgOiBudWxsLAogICAgY3JtX3N0YWdlOiAnbmV3JywKICB9KS5zZWxlY3QoJyonKS5zaW5nbGUoKTsKCiAgaWYgKGVycm9yKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogZXJyb3IubWVzc2FnZSB9LCB7IHN0YXR1czogNTAwIH0pOwogIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGxlYWQsIGNvbnRhY3RfaWQ6IGNvbnRhY3RJZCB9LCB7IHN0YXR1czogMjAxIH0pOwp9Cg==
+import { NextRequest, NextResponse } from 'next/server';
+import { qOne, normalizePhone } from '@/lib/supabase';
+import { checkAgentKey, unauthorized } from '@/lib/agent-auth';
+
+// POST /api/agent/leads — create lead, auto-create/link contact (dedupe by normalized phone)
+export async function POST(req: NextRequest) {
+  if (!checkAgentKey(req)) return unauthorized();
+
+  let body: Record<string, unknown>;
+  try { body = await req.json(); } catch { return NextResponse.json({ error: 'invalid JSON' }, { status: 400 }); }
+
+  const fullName = String(body.full_name ?? body.name ?? '').trim();
+  const phone = String(body.phone ?? '').trim();
+  if (!fullName) return NextResponse.json({ error: 'full_name required' }, { status: 400 });
+
+  const norm = normalizePhone(phone);
+  const source = String(body.source ?? 'FACEBOOK').toUpperCase();
+
+  try {
+    // find or create contact
+    let contactId: string | null = null;
+    if (norm) {
+      const existing = await qOne<{ id: string }>(
+        `select id from contacts where normalized_phone=$1`, [norm]
+      );
+      if (existing) {
+        contactId = existing.id;
+      } else {
+        const newContact = await qOne<{ id: string }>(
+          `insert into contacts (full_name, primary_phone, normalized_phone, first_source, first_lead_date, crm_stage)
+           values ($1,$2,$3,$4,now(),'new') returning id`,
+          [fullName, phone || null, norm, source]
+        );
+        if (!newContact) return NextResponse.json({ error: 'contact insert failed' }, { status: 500 });
+        contactId = newContact.id;
+      }
+    }
+
+    const lead = await qOne(
+      `insert into leads (contact_id, full_name, phone, source, interest, province, meta_lead_id, crm_stage)
+       values ($1,$2,$3,$4,$5,$6,$7,'new') returning *`,
+      [
+        contactId,
+        fullName,
+        phone || null,
+        source,
+        body.interest ? String(body.interest) : null,
+        body.province ? String(body.province) : null,
+        body.meta_lead_id ? String(body.meta_lead_id) : null,
+      ]
+    );
+    if (!lead) return NextResponse.json({ error: 'lead insert failed' }, { status: 500 });
+    return NextResponse.json({ lead, contact_id: contactId }, { status: 201 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}

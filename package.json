@@ -1,1 +1,30 @@
-ewogICJuYW1lIjogImluay1jcm0iLAogICJ2ZXJzaW9uIjogIjAuMS4wIiwKICAicHJpdmF0ZSI6IHRydWUsCiAgInNjcmlwdHMiOiB7CiAgICAiZGV2IjogIm5leHQgZGV2IiwKICAgICJidWlsZCI6ICJuZXh0IGJ1aWxkIiwKICAgICJzdGFydCI6ICJuZXh0IHN0YXJ0IiwKICAgICJsaW50IjogImVzbGludCIKICB9LAogICJkZXBlbmRlbmNpZXMiOiB7CiAgICAiQHN1cGFiYXNlL3NzciI6ICJeMC4xMi40IiwKICAgICJAc3VwYWJhc2Uvc3VwYWJhc2UtanMiOiAiXjIuMTEyLjIiLAogICAgIm5leHQiOiAiMTYuMy4wIiwKICAgICJyZWFjdCI6ICIxOS4yLjgiLAogICAgInJlYWN0LWRvbSI6ICIxOS4yLjgiCiAgfSwKICAiZGV2RGVwZW5kZW5jaWVzIjogewogICAgIkB0YWlsd2luZGNzcy9wb3N0Y3NzIjogIl40IiwKICAgICJAdHlwZXMvbm9kZSI6ICJeMjAiLAogICAgIkB0eXBlcy9yZWFjdCI6ICJeMTkiLAogICAgIkB0eXBlcy9yZWFjdC1kb20iOiAiXjE5IiwKICAgICJlc2xpbnQiOiAiXjkiLAogICAgImVzbGludC1jb25maWctbmV4dCI6ICIxNi4zLjAiLAogICAgInRhaWx3aW5kY3NzIjogIl40IiwKICAgICJ0eXBlc2NyaXB0IjogIl41IgogIH0KfQo=
+{
+  "name": "ink-crm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.2",
+    "@types/pg": "^8.21.0",
+    "next": "16.3.0",
+    "pg": "^8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

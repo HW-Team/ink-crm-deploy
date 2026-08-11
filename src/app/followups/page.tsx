@@ -1,1 +1,52 @@
-aW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICJAL2xpYi9zdXBhYmFzZSI7CmltcG9ydCB7IHRoRGF0ZSB9IGZyb20gIkAvbGliL2xhYmVscyI7CgpleHBvcnQgY29uc3QgZHluYW1pYyA9ICJmb3JjZS1keW5hbWljIjsKCmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIEZvbGxvd1Vwc1BhZ2UoKSB7CiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwogIGNvbnN0IHsgZGF0YTogZm9sbG93VXBzIH0gPSBhd2FpdCBzYgogICAgLmZyb20oImZvbGxvd191cHMiKQogICAgLnNlbGVjdCgiKiwgY29udGFjdHMoZnVsbF9uYW1lLCBwcmltYXJ5X3Bob25lKSwgbGVhZHMoZnVsbF9uYW1lLCBjcm1fc3RhZ2UpIikKICAgIC5vcmRlcigiZHVlX2RhdGUiKQogICAgLmxpbWl0KDMwMCk7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0ic3BhY2UteS02Ij4KICAgICAgPGhlYWRlcj4KICAgICAgICA8aDEgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC1bIzBGMTcyQV0iPuC4leC4tOC4lOC4leC4suC4oTwvaDE+CiAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtWyM2NDc0OEJdIj7guKPguLLguKLguIHguLLguKPguJXguLTguJTguJXguLLguKHguJfguLHguYnguIfguKvguKHguJQ8L3A+CiAgICAgIDwvaGVhZGVyPgoKICAgICAgPGRpdiBjbGFzc05hbWU9ImNhcmQgb3ZlcmZsb3cteC1hdXRvIHAtMCI+CiAgICAgICAgPHRhYmxlIGNsYXNzTmFtZT0idGJsIj4KICAgICAgICAgIDx0aGVhZD4KICAgICAgICAgICAgPHRyPjx0aD7guITguK3guJnguYHguJfguIHguJXguYw8L3RoPjx0aD7guYDguJrguK3guKPguYw8L3RoPjx0aD7guITguKPguJrguIHguLPguKvguJnguJQ8L3RoPjx0aD7guJvguKPguLDguYDguKDguJc8L3RoPjx0aD7guYDguIjguYnguLLguILguK3guIc8L3RoPjx0aD7guKrguJbguLLguJnguLA8L3RoPjx0aD7guKvguKHguLLguKLguYDguKvguJXguLg8L3RoPjwvdHI+CiAgICAgICAgICA8L3RoZWFkPgogICAgICAgICAgPHRib2R5PgogICAgICAgICAgICB7KGZvbGxvd1VwcyA/PyBbXSkubWFwKChmdTogYW55KSA9PiAoCiAgICAgICAgICAgICAgPHRyIGtleT17ZnUuaWR9PgogICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT0iZm9udC1tZWRpdW0gdGV4dC1bIzBGMTcyQV0iPntmdS5jb250YWN0cz8uZnVsbF9uYW1lID8/IGZ1LmxlYWRzPy5mdWxsX25hbWUgPz8gIuKAlCJ9PC90ZD4KICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9ImZvbnQtbW9ubyB0ZXh0LVsxM3B4XSI+e2Z1LmNvbnRhY3RzPy5wcmltYXJ5X3Bob25lID8/ICLigJQifTwvdGQ+CiAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPSJ3aGl0ZXNwYWNlLW5vd3JhcCI+e3RoRGF0ZShmdS5kdWVfZGF0ZSl9e2Z1LmR1ZV90aW1lID8gYCAke2Z1LmR1ZV90aW1lfWAgOiAiIn08L3RkPgogICAgICAgICAgICAgICAgPHRkPntmdS50YXNrX3R5cGUgPz8gIuKAlCJ9PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD57ZnUub3duZXIgPz8gIuKAlCJ9PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD4KICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPXtgYmFkZ2UgJHtmdS5zdGF0dXMgPT09ICJkb25lIiA/ICJzdC13b24iIDogZnUuc3RhdHVzID09PSAiY2FuY2VsbGVkIiA/ICJzdC1sb3N0IiA6ICJzdC1jb250YWN0ZWQifWB9PgogICAgICAgICAgICAgICAgICAgIHtmdS5zdGF0dXMgPT09ICJkb25lIiA/ICLguYDguKrguKPguYfguIgiIDogZnUuc3RhdHVzID09PSAiY2FuY2VsbGVkIiA/ICLguKLguIHguYDguKXguLTguIEiIDogIuC4hOC5ieC4suC4hyJ9CiAgICAgICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPSJtYXgtdy1bMjQwcHhdIHRydW5jYXRlIj57ZnUubGF0ZXN0X25vdGUgPz8gIuKAlCJ9PC90ZD4KICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICApKX0KICAgICAgICAgICAgeyhmb2xsb3dVcHMgPz8gW10pLmxlbmd0aCA9PT0gMCAmJiAoCiAgICAgICAgICAgICAgPHRyPjx0ZCBjb2xTcGFuPXs3fSBjbGFzc05hbWU9InRleHQtY2VudGVyIHRleHQtWyM5NEEzQjhdIHB5LTgiPuC5hOC4oeC5iOC4oeC4teC4o+C4suC4ouC4geC4suC4o+C4leC4tOC4lOC4leC4suC4oTwvdGQ+PC90cj4KICAgICAgICAgICAgKX0KICAgICAgICAgIDwvdGJvZHk+CiAgICAgICAgPC90YWJsZT4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9Cg==
+import { q } from "@/lib/supabase";
+import { thDate } from "@/lib/labels";
+
+export const dynamic = "force-dynamic";
+
+export default async function FollowUpsPage() {
+  const followUps = await q(
+    `select fu.*, c.full_name as contact_name, c.primary_phone,
+            l.full_name as lead_name, l.crm_stage
+     from follow_ups fu
+     left join contacts c on c.id = fu.contact_id
+     left join leads l on l.id = fu.lead_id
+     order by fu.due_date limit 300`
+  );
+
+  return (
+    <div className="space-y-6">
+      <header>
+        <h1 className="text-2xl font-bold text-[#0F172A]">ติดตาม</h1>
+        <p className="text-sm text-[#64748B]">รายการติดตามทั้งหมด</p>
+      </header>
+
+      <div className="card overflow-x-auto p-0">
+        <table className="tbl">
+          <thead>
+            <tr><th>คอนแทกต์</th><th>เบอร์</th><th>ครบกำหนด</th><th>ประเภท</th><th>เจ้าของ</th><th>สถานะ</th><th>หมายเหตุ</th></tr>
+          </thead>
+          <tbody>
+            {followUps.map((fu: any) => (
+              <tr key={fu.id}>
+                <td className="font-medium text-[#0F172A]">{fu.contact_name ?? fu.lead_name ?? "—"}</td>
+                <td className="font-mono text-[13px]">{fu.primary_phone ?? "—"}</td>
+                <td className="whitespace-nowrap">{thDate(fu.due_date)}{fu.due_time ? ` ${fu.due_time}` : ""}</td>
+                <td>{fu.task_type ?? "—"}</td>
+                <td>{fu.owner ?? "—"}</td>
+                <td>
+                  <span className={`badge ${fu.status === "done" ? "st-won" : fu.status === "cancelled" ? "st-lost" : "st-contacted"}`}>
+                    {fu.status === "done" ? "เสร็จ" : fu.status === "cancelled" ? "ยกเลิก" : "ค้าง"}
+                  </span>
+                </td>
+                <td className="max-w-[240px] truncate">{fu.latest_note ?? "—"}</td>
+              </tr>
+            ))}
+            {followUps.length === 0 && (
+              <tr><td colSpan={7} className="text-center text-[#94A3B8] py-8">ไม่มีรายการติดตาม</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

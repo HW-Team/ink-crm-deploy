@@ -1,1 +1,48 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICdAL2xpYi9zdXBhYmFzZSc7CmltcG9ydCB7IGNoZWNrQWdlbnRLZXksIHVuYXV0aG9yaXplZCB9IGZyb20gJ0AvbGliL2FnZW50LWF1dGgnOwoKLy8gUE9TVCAvYXBpL2FnZW50L2NvbnRhY3RzLzppZC9jb252ZXJzYXRpb25zIOKAlCBsb2cgYSB0b3VjaHBvaW50CmV4cG9ydCBhc3luYyBmdW5jdGlvbiBQT1NUKHJlcTogTmV4dFJlcXVlc3QsIHsgcGFyYW1zIH06IHsgcGFyYW1zOiBQcm9taXNlPHsgaWQ6IHN0cmluZyB9PiB9KSB7CiAgaWYgKCFjaGVja0FnZW50S2V5KHJlcSkpIHJldHVybiB1bmF1dGhvcml6ZWQoKTsKICBjb25zdCB7IGlkIH0gPSBhd2FpdCBwYXJhbXM7CiAgbGV0IGJvZHk6IFJlY29yZDxzdHJpbmcsIHVua25vd24+OwogIHRyeSB7IGJvZHkgPSBhd2FpdCByZXEuanNvbigpOyB9IGNhdGNoIHsgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICdpbnZhbGlkIEpTT04nIH0sIHsgc3RhdHVzOiA0MDAgfSk7IH0KCiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwogIGNvbnN0IHsgZGF0YTogbG9nLCBlcnJvciB9ID0gYXdhaXQgc2IuZnJvbSgnY29udmVyc2F0aW9uX2xvZ3MnKS5pbnNlcnQoewogICAgY29udGFjdF9pZDogaWQsCiAgICBjaGFubmVsOiBTdHJpbmcoYm9keS5jaGFubmVsID8/ICdPVEhFUicpLnRvVXBwZXJDYXNlKCksCiAgICBkaXJlY3Rpb246IFN0cmluZyhib2R5LmRpcmVjdGlvbiA/PyAnSU4nKS50b1VwcGVyQ2FzZSgpLAogICAgc3VtbWFyeTogYm9keS5zdW1tYXJ5ID8gU3RyaW5nKGJvZHkuc3VtbWFyeSkgOiBudWxsLAogICAgb3V0Y29tZTogYm9keS5vdXRjb21lID8gU3RyaW5nKGJvZHkub3V0Y29tZSkgOiBudWxsLAogICAgbmV4dF9hY3Rpb246IGJvZHkubmV4dF9hY3Rpb24gPyBTdHJpbmcoYm9keS5uZXh0X2FjdGlvbikgOiBudWxsLAogICAgbmV4dF9mb2xsb3d1cF9kYXRlOiBib2R5Lm5leHRfZm9sbG93dXBfZGF0ZSA/IFN0cmluZyhib2R5Lm5leHRfZm9sbG93dXBfZGF0ZSkgOiBudWxsLAogICAgdGVhbV9tZW1iZXI6IGJvZHkudGVhbV9tZW1iZXIgPyBTdHJpbmcoYm9keS50ZWFtX21lbWJlcikgOiAnaW5rLWFnZW50JywKICB9KS5zZWxlY3QoJyonKS5zaW5nbGUoKTsKCiAgaWYgKGVycm9yKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogZXJyb3IubWVzc2FnZSB9LCB7IHN0YXR1czogNTAwIH0pOwoKICAvLyB0b3VjaCBjb250YWN0OiBsYXN0IGNvbnRhY3QgKyBsb2cgY291bnQKICBhd2FpdCBzYi5mcm9tKCdjb250YWN0cycpLnVwZGF0ZSh7CiAgICBsYXN0X2NvbnRhY3RfZGF0ZTogbmV3IERhdGUoKS50b0lTT1N0cmluZygpLAogICAgbGFzdF9jb250YWN0X2NoYW5uZWw6IFN0cmluZyhib2R5LmNoYW5uZWwgPz8gJ09USEVSJykudG9VcHBlckNhc2UoKSwKICAgIGxhc3RfY29udGFjdF9vdXRjb21lOiBib2R5Lm91dGNvbWUgPyBTdHJpbmcoYm9keS5vdXRjb21lKSA6IG51bGwsCiAgICBjb250YWN0ZWRfeWV0OiB0cnVlLAogIH0pLmVxKCdpZCcsIGlkKTsKCiAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgbG9nIH0sIHsgc3RhdHVzOiAyMDEgfSk7Cn0K
+import { NextRequest, NextResponse } from 'next/server';
+import { qOne, qRun } from '@/lib/supabase';
+import { checkAgentKey, unauthorized } from '@/lib/agent-auth';
+
+// POST /api/agent/contacts/:id/conversations — log a touchpoint
+export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!checkAgentKey(req)) return unauthorized();
+  const { id } = await params;
+  let body: Record<string, unknown>;
+  try { body = await req.json(); } catch { return NextResponse.json({ error: 'invalid JSON' }, { status: 400 }); }
+
+  const channel = String(body.channel ?? 'OTHER').toUpperCase();
+  const outcome = body.outcome ? String(body.outcome) : null;
+
+  try {
+    const log = await qOne(
+      `insert into conversation_logs (contact_id, channel, direction, summary, outcome, next_action, next_followup_date, team_member)
+       values ($1,$2,$3,$4,$5,$6,$7,$8) returning *`,
+      [
+        id,
+        channel,
+        String(body.direction ?? 'IN').toUpperCase(),
+        body.summary ? String(body.summary) : null,
+        outcome,
+        body.next_action ? String(body.next_action) : null,
+        body.next_followup_date ? String(body.next_followup_date) : null,
+        body.team_member ? String(body.team_member) : 'ink-agent',
+      ]
+    );
+    if (!log) return NextResponse.json({ error: 'log insert failed' }, { status: 500 });
+
+    // touch contact: last contact + log count
+    await qRun(
+      `update contacts set
+         last_contact_date = now(),
+         last_contact_channel = $1,
+         last_contact_outcome = $2,
+         contacted_yet = true,
+         log_count = log_count + 1
+       where id = $3`,
+      [channel, outcome, id]
+    );
+
+    return NextResponse.json({ log }, { status: 201 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}

@@ -1,1 +1,23 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICdAL2xpYi9zdXBhYmFzZSc7CmltcG9ydCB7IGNoZWNrQWdlbnRLZXksIHVuYXV0aG9yaXplZCB9IGZyb20gJ0AvbGliL2FnZW50LWF1dGgnOwoKLy8gUEFUQ0ggL2FwaS9hZ2VudC9sZWFkcy86aWQvc3RhZ2UgIOKAlCBidW1wIHN0YWdlIHsgc3RhZ2U6ICdxdWFsaWZpZWQnIH0KZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIFBBVENIKHJlcTogTmV4dFJlcXVlc3QsIHsgcGFyYW1zIH06IHsgcGFyYW1zOiBQcm9taXNlPHsgaWQ6IHN0cmluZyB9PiB9KSB7CiAgaWYgKCFjaGVja0FnZW50S2V5KHJlcSkpIHJldHVybiB1bmF1dGhvcml6ZWQoKTsKICBjb25zdCB7IGlkIH0gPSBhd2FpdCBwYXJhbXM7CiAgbGV0IGJvZHk6IHsgc3RhZ2U/OiBzdHJpbmcgfTsKICB0cnkgeyBib2R5ID0gYXdhaXQgcmVxLmpzb24oKTsgfSBjYXRjaCB7IHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAnaW52YWxpZCBKU09OJyB9LCB7IHN0YXR1czogNDAwIH0pOyB9CiAgaWYgKCFib2R5LnN0YWdlKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogJ3N0YWdlIHJlcXVpcmVkJyB9LCB7IHN0YXR1czogNDAwIH0pOwoKICBjb25zdCBzYiA9IGNyZWF0ZUFkbWluQ2xpZW50KCk7CiAgY29uc3QgdmFsaWRTdGFnZXMgPSBbJ25ldycsJ2NvbnRhY3RlZCcsJ3F1YWxpZmllZCcsJ3NpdGVfdmlzaXQnLCdwcm9wb3NhbCcsJ3dvbicsJ3VucXVhbGlmaWVkJywnbG9zdCcsJ2R1cGxpY2F0ZScsJ25vX2Fuc3dlciddOwogIGlmICghdmFsaWRTdGFnZXMuaW5jbHVkZXMoYm9keS5zdGFnZSkpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAnaW52YWxpZCBzdGFnZScgfSwgeyBzdGF0dXM6IDQwMCB9KTsKCiAgY29uc3QgeyBkYXRhOiBsZWFkLCBlcnJvciB9ID0gYXdhaXQgc2IuZnJvbSgnbGVhZHMnKS51cGRhdGUoeyBjcm1fc3RhZ2U6IGJvZHkuc3RhZ2UgfSkuZXEoJ2lkJywgaWQpLnNlbGVjdCgnKicpLnNpbmdsZSgpOwogIGlmIChlcnJvcikgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IGVycm9yLm1lc3NhZ2UgfSwgeyBzdGF0dXM6IGVycm9yLmNvZGUgPT09ICdQR1JTVDExNicgPyA0MDQgOiA1MDAgfSk7CiAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgbGVhZCB9KTsKfQo=
+import { NextRequest, NextResponse } from 'next/server';
+import { qOne } from '@/lib/supabase';
+import { checkAgentKey, unauthorized } from '@/lib/agent-auth';
+
+const VALID_STAGES = ['new','contacted','qualified','site_visit','proposal','won','unqualified','lost','duplicate','no_answer'];
+
+// PATCH /api/agent/leads/:id/stage — bump stage { stage: 'qualified' }
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!checkAgentKey(req)) return unauthorized();
+  const { id } = await params;
+  let body: { stage?: string };
+  try { body = await req.json(); } catch { return NextResponse.json({ error: 'invalid JSON' }, { status: 400 }); }
+  if (!body.stage) return NextResponse.json({ error: 'stage required' }, { status: 400 });
+  if (!VALID_STAGES.includes(body.stage)) return NextResponse.json({ error: 'invalid stage' }, { status: 400 });
+
+  try {
+    const lead = await qOne(`update leads set crm_stage=$1 where id=$2 returning *`, [body.stage, id]);
+    if (!lead) return NextResponse.json({ error: 'lead not found' }, { status: 404 });
+    return NextResponse.json({ lead });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}

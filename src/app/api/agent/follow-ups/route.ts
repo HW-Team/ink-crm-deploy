@@ -1,1 +1,28 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICdAL2xpYi9zdXBhYmFzZSc7CmltcG9ydCB7IGNoZWNrQWdlbnRLZXksIHVuYXV0aG9yaXplZCB9IGZyb20gJ0AvbGliL2FnZW50LWF1dGgnOwoKLy8gR0VUIC9hcGkvYWdlbnQvZm9sbG93LXVwcz9kdWVfYmVmb3JlPVlZWVktTU0tREQmb3duZXI9bmFtZSDihpIgbGlzdCBkdWUgZm9sbG93LXVwcwpleHBvcnQgYXN5bmMgZnVuY3Rpb24gR0VUKHJlcTogTmV4dFJlcXVlc3QpIHsKICBpZiAoIWNoZWNrQWdlbnRLZXkocmVxKSkgcmV0dXJuIHVuYXV0aG9yaXplZCgpOwogIGNvbnN0IGR1ZUJlZm9yZSA9IHJlcS5uZXh0VXJsLnNlYXJjaFBhcmFtcy5nZXQoJ2R1ZV9iZWZvcmUnKSA/PyBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCkuc2xpY2UoMCwgMTApOwogIGNvbnN0IG93bmVyID0gcmVxLm5leHRVcmwuc2VhcmNoUGFyYW1zLmdldCgnb3duZXInKTsKCiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwogIGxldCBxdWVyeSA9IHNiLmZyb20oJ2ZvbGxvd191cHMnKQogICAgLnNlbGVjdCgnKiwgY29udGFjdHMoZnVsbF9uYW1lLCBwcmltYXJ5X3Bob25lLCBub3JtYWxpemVkX3Bob25lKSwgbGVhZHMoZnVsbF9uYW1lLCBjcm1fc3RhZ2UpJykKICAgIC5lcSgnc3RhdHVzJywgJ29wZW4nKQogICAgLmx0ZSgnZHVlX2RhdGUnLCBkdWVCZWZvcmUpCiAgICAub3JkZXIoJ2R1ZV9kYXRlJywgeyBhc2NlbmRpbmc6IHRydWUgfSk7CgogIGlmIChvd25lcikgcXVlcnkgPSBxdWVyeS5lcSgnb3duZXInLCBvd25lcik7CgogIGNvbnN0IHsgZGF0YSwgZXJyb3IgfSA9IGF3YWl0IHF1ZXJ5OwogIGlmIChlcnJvcikgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IGVycm9yLm1lc3NhZ2UgfSwgeyBzdGF0dXM6IDUwMCB9KTsKICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBmb2xsb3dfdXBzOiBkYXRhIH0pOwp9Cg==
+import { NextRequest, NextResponse } from 'next/server';
+import { q } from '@/lib/supabase';
+import { checkAgentKey, unauthorized } from '@/lib/agent-auth';
+
+// GET /api/agent/follow-ups?due_before=YYYY-MM-DD&owner=name → list due follow-ups
+export async function GET(req: NextRequest) {
+  if (!checkAgentKey(req)) return unauthorized();
+  const dueBefore = req.nextUrl.searchParams.get('due_before') ?? new Date().toISOString().slice(0, 10);
+  const owner = req.nextUrl.searchParams.get('owner');
+
+  try {
+    const follow_ups = await q(
+      `select fu.*,
+         c.full_name as contact_name, c.primary_phone, c.normalized_phone,
+         l.full_name as lead_name, l.crm_stage
+       from follow_ups fu
+       left join contacts c on c.id = fu.contact_id
+       left join leads l on l.id = fu.lead_id
+       where fu.status = 'open' and fu.due_date <= $1
+       ${owner ? `and fu.owner = $2` : ''}
+       order by fu.due_date asc`,
+      owner ? [dueBefore, owner] : [dueBefore]
+    );
+    return NextResponse.json({ follow_ups });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}

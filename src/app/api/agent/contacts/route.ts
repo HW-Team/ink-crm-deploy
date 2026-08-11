@@ -1,1 +1,29 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQsIG5vcm1hbGl6ZVBob25lIH0gZnJvbSAnQC9saWIvc3VwYWJhc2UnOwppbXBvcnQgeyBjaGVja0FnZW50S2V5LCB1bmF1dGhvcml6ZWQgfSBmcm9tICdAL2xpYi9hZ2VudC1hdXRoJzsKCi8vIEdFVCAvYXBpL2FnZW50L2NvbnRhY3RzP3Bob25lPTA4eC14eHgteHh4eCAg4oaSIGZpbmQgY29udGFjdCBieSBub3JtYWxpemVkIHBob25lICgrIGxpbmtlZCBsZWFkcykKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIEdFVChyZXE6IE5leHRSZXF1ZXN0KSB7CiAgaWYgKCFjaGVja0FnZW50S2V5KHJlcSkpIHJldHVybiB1bmF1dGhvcml6ZWQoKTsKICBjb25zdCBwaG9uZSA9IHJlcS5uZXh0VXJsLnNlYXJjaFBhcmFtcy5nZXQoJ3Bob25lJyk7CiAgaWYgKCFwaG9uZSkgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICdwaG9uZSByZXF1aXJlZCcgfSwgeyBzdGF0dXM6IDQwMCB9KTsKCiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwogIGNvbnN0IG5vcm0gPSBub3JtYWxpemVQaG9uZShwaG9uZSk7CiAgaWYgKCFub3JtKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogJ2ludmFsaWQgcGhvbmUnIH0sIHsgc3RhdHVzOiA0MDAgfSk7CgogIGNvbnN0IHsgZGF0YTogY29udGFjdCwgZXJyb3IgfSA9IGF3YWl0IHNiCiAgICAuZnJvbSgnY29udGFjdHMnKQogICAgLnNlbGVjdCgnKiwgbGVhZHMoKiknKQogICAgLmVxKCdub3JtYWxpemVkX3Bob25lJywgbm9ybSkKICAgIC5pcygnZGVsZXRlZF9hdCcsIG51bGwpCiAgICAubWF5YmVTaW5nbGUoKTsKCiAgaWYgKGVycm9yKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogZXJyb3IubWVzc2FnZSB9LCB7IHN0YXR1czogNTAwIH0pOwogIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGNvbnRhY3Q6IGNvbnRhY3QgPz8gbnVsbCB9KTsKfQo=
+import { NextRequest, NextResponse } from 'next/server';
+import { qOne, normalizePhone } from '@/lib/supabase';
+import { checkAgentKey, unauthorized } from '@/lib/agent-auth';
+
+// GET /api/agent/contacts?phone=08x-xxx-xxxx → find contact by normalized phone (+ linked leads)
+export async function GET(req: NextRequest) {
+  if (!checkAgentKey(req)) return unauthorized();
+  const phone = req.nextUrl.searchParams.get('phone');
+  if (!phone) return NextResponse.json({ error: 'phone required' }, { status: 400 });
+
+  const norm = normalizePhone(phone);
+  if (!norm) return NextResponse.json({ error: 'invalid phone' }, { status: 400 });
+
+  try {
+    const contact = await qOne(
+      `select c.*,
+        coalesce((
+          select json_agg(l order by l.lead_date desc)
+          from leads l where l.contact_id = c.id
+        ), '[]') as leads
+       from contacts c
+       where c.normalized_phone = $1 and c.deleted_at is null`,
+      [norm]
+    );
+    return NextResponse.json({ contact: contact ?? null });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}

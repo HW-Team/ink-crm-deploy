@@ -1,1 +1,89 @@
-aW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICJAL2xpYi9zdXBhYmFzZSI7CmltcG9ydCBTdGFnZUJhZGdlIGZyb20gIkAvY29tcG9uZW50cy9TdGFnZUJhZGdlIjsKaW1wb3J0IHsgdGhEYXRlLCBTT1VSQ0VfTEFCRUxTIH0gZnJvbSAiQC9saWIvbGFiZWxzIjsKCmV4cG9ydCBjb25zdCBkeW5hbWljID0gImZvcmNlLWR5bmFtaWMiOwoKZXhwb3J0IGRlZmF1bHQgYXN5bmMgZnVuY3Rpb24gTGVhZERldGFpbFBhZ2UoeyBwYXJhbXMgfTogeyBwYXJhbXM6IFByb21pc2U8eyBpZDogc3RyaW5nIH0+IH0pIHsKICBjb25zdCB7IGlkIH0gPSBhd2FpdCBwYXJhbXM7CiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwoKICBjb25zdCB7IGRhdGE6IGxlYWQgfSA9IGF3YWl0IHNiLmZyb20oImxlYWRzIikuc2VsZWN0KCIqLCBjb250YWN0cygqKSIpLmVxKCJpZCIsIGlkKS5tYXliZVNpbmdsZSgpOwogIGlmICghbGVhZCkgcmV0dXJuIDxwIGNsYXNzTmFtZT0idGV4dC1bI0I5MUMxQ10iPuC5hOC4oeC5iOC4nuC4muC4peC4teC4lDwvcD47CgogIGNvbnN0IFtsb2dzLCBmb2xsb3dVcHNdID0gYXdhaXQgUHJvbWlzZS5hbGwoWwogICAgc2IuZnJvbSgiY29udmVyc2F0aW9uX2xvZ3MiKS5zZWxlY3QoIioiKS5lcSgiY29udGFjdF9pZCIsIGxlYWQuY29udGFjdF9pZCkub3JkZXIoImxvZ2dlZF9hdCIsIHsgYXNjZW5kaW5nOiBmYWxzZSB9KS5saW1pdCg1MCksCiAgICBzYi5mcm9tKCJmb2xsb3dfdXBzIikuc2VsZWN0KCIqIikuZXEoImNvbnRhY3RfaWQiLCBsZWFkLmNvbnRhY3RfaWQpLm9yZGVyKCJkdWVfZGF0ZSIpLAogIF0pOwoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InNwYWNlLXktNiBtYXgtdy01eGwiPgogICAgICA8aGVhZGVyIGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIj4KICAgICAgICA8ZGl2PgogICAgICAgICAgPGgxIGNsYXNzTmFtZT0idGV4dC0yeGwgZm9udC1ib2xkIHRleHQtWyMwRjE3MkFdIj57bGVhZC5mdWxsX25hbWV9PC9oMT4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LVsjNjQ3NDhCXSI+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iZm9udC1tb25vIj57bGVhZC5waG9uZSA/PyAi4oCUIn08L3NwYW4+CiAgICAgICAgICAgIHsiIMK3ICJ9e1NPVVJDRV9MQUJFTFNbbGVhZC5zb3VyY2VdID8/IGxlYWQuc291cmNlfQogICAgICAgICAgICB7IiDCtyAifXt0aERhdGUobGVhZC5sZWFkX2RhdGUpfQogICAgICAgICAgPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIDxTdGFnZUJhZGdlIHN0YWdlPXtsZWFkLmNybV9zdGFnZX0gLz4KICAgICAgPC9oZWFkZXI+CgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBtZDpncmlkLWNvbHMtMiBnYXAtNiI+CiAgICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPSJjYXJkIj4KICAgICAgICAgIDxoMiBjbGFzc05hbWU9InRleHQtYmFzZSBmb250LXNlbWlib2xkIHRleHQtWyMwRjE3MkFdIG1iLTMiPuC4guC5ieC4reC4oeC4ueC4peC4peC4teC4lDwvaDI+CiAgICAgICAgICA8ZGwgY2xhc3NOYW1lPSJzcGFjZS15LTIgdGV4dC1zbSI+CiAgICAgICAgICAgIHtbCiAgICAgICAgICAgICAgWyLguIjguLHguIfguKvguKfguLHguJQiLCBsZWFkLnByb3ZpbmNlXSwgWyLguKrguJnguYPguIgiLCBsZWFkLmludGVyZXN0XSwKICAgICAgICAgICAgICBbIuC4oeC4ueC4peC4hOC5iOC4siIsIGxlYWQuZGVhbF92YWx1ZSA/IGDguL8ke051bWJlcihsZWFkLmRlYWxfdmFsdWUpLnRvTG9jYWxlU3RyaW5nKCl9YCA6IG51bGxdLAogICAgICAgICAgICAgIFsi4LmC4Lit4LiB4Liy4Liq4Lib4Li04LiUIiwgbGVhZC5wcm9iYWJpbGl0eV9wY3QgPyBgJHtsZWFkLnByb2JhYmlsaXR5X3BjdH0lYCA6IG51bGxdLAogICAgICAgICAgICAgIFsi4LmA4LiI4LmJ4Liy4LiC4Lit4LiHIiwgbGVhZC5vd25lcl0sIFsi4LiC4Lix4LmJ4LiZ4LiV4Lit4LiZ4LiW4Lix4LiU4LmE4LibIiwgbGVhZC5uZXh0X2FjdGlvbl0sCiAgICAgICAgICAgIF0ubWFwKChbaywgdl0pID0+ICgKICAgICAgICAgICAgICA8ZGl2IGtleT17ayBhcyBzdHJpbmd9IGNsYXNzTmFtZT0iZmxleCBnYXAtMyI+CiAgICAgICAgICAgICAgICA8ZHQgY2xhc3NOYW1lPSJ3LTI4IHRleHQtWyM2NDc0OEJdIHNocmluay0wIj57a308L2R0PgogICAgICAgICAgICAgICAgPGRkIGNsYXNzTmFtZT0idGV4dC1bIzMzNDE1NV0iPnt2ID8/ICLigJQifTwvZGQ+CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC9kbD4KICAgICAgICA8L3NlY3Rpb24+CgogICAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT0iY2FyZCI+CiAgICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LWJhc2UgZm9udC1zZW1pYm9sZCB0ZXh0LVsjMEYxNzJBXSBtYi0zIj7guJXguLTguJTguJXguLLguKE8L2gyPgogICAgICAgICAgeyhmb2xsb3dVcHMuZGF0YSA/PyBbXSkubGVuZ3RoID09PSAwICYmIDxwIGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LVsjOTRBM0I4XSI+4LmE4Lih4LmI4Lih4Li14Lij4Liy4Lii4LiB4Liy4Lij4LiV4Li04LiU4LiV4Liy4LihPC9wPn0KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTIiPgogICAgICAgICAgICB7KGZvbGxvd1Vwcy5kYXRhID8/IFtdKS5tYXAoKGZ1OiBhbnkpID0+ICgKICAgICAgICAgICAgICA8ZGl2IGtleT17ZnUuaWR9IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIHRleHQtc20gYm9yZGVyIGJvcmRlci1bI0UyRThGMF0gcm91bmRlZC1tZCBweC0zIHB5LTIiPgogICAgICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPXtmdS5zdGF0dXMgPT09ICJkb25lIiA/ICJsaW5lLXRocm91Z2ggdGV4dC1bIzk0QTNCOF0iIDogInRleHQtWyMzMzQxNTVdIn0+CiAgICAgICAgICAgICAgICAgICAge3RoRGF0ZShmdS5kdWVfZGF0ZSl9e2Z1LmR1ZV90aW1lID8gYCAke2Z1LmR1ZV90aW1lfWAgOiAiIn0KICAgICAgICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgICAgICAgICB7ZnUubGF0ZXN0X25vdGUgJiYgPHAgY2xhc3NOYW1lPSJ0ZXh0LXhzIHRleHQtWyM2NDc0OEJdIj57ZnUubGF0ZXN0X25vdGV9PC9wPn0KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPXtgYmFkZ2UgJHtmdS5zdGF0dXMgPT09ICJkb25lIiA/ICJzdC13b24iIDogInN0LWNvbnRhY3RlZCJ9YH0+CiAgICAgICAgICAgICAgICAgIHtmdS5zdGF0dXMgPT09ICJkb25lIiA/ICLguYDguKrguKPguYfguIgiIDogIuC4hOC5ieC4suC4hyJ9CiAgICAgICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9zZWN0aW9uPgogICAgICA8L2Rpdj4KCiAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT0iY2FyZCI+CiAgICAgICAgPGgyIGNsYXNzTmFtZT0idGV4dC1iYXNlIGZvbnQtc2VtaWJvbGQgdGV4dC1bIzBGMTcyQV0gbWItMyI+4Lib4Lij4Liw4Lin4Lix4LiV4Li04LiB4Liy4Lij4LiV4Li04LiU4LiV4LmI4LitPC9oMj4KICAgICAgICB7KGxvZ3MuZGF0YSA/PyBbXSkubGVuZ3RoID09PSAwICYmIDxwIGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LVsjOTRBM0I4XSI+4Lii4Lix4LiH4LmE4Lih4LmI4Lih4Li14Lib4Lij4Liw4Lin4Lix4LiV4Li0PC9wPn0KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic3BhY2UteS0zIj4KICAgICAgICAgIHsobG9ncy5kYXRhID8/IFtdKS5tYXAoKGxvZzogYW55KSA9PiAoCiAgICAgICAgICAgIDxkaXYga2V5PXtsb2cuaWR9IGNsYXNzTmFtZT0iYm9yZGVyIGJvcmRlci1bI0UyRThGMF0gcm91bmRlZC1tZCBweC00IHB5LTMiPgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gdGV4dC14cyB0ZXh0LVsjNjQ3NDhCXSI+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImZvbnQtc2VtaWJvbGQgdXBwZXJjYXNlIHRyYWNraW5nLXdpZGUiPntsb2cuY2hhbm5lbH0gwrcge2xvZy5kaXJlY3Rpb259PC9zcGFuPgogICAgICAgICAgICAgICAgPHNwYW4+e25ldyBEYXRlKGxvZy5sb2dnZWRfYXQpLnRvTG9jYWxlU3RyaW5nKCJ0aC1USCIpfTwvc3Bhbj4KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICB7bG9nLnN1bW1hcnkgJiYgPHAgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtWyMzMzQxNTVdIG10LTEuNSI+e2xvZy5zdW1tYXJ5fTwvcD59CiAgICAgICAgICAgICAge2xvZy5uZXh0X2FjdGlvbiAmJiA8cCBjbGFzc05hbWU9InRleHQteHMgdGV4dC1bIzBFNzQ5MF0gbXQtMSI+4LiW4Lix4LiU4LmE4LibOiB7bG9nLm5leHRfYWN0aW9ufTwvcD59CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgKSl9CiAgICAgICAgPC9kaXY+CiAgICAgIDwvc2VjdGlvbj4KICAgIDwvZGl2PgogICk7Cn0K
+import { q, qOne } from "@/lib/supabase";
+import StageBadge from "@/components/StageBadge";
+import { thDate, SOURCE_LABELS } from "@/lib/labels";
+
+export const dynamic = "force-dynamic";
+
+export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
+  const lead = await qOne(`select * from leads where id = $1`, [id]);
+  if (!lead) return <p className="text-[#B91C1C]">ไม่พบลีด</p>;
+
+  const [logs, followUps] = await Promise.all([
+    q(`select * from conversation_logs where contact_id = $1 order by logged_at desc limit 50`, [lead.contact_id]),
+    q(`select * from follow_ups where contact_id = $1 order by due_date`, [lead.contact_id]),
+  ]);
+
+  return (
+    <div className="space-y-6 max-w-5xl">
+      <header className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-[#0F172A]">{lead.full_name}</h1>
+          <p className="text-sm text-[#64748B]">
+            <span className="font-mono">{lead.phone ?? "—"}</span>
+            {" · "}{SOURCE_LABELS[lead.source] ?? lead.source}
+            {" · "}{thDate(lead.lead_date)}
+          </p>
+        </div>
+        <StageBadge stage={lead.crm_stage} />
+      </header>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <section className="card">
+          <h2 className="text-base font-semibold text-[#0F172A] mb-3">ข้อมูลลีด</h2>
+          <dl className="space-y-2 text-sm">
+            {[
+              ["จังหวัด", lead.province], ["สนใจ", lead.interest],
+              ["มูลค่า", lead.deal_value ? `฿${Number(lead.deal_value).toLocaleString()}` : null],
+              ["โอกาสปิด", lead.probability_pct ? `${lead.probability_pct}%` : null],
+              ["เจ้าของ", lead.owner], ["ขั้นตอนถัดไป", lead.next_action],
+            ].map(([k, v]) => (
+              <div key={k as string} className="flex gap-3">
+                <dt className="w-28 text-[#64748B] shrink-0">{k}</dt>
+                <dd className="text-[#334155]">{v ?? "—"}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="card">
+          <h2 className="text-base font-semibold text-[#0F172A] mb-3">ติดตาม</h2>
+          {followUps.length === 0 && <p className="text-sm text-[#94A3B8]">ไม่มีรายการติดตาม</p>}
+          <div className="space-y-2">
+            {followUps.map((fu: any) => (
+              <div key={fu.id} className="flex items-center justify-between text-sm border border-[#E2E8F0] rounded-md px-3 py-2">
+                <div>
+                  <span className={fu.status === "done" ? "line-through text-[#94A3B8]" : "text-[#334155]"}>
+                    {thDate(fu.due_date)}{fu.due_time ? ` ${fu.due_time}` : ""}
+                  </span>
+                  {fu.latest_note && <p className="text-xs text-[#64748B]">{fu.latest_note}</p>}
+                </div>
+                <span className={`badge ${fu.status === "done" ? "st-won" : "st-contacted"}`}>
+                  {fu.status === "done" ? "เสร็จ" : "ค้าง"}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <section className="card">
+        <h2 className="text-base font-semibold text-[#0F172A] mb-3">ประวัติการติดต่อ</h2>
+        {logs.length === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีประวัติ</p>}
+        <div className="space-y-3">
+          {logs.map((log: any) => (
+            <div key={log.id} className="border border-[#E2E8F0] rounded-md px-4 py-3">
+              <div className="flex items-center justify-between text-xs text-[#64748B]">
+                <span className="font-semibold uppercase tracking-wide">{log.channel} · {log.direction}</span>
+                <span>{new Date(log.logged_at).toLocaleString("th-TH")}</span>
+              </div>
+              {log.summary && <p className="text-sm text-[#334155] mt-1.5">{log.summary}</p>}
+              {log.next_action && <p className="text-xs text-[#0E7490] mt-1">ถัดไป: {log.next_action}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

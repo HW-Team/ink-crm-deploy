@@ -1,1 +1,18 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gIm5leHQvc2VydmVyIjsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICJAL2xpYi9zdXBhYmFzZSI7CgovLyBQQVRDSCAvYXBpL2xlYWRzLzppZC9zdGFnZSDigJQgVUkgYm9hcmQgZHJhZyAoc3RhZmYgc2Vzc2lvbiwgbm8gYWdlbnQga2V5KQpleHBvcnQgYXN5bmMgZnVuY3Rpb24gUEFUQ0gocmVxOiBOZXh0UmVxdWVzdCwgeyBwYXJhbXMgfTogeyBwYXJhbXM6IFByb21pc2U8eyBpZDogc3RyaW5nIH0+IH0pIHsKICBjb25zdCB7IGlkIH0gPSBhd2FpdCBwYXJhbXM7CiAgbGV0IGJvZHk6IHsgc3RhZ2U/OiBzdHJpbmcgfTsKICB0cnkgeyBib2R5ID0gYXdhaXQgcmVxLmpzb24oKTsgfSBjYXRjaCB7IHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAiaW52YWxpZCBKU09OIiB9LCB7IHN0YXR1czogNDAwIH0pOyB9CiAgaWYgKCFib2R5LnN0YWdlKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogInN0YWdlIHJlcXVpcmVkIiB9LCB7IHN0YXR1czogNDAwIH0pOwoKICBjb25zdCB2YWxpZCA9IFsibmV3IiwiY29udGFjdGVkIiwicXVhbGlmaWVkIiwic2l0ZV92aXNpdCIsInByb3Bvc2FsIiwid29uIiwidW5xdWFsaWZpZWQiLCJsb3N0IiwiZHVwbGljYXRlIiwibm9fYW5zd2VyIl07CiAgaWYgKCF2YWxpZC5pbmNsdWRlcyhib2R5LnN0YWdlKSkgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICJpbnZhbGlkIHN0YWdlIiB9LCB7IHN0YXR1czogNDAwIH0pOwoKICBjb25zdCBzYiA9IGNyZWF0ZUFkbWluQ2xpZW50KCk7CiAgY29uc3QgeyBkYXRhLCBlcnJvciB9ID0gYXdhaXQgc2IuZnJvbSgibGVhZHMiKS51cGRhdGUoeyBjcm1fc3RhZ2U6IGJvZHkuc3RhZ2UgfSkuZXEoImlkIiwgaWQpLnNlbGVjdCgiKiIpLnNpbmdsZSgpOwogIGlmIChlcnJvcikgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IGVycm9yLm1lc3NhZ2UgfSwgeyBzdGF0dXM6IGVycm9yLmNvZGUgPT09ICJQR1JTVDExNiIgPyA0MDQgOiA1MDAgfSk7CiAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgbGVhZDogZGF0YSB9KTsKfQo=
+import { NextRequest, NextResponse } from "next/server";
+import { qOne } from "@/lib/supabase";
+
+// PATCH /api/leads/:id/stage — UI bump stage
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  let body: { stage?: string };
+  try { body = await req.json(); } catch { return NextResponse.json({ error: "invalid JSON" }, { status: 400 }); }
+  if (!body.stage) return NextResponse.json({ error: "stage required" }, { status: 400 });
+
+  try {
+    const lead = await qOne(`update leads set crm_stage=$1 where id=$2 returning *`, [body.stage, id]);
+    if (!lead) return NextResponse.json({ error: "lead not found" }, { status: 404 });
+    return NextResponse.json({ lead });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}

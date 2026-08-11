@@ -1,1 +1,29 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gIm5leHQvc2VydmVyIjsKaW1wb3J0IHsgY3JlYXRlQWRtaW5DbGllbnQgfSBmcm9tICJAL2xpYi9zdXBhYmFzZSI7CgovLyBQT1NUIC9hcGkvbGVhZHMg4oCUIGNyZWF0ZSBsZWFkIGZyb20gVUkgZm9ybQpleHBvcnQgYXN5bmMgZnVuY3Rpb24gUE9TVChyZXE6IE5leHRSZXF1ZXN0KSB7CiAgbGV0IGJvZHk6IFJlY29yZDxzdHJpbmcsIHVua25vd24+OwogIHRyeSB7IGJvZHkgPSBhd2FpdCByZXEuanNvbigpOyB9IGNhdGNoIHsgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICJpbnZhbGlkIEpTT04iIH0sIHsgc3RhdHVzOiA0MDAgfSk7IH0KCiAgY29uc3QgZnVsbE5hbWUgPSBTdHJpbmcoYm9keS5mdWxsX25hbWUgPz8gIiIpLnRyaW0oKTsKICBpZiAoIWZ1bGxOYW1lKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogImZ1bGxfbmFtZSByZXF1aXJlZCIgfSwgeyBzdGF0dXM6IDQwMCB9KTsKCiAgY29uc3Qgc2IgPSBjcmVhdGVBZG1pbkNsaWVudCgpOwogIGNvbnN0IHsgZGF0YSwgZXJyb3IgfSA9IGF3YWl0IHNiLmZyb20oImxlYWRzIikuaW5zZXJ0KHsKICAgIGZ1bGxfbmFtZTogZnVsbE5hbWUsCiAgICBwaG9uZTogYm9keS5waG9uZSA/IFN0cmluZyhib2R5LnBob25lKSA6IG51bGwsCiAgICBzb3VyY2U6IFN0cmluZyhib2R5LnNvdXJjZSA/PyAiT1RIRVIiKS50b1VwcGVyQ2FzZSgpLAogICAgaW50ZXJlc3Q6IGJvZHkuaW50ZXJlc3QgPyBTdHJpbmcoYm9keS5pbnRlcmVzdCkgOiBudWxsLAogICAgcHJvdmluY2U6IGJvZHkucHJvdmluY2UgPyBTdHJpbmcoYm9keS5wcm92aW5jZSkgOiBudWxsLAogICAgb3duZXI6IGJvZHkub3duZXIgPyBTdHJpbmcoYm9keS5vd25lcikgOiBudWxsLAogICAgY3JtX3N0YWdlOiAibmV3IiwKICB9KS5zZWxlY3QoIioiKS5zaW5nbGUoKTsKCiAgaWYgKGVycm9yKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogZXJyb3IubWVzc2FnZSB9LCB7IHN0YXR1czogNTAwIH0pOwogIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGxlYWQ6IGRhdGEgfSwgeyBzdGF0dXM6IDIwMSB9KTsKfQo=
+import { NextRequest, NextResponse } from "next/server";
+import { qOne } from "@/lib/supabase";
+
+// POST /api/leads — create lead from UI form
+export async function POST(req: NextRequest) {
+  let body: Record<string, unknown>;
+  try { body = await req.json(); } catch { return NextResponse.json({ error: "invalid JSON" }, { status: 400 }); }
+
+  const fullName = String(body.full_name ?? "").trim();
+  if (!fullName) return NextResponse.json({ error: "full_name required" }, { status: 400 });
+
+  try {
+    const lead = await qOne(
+      `insert into leads (full_name, phone, source, interest, province, owner, crm_stage)
+       values ($1,$2,$3,$4,$5,$6,'new') returning *`,
+      [
+        fullName,
+        body.phone ? String(body.phone) : null,
+        String(body.source ?? "OTHER").toUpperCase(),
+        body.interest ? String(body.interest) : null,
+        body.province ? String(body.province) : null,
+        body.owner ? String(body.owner) : null,
+      ]
+    );
+    return NextResponse.json({ lead }, { status: 201 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}
