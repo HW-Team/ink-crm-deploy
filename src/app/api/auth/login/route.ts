@@ -1,23 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "node:crypto";
 import bcrypt from "bcryptjs";
 import { qOne } from "@/lib/supabase";
-import { createSessionToken, SESSION_COOKIE, SESSION_MAX_AGE } from "@/lib/auth";
-
-// Password verify: native scrypt (fast) preferred; bcryptjs fallback for legacy
-// hashes, upgraded to scrypt on successful login (rolling migration).
-function scryptHash(password: string): string {
-  const salt = crypto.randomBytes(16).toString("hex");
-  const hash = crypto.scryptSync(password, salt, 64).toString("hex");
-  return `scrypt$${salt}$${hash}`;
-}
-function scryptVerify(password: string, stored: string): boolean {
-  const parts = stored.split("$");
-  if (parts.length !== 3 || parts[0] !== "scrypt") return false;
-  const test = crypto.scryptSync(password, parts[1], 64);
-  const want = Buffer.from(parts[2], "hex");
-  return test.length === want.length && crypto.timingSafeEqual(test, want);
-}
+import { createSessionToken, SESSION_COOKIE, SESSION_MAX_AGE, scryptHash, scryptVerify } from "@/lib/auth";
 
 // POST /api/auth/login — username or email + password (staff). Google OAuth to come.
 export async function POST(req: NextRequest) {

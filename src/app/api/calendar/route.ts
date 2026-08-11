@@ -2,16 +2,27 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSessionUser } from "@/lib/auth";
 import { q } from "@/lib/supabase";
 
-// GET /api/calendar?from=YYYY-MM-DD&to=YYYY-MM-DD — events for calendar views.
+// GET /api/calendar?from=YYYY-MM-DD&to=YYYY-MM-DD&owner=all|me|<user_id>
 // Events = open follow_ups in range + site visits, joined with contact/lead names.
+// owner: all (default) = everyone, me = current user, or a specific user id.
 export async function GET(req: NextRequest) {
   const me = await getSessionUser();
   if (!me) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const from = req.nextUrl.searchParams.get("from") ?? new Date().toISOString().slice(0, 10);
   const to = req.nextUrl.searchParams.get("to") ?? from;
+  const owner = req.nextUrl.searchParams.get("owner") ?? "all";
 
   try {
+    let ownerFilter = "true";
+    const vals: unknown[] = [from, to];
+    if (owner === "me") {
+      vals.push(me.id);
+      ownerFilter = `fu.owner_id = $${vals.length}`;
+    } else if (owner && owner !== "all") {
+      vals.push(owner);
+      ownerFilter = `fu.owner_id = $${vals.length}`;
+    }
     const events = await q(
       `select fu.id, fu.lead_id, fu.contact_id, fu.due_date, fu.due_time, fu.task_type,
               fu.status, fu.latest_note, fu.owner, fu.location, fu.confirmed,
@@ -20,9 +31,9 @@ export async function GET(req: NextRequest) {
        from follow_ups fu
        left join contacts c on c.id = fu.contact_id
        left join leads l on l.id = fu.lead_id
-       where fu.due_date between $1 and $2
+       where fu.due_date between $1 and $2 and ${ownerFilter}
        order by fu.due_date, fu.due_time`,
-      [from, to]
+      vals
     );
     return NextResponse.json({ events });
   } catch (e: any) {
