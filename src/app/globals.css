@@ -29,11 +29,11 @@
 }
 
 html, body {
-  font-family: var(--font-noto), Inter, system-ui, sans-serif;
+  font-family: 'Noto Sans Thai', 'Sarabun', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 .font-mono {
-  font-family: var(--font-mono), ui-monospace, monospace !important;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
 }
 
 /* table base */
