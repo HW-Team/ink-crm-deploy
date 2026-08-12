@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/auth";
 import { q } from "@/lib/supabase";
 import UsersAdmin from "@/components/UsersAdmin";
-import { t, getServerLang } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 
 export const dynamic = "force-dynamic";
 
