@@ -1,5 +1,6 @@
 import { q, qOne } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
+import StageSelect from "@/components/StageSelect";
 import { thDate, sourceLabel } from "@/lib/labels";
 import LogConversation from "@/components/LogConversation";
 import AddFollowUp from "@/components/AddFollowUp";
@@ -47,7 +48,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           </p>
         </div>
         <div className="flex items-center justify-between flex-wrap gap-3">
-          <StageBadge stage={lead.crm_stage} />
+          <StageSelect leadId={lead.id} stage={lead.crm_stage} />
           <div className="flex items-center gap-3">
             <VisitButton leadId={lead.id} />
             <AddFollowUp contactId={lead.contact_id} leadId={lead.id} />
