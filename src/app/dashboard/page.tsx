@@ -1,19 +1,16 @@
 import { q } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
-import { SOURCE_LABELS } from "@/lib/labels";
+import { sourceLabel, stageLabel } from "@/lib/labels";
+import { t, getServerLang } from "@/lib/i18n";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 const STAGE_ORDER = ["new", "contacted", "qualified", "site_visit", "proposal", "won", "unqualified", "lost", "no_answer", "duplicate"];
-const STAGE_LABELS: Record<string, string> = {
-  new: "ใหม่", contacted: "ติดต่อแล้ว", qualified: "สนใจ", site_visit: "นัดดู",
-  proposal: "เสนอราคา", won: "ปิดการขาย", unqualified: "ไม่ผ่าน", lost: "หลุด",
-  no_answer: "ไม่ตอบ", duplicate: "ซ้ำ",
-};
 const PIPELINE = ["contacted", "qualified", "site_visit", "proposal", "won"];
 
 export default async function DashboardPage() {
+  const lang = await getServerLang();
   const today = new Date().toISOString().slice(0, 10);
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
   const twoWeeksAgo = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
@@ -96,23 +93,23 @@ export default async function DashboardPage() {
   const pipelineTotal = [...pipeline.values()].reduce((a, b) => a + b.n, 0);
 
   const kpis = [
-    { label: "ลีดทั้งหมด", value: totalLeads, sub: leadDelta === null ? "สัปดาห์แรก" : `${leadDelta >= 0 ? "+" : ""}${leadDelta}% เทียบสัปดาห์ก่อน` },
-    { label: "คอนแทกต์", value: totalContacts, sub: "ฐานข้อมูลลูกค้า" },
-    { label: "ติดตามค้าง", value: openFollowUps, sub: `${act.due_today} รายครบกำหนดวันนี้` },
-    { label: "สนใจ", value: qualified, sub: "ลีดที่พร้อมปิด" },
-    { label: "รอรับงาน", value: unowned, sub: "ลีดในกล่อง inbox" },
+    { label: t(lang, "dash.allLeads"), value: totalLeads, sub: leadDelta === null ? t(lang, "dash.firstWeek") : `${leadDelta >= 0 ? "+" : ""}${leadDelta}% ${t(lang, "dash.vsLastWeek")}` },
+    { label: t(lang, "today.contacts"), value: totalContacts, sub: t(lang, "dash.contactsDb") },
+    { label: t(lang, "dash.openFups"), value: openFollowUps, sub: `${act.due_today} ${t(lang, "dash.dueToday")}` },
+    { label: t(lang, "dash.qualified"), value: qualified, sub: t(lang, "dash.readyToClose") },
+    { label: t(lang, "today.claimQueue"), value: unowned, sub: t(lang, "dash.inbox") },
   ];
 
   return (
     <div className="space-y-8">
       <header className="flex items-end justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#0F172A]">แดชบอร์ด</h1>
-          <p className="text-sm text-[#64748B] mt-0.5">ภาพรวม CRM วันนี้</p>
+          <h1 className="text-2xl font-bold text-[#0F172A]">{t(lang, "dash.title")}</h1>
+          <p className="text-sm text-[#64748B] mt-0.5">{t(lang, "dash.overview")}</p>
         </div>
         <div className="text-right">
           <div className="text-2xl font-bold text-[#0F172A] font-mono">{closesWeek}</div>
-          <div className="text-xs text-[#64748B]">ปิดการขายสัปดาห์นี้</div>
+          <div className="text-xs text-[#64748B]">{t(lang, "dash.wonWeek")}</div>
         </div>
       </header>
 
@@ -121,19 +118,19 @@ export default async function DashboardPage() {
           <div key={k.label} className="card">
             <div className="kpi-label">{k.label}</div>
             <div className="kpi-value mt-1">{k.value.toLocaleString()}</div>
-            <div className={`text-xs mt-1.5 ${leadDelta !== null && k.label === "ลีดทั้งหมด" && leadDelta < 0 ? "text-[#B91C1C]" : "text-[#64748B]"}`}>{k.sub}</div>
+            <div className={`text-xs mt-1.5 ${leadDelta !== null && k.label === t(lang, "dash.allLeads") && leadDelta < 0 ? "text-[#B91C1C]" : "text-[#64748B]"}`}>{k.sub}</div>
           </div>
         ))}
       </div>
 
       <section className="card">
-        <h2 className="text-base font-semibold text-[#0F172A] mb-4">ลีดใหม่ 14 วัน</h2>
+        <h2 className="text-base font-semibold text-[#0F172A] mb-4">{t(lang, "dash.newLeads14d")}</h2>
         {trendRows.length === 0 ? (
-          <p className="text-sm text-[#94A3B8]">ยังไม่มีข้อมูลลีดรายวัน</p>
+          <p className="text-sm text-[#94A3B8]">{t(lang, "dash.noDaily")}</p>
         ) : (
           <div className="flex items-end gap-1 h-20">
             {trendRows.map((r) => (
-              <div key={r.d} className="flex-1 flex flex-col items-center gap-1 group" title={`${r.d}: ${r.n} ลีด`}>
+              <div key={r.d} className="flex-1 flex flex-col items-center gap-1 group" title={`${r.d}: ${r.n} ${t(lang, "today.allLeads")}`}>
                 <div
                   className="w-full rounded-t bg-[#0E7490] group-hover:bg-[#155E75] transition-colors"
                   style={{ height: `${Math.max(4, Math.round((r.n / maxTrend) * 64))}px` }}
@@ -147,7 +144,7 @@ export default async function DashboardPage() {
 
       <div className="grid lg:grid-cols-2 gap-6">
         <section className="card">
-          <h2 className="text-base font-semibold text-[#0F172A] mb-4">Pipeline</h2>
+          <h2 className="text-base font-semibold text-[#0F172A] mb-4">{t(lang, "dash.pipeline")}</h2>
           <div className="space-y-3">
             {PIPELINE.map((s) => {
               const row = pipeline.get(s)!;
@@ -155,25 +152,25 @@ export default async function DashboardPage() {
               return (
                 <div key={s}>
                   <div className="flex items-baseline justify-between text-sm mb-1">
-                    <span className="text-[#334155]">{STAGE_LABELS[s]}</span>
+                    <span className="text-[#334155]">{stageLabel(lang, s)}</span>
                     <span className="font-mono text-[#0F172A] font-semibold">{row.n} <span className="text-[#94A3B8] font-normal">/ {row.total.toLocaleString()} ฿</span></span>
                   </div>
                   <div className="pbar"><div style={{ width: `${pct}%` }} /></div>
                 </div>
               );
             })}
-            {pipelineTotal === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีลีดใน pipeline รับงานจากกล่องลีดใหม่ก่อน</p>}
+            {pipelineTotal === 0 && <p className="text-sm text-[#94A3B8]">{t(lang, "dash.claimFirst")}</p>}
           </div>
         </section>
 
         <section className="card">
-          <h2 className="text-base font-semibold text-[#0F172A] mb-4">กิจกรรมวันนี้</h2>
+          <h2 className="text-base font-semibold text-[#0F172A] mb-4">{t(lang, "dash.activity")}</h2>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { n: act.new_today, l: "ลีดใหม่", to: "/leads" },
-              { n: act.due_today, l: "ติดตามครบกำหนด", to: "/" },
-              { n: act.logs_today, l: "บันทึกการติดต่อ", to: "/contacts" },
-              { n: act.done_today, l: "ปิดงานติดตาม", to: "/followups" },
+              { n: act.new_today, l: t(lang, "leads.inbox"), to: "/leads" },
+              { n: act.due_today, l: t(lang, "today.dueToday"), to: "/" },
+              { n: act.logs_today, l: t(lang, "log.title"), to: "/contacts" },
+              { n: act.done_today, l: t(lang, "dash.closeFup"), to: "/followups" },
             ].map((a) => (
               <Link key={a.l} href={a.to} className="rounded-lg border border-[#E2E8F0] px-4 py-3 hover:border-[#0E7490] transition-colors">
                 <div className="text-xl font-bold text-[#0F172A] font-mono">{a.n}</div>
@@ -183,7 +180,7 @@ export default async function DashboardPage() {
           </div>
           <div className="mt-4 pt-4 border-t border-[#E2E8F0]">
             <div className="flex items-baseline justify-between text-sm">
-              <span className="text-[#334155]">ปิดการขายสัปดาห์นี้</span>
+              <span className="text-[#334155]">{t(lang, "dash.wonWeek")}</span>
               <span className="font-mono font-semibold text-[#0F172A]">{closesWeek}</span>
             </div>
           </div>
@@ -192,7 +189,7 @@ export default async function DashboardPage() {
 
       <div className="grid lg:grid-cols-2 gap-6">
         <section className="card">
-          <h2 className="text-base font-semibold text-[#0F172A] mb-4">ภาระงานต่อคน</h2>
+          <h2 className="text-base font-semibold text-[#0F172A] mb-4">{t(lang, "dash.workload")}</h2>
           <div className="space-y-3">
             {workloadRows.map((x: any) => (
               <div key={x.full_name} className="flex items-center gap-3">
@@ -203,37 +200,37 @@ export default async function DashboardPage() {
                   <div style={{ width: `${Math.round(((x.owned_leads ?? 0) / maxLoad) * 100)}%` }} />
                 </div>
                 <div className="w-24 text-right text-xs text-[#64748B] shrink-0">
-                  {x.owned_leads ?? 0} ลีด · {x.open_followups ?? 0} ติดตาม
+                  {x.owned_leads ?? 0} {t(lang, "today.allLeads")} · {x.open_followups ?? 0} {t(lang, "dash.openFups")}
                 </div>
               </div>
             ))}
-            {workloadRows.length === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีทีม</p>}
+            {workloadRows.length === 0 && <p className="text-sm text-[#94A3B8]">{t(lang, "dash.noWorkload")}</p>}
           </div>
         </section>
 
         <section className="card">
-          <h2 className="text-base font-semibold text-[#0F172A] mb-4">แหล่งที่มา</h2>
+          <h2 className="text-base font-semibold text-[#0F172A] mb-4">{t(lang, "common.source")}</h2>
           <div className="space-y-3">
             {[...bySource.entries()].sort((a, b) => b[1] - a[1]).map(([src, n]) => {
               const pct = totalLeads ? Math.round((n / totalLeads) * 100) : 0;
               return (
                 <div key={src} className="flex items-center gap-3">
-                  <div className="w-24 text-sm text-[#334155] shrink-0">{SOURCE_LABELS[src] ?? src}</div>
+                  <div className="w-24 text-sm text-[#334155] shrink-0">{sourceLabel(lang, src)}</div>
                   <div className="pbar flex-1"><div style={{ width: `${pct}%` }} /></div>
                   <div className="w-10 text-right text-sm font-semibold text-[#0F172A]">{n}</div>
                 </div>
               );
             })}
-            {bySource.size === 0 && <p className="text-sm text-[#94A3B8]">ยังไม่มีข้อมูล</p>}
+            {bySource.size === 0 && <p className="text-sm text-[#94A3B8]">{t(lang, "common.noData")}</p>}
           </div>
         </section>
       </div>
 
       <section className="card overflow-x-auto p-0">
-        <h2 className="text-base font-semibold text-[#0F172A] px-6 pt-5 pb-2">ลีดล่าสุด</h2>
+        <h2 className="text-base font-semibold text-[#0F172A] px-6 pt-5 pb-2">{t(lang, "dash.latestLeads")}</h2>
         <table className="tbl">
           <thead>
-            <tr><th>ชื่อ</th><th>สเตจ</th><th>แหล่ง</th><th>เจ้าของ</th></tr>
+            <tr><th>{t(lang, "common.name")}</th><th>{t(lang, "common.stage")}</th><th>{t(lang, "common.source")}</th><th>{t(lang, "common.owner")}</th></tr>
           </thead>
           <tbody>
             {leadRows.slice(0, 10).map((l: any) => (
@@ -241,13 +238,13 @@ export default async function DashboardPage() {
                 <td className="font-medium text-[#0F172A]">
                   <a href={`/leads/${l.id}`} className="hover:text-[#0E7490]">{l.full_name}</a>
                 </td>
-                <td><StageBadge stage={l.crm_stage} /></td>
-                <td>{SOURCE_LABELS[l.source] ?? l.source}</td>
+                <td><StageBadge stage={l.crm_stage} lang={lang} /></td>
+                <td>{sourceLabel(lang, l.source)}</td>
                 <td>{l.owner ?? "—"}</td>
               </tr>
             ))}
             {leadRows.length === 0 && (
-              <tr><td colSpan={4} className="text-center text-[#94A3B8] py-8">ยังไม่มีลีด</td></tr>
+              <tr><td colSpan={4} className="text-center text-[#94A3B8] py-8">{t(lang, "dash.noLeads")}</td></tr>
             )}
           </tbody>
         </table>

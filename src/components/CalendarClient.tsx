@@ -1,5 +1,7 @@
 "use client";
 
+import { t, getClientLang, type Lang } from "@/lib/i18n";
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Event = {
@@ -11,8 +13,8 @@ type Event = {
 };
 type LeadOpt = { id: string; full_name: string; phone: string | null; contact_id: string | null };
 
-const MONTHS = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-const DOW = ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"];
+const MONTHS = (lang: Lang) => ["common.month.jan","common.month.feb","common.month.mar","common.month.apr","common.month.may","common.month.jun","common.month.jul","common.month.aug","common.month.sep","common.month.oct","common.month.nov","common.month.dec"].map((k) => t(lang, k));
+const DOW = (lang: Lang): string[] => lang === "en" ? ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"] : ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"];
 
 function iso(d: Date): string { return d.toISOString().slice(0, 10); }
 function addDays(d: Date, n: number): Date { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
@@ -31,12 +33,13 @@ function phoneHref(phone: string | null | undefined): string | null {
   return p.length >= 9 ? `tel:${p}` : null;
 }
 
-function dayLabel(d: string): string {
+function dayLabel(d: string, lang: Lang): string {
   const x = new Date(d + "T12:00:00");
-  return `${MONTHS[x.getMonth()]} ${x.getDate()}${x.getFullYear() !== new Date().getFullYear() ? " " + x.getFullYear() : ""}`;
+  return `${MONTHS(lang)[x.getMonth()]} ${x.getDate()}${x.getFullYear() !== new Date().getFullYear() ? " " + x.getFullYear() : ""}`;
 }
 
 export default function CalendarClient({ initialMonth }: { initialMonth: string }) {
+  const lang = getClientLang();
   const [anchor, setAnchor] = useState<Date>(() => new Date(initialMonth + "T12:00:00"));
   const [view, setView] = useState<"month" | "week" | "day">("month");
   const [events, setEvents] = useState<Event[]>([]);
@@ -112,8 +115,8 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ due_date: day, status: e.status === "done" ? "open" : undefined }),
     });
-    if (res.ok) { notify(`ย้ายไป ${dayLabel(day)}`); load(); }
-    else notify("ย้ายไม่สำเร็จ");
+    if (res.ok) { notify(`${t(lang, "cal.movedTo")} ${dayLabel(day, lang)}`); load(); }
+    else notify(t(lang, "cal.moveFailed"));
   };
 
   const patch = async (id: string, body: Record<string, unknown>, msg: string) => {
@@ -129,16 +132,16 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
 
   const quickAdd = async (form: { lead_id: string; due_time: string; task_type: string; note: string; location: string }) => {
     const lead = leads.find((l) => l.id === form.lead_id);
-    if (!lead) return notify("เลือกลีดก่อน");
+    if (!lead) return notify(t(lang, "cal.selectLeadFirst"));
     const res = await fetch("/api/follow-ups", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ contact_id: lead.contact_id, lead_id: lead.id, due_date: quickDay, due_time: form.due_time || null, task_type: form.task_type, latest_note: form.note || null, location: form.location || null }),
     });
-    if (res.ok) { notify("เพิ่มงานเรียบร้อย"); setQuickDay(null); load(); }
-    else notify("เพิ่มไม่สำเร็จ");
+    if (res.ok) { notify(t(lang, "cal.added")); setQuickDay(null); load(); }
+    else notify(t(lang, "cal.addFailed"));
   };
 
-  const monthLabel = `${MONTHS[anchor.getMonth()]} ${anchor.getFullYear()}`;
+  const monthLabel = `${MONTHS(lang)[anchor.getMonth()]} ${anchor.getFullYear()}`;
 
   return (
     <div className="space-y-4">
@@ -163,7 +166,7 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
 
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex items-center gap-1 bg-[#EEF2F7] rounded-lg p-1">
-          {([["all", "ทุกคน"], ["me", "ฉัน"]] as const).map(([k, label]) => (
+          {([["all", t(lang, "cal.ownerFilter.all")], ["me", "ฉัน"]] as const).map(([k, label]) => (
             <button key={k} onClick={() => setOwner(k)}
               className={`px-3 py-1.5 text-sm rounded-md font-medium ${owner === k ? "bg-white text-[#0E7490] shadow-sm" : "text-[#64748B]"}`}>
               {label}
@@ -175,18 +178,18 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
           value={owner === "me" || owner === "all" ? "all" : owner}
           onChange={(e) => setOwner(e.target.value)}
         >
-          <option value="all">ทุกคน</option>
+          <option value="all">{t(lang, "cal.ownerFilter.all")}</option>
           {users.filter((u) => u.active).map((u) => (
             <option key={u.id} value={u.id}>{u.full_name}{u.role === "agent" ? " (AI)" : ""}</option>
           ))}
         </select>
-        {meId && owner === "me" && <span className="text-xs text-[#94A3B8]">เฉพาะงานของฉัน</span>}
+        {meId && owner === "me" && <span className="text-xs text-[#94A3B8]">{t(lang, "cal.ownerFilter.me")}</span>}
       </div>
 
       {view === "month" && (
         <div className="card p-0 overflow-hidden">
           <div className="grid grid-cols-7 border-b border-[#E2E8F0]">
-            {DOW.map((d, i) => (
+            {DOW(lang).map((d, i) => (
               <div key={d} className={`py-2 text-center text-xs font-semibold ${i === 0 ? "text-[#B91C1C]" : "text-[#64748B]"}`}>{d}</div>
             ))}
           </div>
@@ -197,8 +200,8 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
               const inMonth = d.getMonth() === anchor.getMonth();
               const isToday = key === today;
               const isSel = key === selected;
-              const visits = dayEvents.filter((e) => (e.task_type ?? "").includes("นัดดู")).length;
-              const follows = dayEvents.filter((e) => !(e.task_type ?? "").includes("นัดดู") && e.status === "open").length;
+              const visits = dayEvents.filter((e) => (e.task_type ?? "").includes(t(lang, "stage.site_visit"))).length;
+              const follows = dayEvents.filter((e) => !(e.task_type ?? "").includes(t(lang, "stage.site_visit")) && e.status === "open").length;
               return (
                 <div
                   key={key}
@@ -229,7 +232,7 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
                   </div>
                   {(visits > 0 || follows > 0) && dayEvents.length <= 2 && (
                     <div className="flex gap-1 mt-1">
-                      {visits > 0 && <span className="text-[9px] bg-[#EDE9FE] text-[#6D28D9] rounded-full px-1.5 py-px">นัดดู {visits}</span>}
+                      {visits > 0 && <span className="text-[9px] bg-[#EDE9FE] text-[#6D28D9] rounded-full px-1.5 py-px">{t(lang, "stage.site_visit")} {visits}</span>}
                       {follows > 0 && <span className="text-[9px] bg-[#FEF3C7] text-[#B45309] rounded-full px-1.5 py-px">ติดตาม {follows}</span>}
                     </div>
                   )}
@@ -253,7 +256,7 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
                   onClick={() => openDay(key)} onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => { e.preventDefault(); onDrop(key); }}>
                   <div className={`py-2 text-center text-sm font-semibold border-b border-[#F1F5F9] ${isToday ? "text-[#0E7490]" : "text-[#334155]"}`}>
-                    {DOW[i]} {d.getDate()}
+                    {DOW(lang)[i]} {d.getDate()}
                   </div>
                   <div className="p-1.5 space-y-1">
                     {dayEvents.map((e) => (
@@ -275,15 +278,15 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
 
       {view === "day" && (
         <div className="card">
-          <h2 className="text-base font-semibold text-[#0F172A] mb-3">{dayLabel(iso(anchor))}</h2>
-          {(byDay.get(iso(anchor)) ?? []).length === 0 && <p className="text-sm text-[#94A3B8]">ไม่มีนัดหมายวันนี้</p>}
+          <h2 className="text-base font-semibold text-[#0F172A] mb-3">{dayLabel(iso(anchor), lang)}</h2>
+          {(byDay.get(iso(anchor)) ?? []).length === 0 && <p className="text-sm text-[#94A3B8]">{t(lang, "cal.noEventsDay")}</p>}
           <div className="space-y-2">
             {(byDay.get(iso(anchor)) ?? []).map((e) => (
               <button key={e.id} className="w-full text-left flex items-center justify-between border border-[#E2E8F0] rounded-md px-3 py-2 hover:border-[#0E7490]"
                 onClick={() => setDetail(e)}>
                 <div>
                   <p className="text-sm font-medium text-[#0F172A]">{e.contact_name ?? e.lead_name ?? "—"}</p>
-                  <p className="text-xs text-[#64748B]">{e.due_time ?? "ทั้งวัน"} · {e.task_type ?? "ติดตาม"}{e.latest_note ? ` · ${e.latest_note}` : ""}</p>
+                  <p className="text-xs text-[#64748B]">{e.due_time ?? "ทั้งวัน"} · {e.task_type ?? t(lang, "cal.followup")}{e.latest_note ? ` · ${e.latest_note}` : ""}</p>
                 </div>
                 <span className={`badge ${typeColor(e, today).split(" ")[0]}`}>{e.status === "done" ? "เสร็จ" : e.status === "cancelled" ? "ยกเลิก" : "ค้าง"}</span>
               </button>
@@ -292,14 +295,14 @@ export default function CalendarClient({ initialMonth }: { initialMonth: string 
         </div>
       )}
 
-      {loading && <p className="text-sm text-[#64748B]">กำลังโหลด...</p>}
+      {loading && <p className="text-sm text-[#64748B]">{t(lang, "common.loading")}</p>}
 
       {/* quick add modal */}
       {quickDay && (
         <QuickAddModal day={quickDay} leads={leads} onClose={() => setQuickDay(null)} onSubmit={quickAdd} />
       )}
 
-      {/* day sheet — รายการของวัน */}
+      {/* day sheet — {t(lang, "cal.dayList")} */}
       {daySheet && !detail && (
         <DaySheet day={daySheet} dayEvents={byDay.get(daySheet) ?? []} today={today}
           onClose={() => setDaySheet(null)} onEvent={(e) => setDetail(e)}
@@ -340,6 +343,7 @@ function Sheet({ children, onClose }: { children: React.ReactNode; onClose: () =
 function EventSheet({ event: e, today, onClose, onPatch }: {
   event: Event; today: string; onClose: () => void; onPatch: (id: string, body: Record<string, unknown>, msg: string) => Promise<boolean>;
 }) {
+  const lang = getClientLang();
   const tel = phoneHref(e.primary_phone ?? null);
   const isVisit = (e.task_type ?? "").includes("นัดดู");
   const done = e.status === "done";
@@ -347,16 +351,16 @@ function EventSheet({ event: e, today, onClose, onPatch }: {
     <Sheet onClose={onClose}>
       <div className="space-y-5">
         <div className="flex items-center gap-2">
-          <span className={`badge ${typeColor(e, today).split(" ")[0]}`}>{e.task_type ?? "ติดตาม"}</span>
-          {done && <span className="badge st-won">เสร็จแล้ว</span>}
-          {isVisit && e.confirmed && <span className="badge st-site_visit">ยืนยันนัด</span>}
-          {!done && !isVisit && String(e.due_date).slice(0, 10) < today && <span className="badge st-lost">เลยกำหนด</span>}
+          <span className={`badge ${typeColor(e, today).split(" ")[0]}`}>{e.task_type ?? t(lang, "cal.followup")}</span>
+          {done && <span className="badge st-won">{t(lang, "cal.done")}</span>}
+          {isVisit && e.confirmed && <span className="badge st-site_visit">{t(lang, "cal.confirm")}</span>}
+          {!done && !isVisit && String(e.due_date).slice(0, 10) < today && <span className="badge st-lost">{t(lang, "common.overdue")}</span>}
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-[#0F172A]">{e.contact_name ?? e.lead_name ?? "ไม่ระบุชื่อ"}</h3>
+          <h3 className="text-2xl font-bold text-[#0F172A]">{e.contact_name ?? e.lead_name ?? t(lang, "common.unknown")}</h3>
           <p className="text-sm text-[#64748B] mt-1">
-            {dayLabel(String(e.due_date).slice(0, 10))}{e.due_time ? ` · ${e.due_time}` : " · ทั้งวัน"}
+            {dayLabel(String(e.due_date).slice(0, 10), lang)}{e.due_time ? ` · ${e.due_time}` : " · ทั้งวัน"}
             {e.owner ? ` · ${e.owner}` : ""}
           </p>
         </div>
@@ -366,7 +370,7 @@ function EventSheet({ event: e, today, onClose, onPatch }: {
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2Z" />
             </svg>
-            โทรหาลูกค้า
+            {t(lang, "cal.call")}
           </a>
         )}
 
@@ -382,7 +386,7 @@ function EventSheet({ event: e, today, onClose, onPatch }: {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.location)}`}
                   target="_blank" rel="noreferrer"
                   className="text-[#0E7490] font-medium hover:underline text-xs"
-                >เปิดแผนที่</a>
+                >{t(lang, "cal.openMap")}</a>
               </div>
             </div>
           )}
@@ -397,16 +401,16 @@ function EventSheet({ event: e, today, onClose, onPatch }: {
         </div>
 
         {e.lead_id && (
-          <a href={`/leads/${e.lead_id}`} className="text-sm text-[#0E7490] font-medium hover:underline inline-block">เปิดหน้าลีด</a>
+          <a href={`/leads/${e.lead_id}`} className="text-sm text-[#0E7490] font-medium hover:underline inline-block">{t(lang, "cal.openLead")}</a>
         )}
 
         <div className="flex gap-3 pt-1">
           {isVisit && !e.confirmed && !done && (
-            <button className="btn-primary flex-1" onClick={() => onPatch(e.id, { confirmed: true }, "ยืนยันนัดแล้ว")}>ยืนยันนัด</button>
+            <button className="btn-primary flex-1" onClick={() => onPatch(e.id, { confirmed: true }, t(lang, "cal.confirmed"))}>{t(lang, "cal.confirm")}</button>
           )}
           <button className={isVisit && !e.confirmed && !done ? "btn-secondary flex-1" : "btn-primary flex-1"}
-            onClick={() => onPatch(e.id, { status: done ? "open" : "done" }, done ? "เปิดงานใหม่" : "เสร็จแล้ว")}>
-            {done ? "เปิดงานใหม่" : "เสร็จแล้ว"}
+            onClick={() => onPatch(e.id, { status: done ? "open" : "done" }, done ? t(lang, "cal.reopen") : t(lang, "cal.done"))}>
+            {done ? t(lang, "cal.reopen") : t(lang, "cal.done")}
           </button>
         </div>
       </div>
@@ -419,18 +423,19 @@ function DaySheet({ day, dayEvents, today, onClose, onEvent, onAdd, onPatch }: {
   onEvent: (e: Event) => void; onAdd: () => void;
   onPatch: (id: string, body: Record<string, unknown>, msg: string) => Promise<boolean>;
 }) {
+  const lang = getClientLang();
   const isToday = day === today;
   return (
     <Sheet onClose={onClose}>
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-xl font-bold text-[#0F172A]">{dayLabel(day)}</h3>
+            <h3 className="text-xl font-bold text-[#0F172A]">{dayLabel(day, lang)}</h3>
             <p className="text-sm text-[#64748B]">{isToday ? "วันนี้" : ""} {dayEvents.length} รายการ</p>
           </div>
-          <button className="btn-primary !px-4" onClick={onAdd}>+ เพิ่มนัด</button>
+          <button className="btn-primary !px-4" onClick={onAdd}>+ {t(lang, "cal.quickAdd")}</button>
         </div>
-        {dayEvents.length === 0 && <p className="text-sm text-[#94A3B8]">วันนี้ว่าง ไม่มีนัดหมาย</p>}
+        {dayEvents.length === 0 && <p className="text-sm text-[#94A3B8]">{t(lang, "cal.noEvents")}</p>}
         <div className="space-y-2">
           {dayEvents.map((e) => (
             <button key={e.id} onClick={() => onEvent(e)}
@@ -439,7 +444,7 @@ function DaySheet({ day, dayEvents, today, onClose, onEvent, onAdd, onPatch }: {
                 <span className={`badge ${typeColor(e, today).split(" ")[0]}`}>{e.due_time ?? "ทั้งวัน"}</span>
                 <span className="text-sm font-medium text-[#0F172A]">{e.contact_name ?? e.lead_name ?? "—"}</span>
               </div>
-              <div className="text-xs text-[#64748B] mt-1">{e.task_type ?? "ติดตาม"}{e.location ? ` · ${e.location}` : ""}</div>
+              <div className="text-xs text-[#64748B] mt-1">{e.task_type ?? t(lang, "cal.followup")}{e.location ? ` · ${e.location}` : ""}</div>
             </button>
           ))}
         </div>
@@ -452,17 +457,18 @@ function QuickAddModal({ day, leads, onClose, onSubmit }: {
   day: string; leads: LeadOpt[]; onClose: () => void;
   onSubmit: (f: { lead_id: string; due_time: string; task_type: string; note: string; location: string }) => void;
 }) {
-  const [form, setForm] = useState({ lead_id: "", due_time: "", task_type: "โทรติดตาม", note: "", location: "" });
+  const lang = getClientLang();
+  const [form, setForm] = useState({ lead_id: "", due_time: "", task_type: t(lang, "fu.type.call"), note: "", location: "" });
   return (
     <div className="fixed inset-0 z-50 bg-[rgba(15,23,42,.4)] flex items-end md:items-center justify-center" onClick={onClose}>
       <div className="bg-white rounded-t-2xl md:rounded-xl border border-[#E2E8F0] w-full max-w-sm p-5 max-h-[88dvh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-        <h3 className="font-semibold text-[#0F172A] mb-1">เพิ่มนัดหมาย {dayLabel(day)}</h3>
-        <p className="text-xs text-[#64748B] mb-4">เลือกลีดและตั้งเวลาติดตาม</p>
+        <h3 className="font-semibold text-[#0F172A] mb-1">{t(lang, "cal.addEvent")} {dayLabel(day, lang)}</h3>
+        <p className="text-xs text-[#64748B] mb-4">{t(lang, "cal.selectLead")}และตั้งเวลาติดตาม</p>
         <div className="space-y-3">
           <div>
             <label className="inp-label">ลีด</label>
             <select className="inp" value={form.lead_id} onChange={(e) => setForm((f) => ({ ...f, lead_id: e.target.value }))}>
-              <option value="">เลือกลีด</option>
+              <option value="">{t(lang, "cal.selectLead")}</option>
               {leads.map((l) => (
                 <option key={l.id} value={l.id}>{l.full_name}{l.phone ? ` (${l.phone})` : ""}</option>
               ))}
@@ -476,20 +482,20 @@ function QuickAddModal({ day, leads, onClose, onSubmit }: {
             <div>
               <label className="inp-label">ประเภท</label>
               <select className="inp" value={form.task_type} onChange={(e) => setForm((f) => ({ ...f, task_type: e.target.value }))}>
-                <option>โทรติดตาม</option>
-                <option>นัดดูโชว์รูม/ที่ดิน</option>
-                <option>ส่งข้อเสนอ</option>
+                <option>{t(lang, "fu.type.call")}</option>
+                <option>{t(lang, "stage.site_visit")}โชว์รูม/ที่ดิน</option>
+                <option>{t(lang, "fu.type.proposal")}</option>
                 <option>อื่นๆ</option>
               </select>
             </div>
           </div>
           <div>
-            <label className="inp-label">สถานที่ (นัดดู)</label>
-            <input className="inp" value={form.location} onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))} placeholder="โชว์รูม / ที่อยู่หน้างาน" />
+            <label className="inp-label">{t(lang, "cal.location")}</label>
+            <input className="inp" value={form.location} onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))} placeholder={t(lang, "cal.visitPlace")} />
           </div>
           <div>
             <label className="inp-label">หมายเหตุ</label>
-            <input className="inp" value={form.note} onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))} placeholder="โน้ตเตือน" />
+            <input className="inp" value={form.note} onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))} placeholder={t(lang, "cal.note")} />
           </div>
           <div className="flex gap-3 pt-1">
             <button className="btn-primary flex-1" onClick={() => onSubmit(form)} disabled={!form.lead_id}>เพิ่ม</button>

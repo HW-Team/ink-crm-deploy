@@ -1,9 +1,11 @@
 "use client";
+import { t, getClientLang } from "@/lib/i18n";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LogConversation({ contactId, leadId }: { contactId: string | null; leadId: string }) {
+  const lang = getClientLang();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ channel: "PHONE", summary: "", outcome: "", next_action: "", next_followup_date: "" });
@@ -15,7 +17,7 @@ export default function LogConversation({ contactId, leadId }: { contactId: stri
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contactId) return setError("ยังไม่มีคอนแทกต์ให้ลงบันทึก");
+    if (!contactId) return setError(t(lang, "log.noContact"));
     setBusy(true);
     setError("");
     const res = await fetch(`/api/contacts/${contactId}/conversations`, {
@@ -35,37 +37,37 @@ export default function LogConversation({ contactId, leadId }: { contactId: stri
   };
 
   if (!open) {
-    return <button className="btn-primary" onClick={() => setOpen(true)}>+ บันทึกการติดต่อ</button>;
+    return <button className="btn-primary" onClick={() => setOpen(true)}>+ {t(lang, "log.title")}</button>;
   }
 
   return (
     <form onSubmit={submit} className="space-y-3">
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="inp-label">ช่องทาง</label>
+          <label className="inp-label">{t(lang, "log.channel")}</label>
           <select className="inp" value={form.channel} onChange={set("channel")}>
-            <option value="PHONE">โทร</option>
-            <option value="LINE">LINE</option>
-            <option value="MESSENGER">Messenger</option>
+            <option value="PHONE">{t(lang, "ch.PHONE")}</option>
+            <option value={t(lang, "ch.LINE")}>{t(lang, "ch.LINE")}</option>
+            <option value="MESSENGER">{t(lang, "ch.MESSENGER")}</option>
             <option value="WHATSAPP">WhatsApp</option>
-            <option value="EMAIL">อีเมล</option>
-            <option value="SITE_FORM">ฟอร์มเว็บ</option>
-            <option value="OTHER">อื่นๆ</option>
+            <option value="EMAIL">{t(lang, "ch.EMAIL")}</option>
+            <option value="SITE_FORM">{t(lang, "log.form")}</option>
+            <option value="OTHER">{t(lang, "ch.OTHER")}</option>
           </select>
         </div>
         <div>
-          <label className="inp-label">ผลลัพธ์</label>
-          <input className="inp" value={form.outcome} onChange={set("outcome")} placeholder="เช่น สนใจ, ขอดูราคา" />
+          <label className="inp-label">{t(lang, "log.outcome")}</label>
+          <input className="inp" value={form.outcome} onChange={set("outcome")} placeholder={t(lang, "log.hint")} />
         </div>
       </div>
       <div>
         <label className="inp-label">สรุป</label>
-        <textarea className="inp" rows={2} value={form.summary} onChange={set("summary")} placeholder="คุยอะไรไปบ้าง" />
+        <textarea className="inp" rows={2} value={form.summary} onChange={set("summary")} placeholder={t(lang, "log.summary")} />
       </div>
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
           <label className="inp-label">ขั้นตอนถัดไป</label>
-          <input className="inp" value={form.next_action} onChange={set("next_action")} placeholder="เช่น นัดดูโชว์รูม" />
+          <input className="inp" value={form.next_action} onChange={set("next_action")} placeholder={t(lang, "log.nextHint")} />
         </div>
         <div>
           <label className="inp-label">นัดติดตาม</label>

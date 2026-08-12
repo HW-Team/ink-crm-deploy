@@ -1,17 +1,19 @@
 "use client";
+import { t, getClientLang, type Lang } from "@/lib/i18n";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 type UserRow = { id: string; email: string; full_name: string; role: string; active: boolean; owned_leads?: number; open_followups?: number };
 
-const ROLES = [
-  { value: "sales", label: "พนักงานขาย" },
-  { value: "manager", label: "ผู้จัดการ" },
-  { value: "agent", label: "AI Agent" },
+const ROLES = (lang: Lang) => [
+  { value: "sales", label: t(lang, "role.sales") },
+  { value: "manager", label: t(lang, "role.manager") },
+  { value: "agent", label: t(lang, "role.agent") },
 ];
 
 export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: string }) {
+  const lang = getClientLang();
   const router = useRouter();
   const [form, setForm] = useState({ full_name: "", email: "", role: "sales", password: "" });
   const [busy, setBusy] = useState(false);
@@ -31,11 +33,11 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
     });
     if (res.ok) {
       setForm({ full_name: "", email: "", role: "sales", password: "" });
-      flash("สร้างผู้ใช้แล้ว");
+      flash(t(lang, "users.created"));
       router.refresh();
     } else {
       const d = await res.json().catch(() => ({}));
-      setError(d.error ?? "สร้างไม่สำเร็จ");
+      setError(d.error ?? t(lang, "users.createFailed"));
     }
     setBusy(false);
   };
@@ -44,7 +46,7 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
     const res = await fetch(`/api/users/${u.id}`, {
       method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch),
     });
-    if (res.ok) { flash("บันทึกแล้ว"); router.refresh(); }
+    if (res.ok) { flash(t(lang, "users.saved")); router.refresh(); }
     else {
       const d = await res.json().catch(() => ({}));
       flash(d.error ?? "บันทึกไม่สำเร็จ");
@@ -58,32 +60,32 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
       )}
 
       <section className="card max-w-xl">
-        <h2 className="text-base font-semibold text-[#0F172A] mb-4">เพิ่มผู้ใช้ใหม่</h2>
+        <h2 className="text-base font-semibold text-[#0F172A] mb-4">{t(lang, "users.addNew")}</h2>
         <form onSubmit={create} className="space-y-3">
           <div className="grid sm:grid-cols-2 gap-3">
             <div>
               <label className="inp-label">ชื่อ *</label>
-              <input className="inp" required value={form.full_name} onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))} placeholder="ชื่อ-นามสกุล" />
+              <input className="inp" required value={form.full_name} onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))} placeholder={t(lang, "common.fullname")} />
             </div>
             <div>
-              <label className="inp-label">อีเมล *</label>
+              <label className="inp-label">{t(lang, "common.email")} *</label>
               <input className="inp" type="email" required value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} placeholder="name@inkhomes.co" />
             </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
             <div>
-              <label className="inp-label">สิทธิ์</label>
+              <label className="inp-label">{t(lang, "users.role")}</label>
               <select className="inp" value={form.role} onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}>
-                {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
+                {ROLES(lang).map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
               </select>
             </div>
             <div>
-              <label className="inp-label">รหัสผ่านเริ่มต้น *</label>
-              <input className="inp" required minLength={4} value={form.password} onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))} placeholder="อย่างน้อย 4 ตัว" />
+              <label className="inp-label">{t(lang, "users.initialPassword")} *</label>
+              <input className="inp" required minLength={4} value={form.password} onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))} placeholder={t(lang, "users.min4")} />
             </div>
           </div>
           {error && <p className="text-sm text-[#B91C1C]">{error}</p>}
-          <button className="btn-primary" disabled={busy}>{busy ? "กำลังสร้าง..." : "สร้างผู้ใช้"}</button>
+          <button className="btn-primary" disabled={busy}>{busy ? t(lang, "users.creating") : t(lang, "users.create")}</button>
         </form>
       </section>
 
@@ -91,7 +93,7 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
         <h2 className="text-base font-semibold text-[#0F172A] px-6 pt-5 pb-2">ทีม ({users.length})</h2>
         <table className="tbl">
           <thead>
-            <tr><th>ชื่อ</th><th>อีเมล</th><th>สิทธิ์</th><th>งาน</th><th>สถานะ</th><th>จัดการ</th></tr>
+            <tr><th>ชื่อ</th><th>{t(lang, "common.email")}</th><th>{t(lang, "users.role")}</th><th>งาน</th><th>สถานะ</th><th>จัดการ</th></tr>
           </thead>
           <tbody>
             {users.map((u) => (
@@ -105,7 +107,7 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
                     disabled={u.id === meId}
                     onChange={(e) => update(u, { role: e.target.value })}
                   >
-                    {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
+                    {ROLES(lang).map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
                   </select>
                 </td>
                 <td className="text-[13px] text-[#64748B]">{u.owned_leads ?? 0} ลีด · {u.open_followups ?? 0} ติดตาม</td>
@@ -115,7 +117,7 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
                     disabled={u.id === meId}
                     onClick={() => update(u, { active: !u.active })}
                   >
-                    {u.active ? "ใช้งาน" : "ปิด"}
+                    {u.active ? t(lang, "users.active") : "ปิด"}
                   </button>
                 </td>
                 <td>
@@ -123,7 +125,7 @@ export default function UsersAdmin({ users, meId }: { users: UserRow[]; meId: st
                     className="btn-secondary !py-1 !px-2.5 !text-xs"
                     onClick={() => { setPwOpen(u.id); setPw(""); }}
                   >
-                    เปลี่ยนรหัส
+                    {t(lang, "users.changePassword")}
                   </button>
                   {pwOpen === u.id && (
                     <span className="inline-flex items-center gap-1.5 ml-2">

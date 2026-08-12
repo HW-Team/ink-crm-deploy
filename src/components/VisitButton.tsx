@@ -1,9 +1,11 @@
 "use client";
+import { t, getClientLang } from "@/lib/i18n";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function VisitButton({ leadId }: { leadId: string }) {
+  const lang = getClientLang();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ due_date: "", due_time: "", note: "", location: "" });
@@ -24,7 +26,7 @@ export default function VisitButton({ leadId }: { leadId: string }) {
       router.refresh();
     } else {
       const d = await res.json().catch(() => ({}));
-      setError(d.error ?? "บันทึกไม่สำเร็จ");
+      setError(d.error ?? t(lang, "fu.saveFailed"));
       setBusy(false);
     }
   };
@@ -51,11 +53,11 @@ export default function VisitButton({ leadId }: { leadId: string }) {
       </div>
       <div>
         <label className="inp-label">หมายเหตุ</label>
-        <input className="inp" value={form.note} onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))} placeholder="สถานที่นัด / เตือนตัวเอง" />
+        <input className="inp" value={form.note} onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))} placeholder={t(lang, "visit.placeHint")} />
       </div>
       {error && <p className="text-sm text-[#B91C1C]">{error}</p>}
       <div className="flex gap-3">
-        <button className="btn-primary" disabled={busy}>{busy ? "กำลังบันทึก..." : "บันทึกนัด"}</button>
+        <button className="btn-primary" disabled={busy}>{busy ? t(lang, "common.saving") : t(lang, "visit.save")}</button>
         <button type="button" className="btn-secondary" onClick={() => setOpen(false)}>ยกเลิก</button>
       </div>
     </form>

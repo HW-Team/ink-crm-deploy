@@ -1,12 +1,14 @@
 import { q } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
-import { SOURCE_LABELS } from "@/lib/labels";
+import { sourceLabel, stageLabel } from "@/lib/labels";
+import { t, getServerLang } from "@/lib/i18n";
 import ClaimButton from "@/components/ClaimButton";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ stage?: string; q?: string; tab?: string }> }) {
+  const lang = await getServerLang();
   const params = await searchParams;
   const tab = params.tab === "inbox" ? "inbox" : "all";
 
@@ -32,10 +34,10 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
     <div className="space-y-6">
       <header className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#0F172A]">ลีด</h1>
-          <p className="text-sm text-[#64748B]">กล่องลีดใหม่ และรายการทั้งหมด</p>
+          <h1 className="text-2xl font-bold text-[#0F172A]">{t(lang, "leads.title")}</h1>
+          <p className="text-sm text-[#64748B]">{t(lang, "leads.subtitle")}</p>
         </div>
-        <Link href="/leads/new" className="btn-primary">+ ลีดใหม่</Link>
+        <Link href="/leads/new" className="btn-primary">+ {t(lang, "leads.new.title")}</Link>
       </header>
 
       <div className="flex items-center gap-2 border-b border-[#E2E8F0]">
@@ -47,7 +49,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
               : "border-transparent text-[#64748B] hover:text-[#334155]"
           }`}
         >
-          ลีดใหม่ <span className="ml-1 text-xs font-normal bg-[#E0F2FE] text-[#075985] rounded-full px-2 py-0.5">{inboxCount}</span>
+          {t(lang, "leads.inbox")} <span className="ml-1 text-xs font-normal bg-[#E0F2FE] text-[#075985] rounded-full px-2 py-0.5">{inboxCount}</span>
         </Link>
         <Link
           href="/leads"
@@ -57,32 +59,32 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
               : "border-transparent text-[#64748B] hover:text-[#334155]"
           }`}
         >
-          ทั้งหมด
+          {t(lang, "leads.all")}
         </Link>
       </div>
 
       <form className="flex gap-3 items-center" method="get">
         <input type="hidden" name="tab" value={tab} />
-        <input name="q" className="inp max-w-xs" placeholder="ค้นชื่อ / เบอร์" defaultValue={params.q ?? ""} />
+        <input name="q" className="inp max-w-xs" placeholder={t(lang, "leads.search")} defaultValue={params.q ?? ""} />
         {tab === "all" && (
           <select name="stage" className="inp max-w-[180px]" defaultValue={params.stage ?? ""}>
-            <option value="">ทุกสเตจ</option>
-            <option value="new">ใหม่</option>
-            <option value="contacted">ติดต่อแล้ว</option>
-            <option value="qualified">สนใจ</option>
-            <option value="site_visit">นัดดู</option>
-            <option value="proposal">เสนอราคา</option>
-            <option value="won">ปิดการขาย</option>
-            <option value="no_answer">ไม่ตอบ</option>
+            <option value="">{t(lang, "leads.all")}</option>
+            <option value="new">{t(lang, "stage.new")}</option>
+            <option value="contacted">{t(lang, "stage.contacted")}</option>
+            <option value="qualified">{t(lang, "stage.qualified")}</option>
+            <option value="site_visit">{t(lang, "stage.site_visit")}</option>
+            <option value="proposal">{t(lang, "stage.proposal")}</option>
+            <option value="won">{t(lang, "stage.won")}</option>
+            <option value="no_answer">{t(lang, "stage.no_answer")}</option>
           </select>
         )}
-        <button className="btn-secondary">กรอง</button>
+        <button className="btn-secondary">{t(lang, "leads.filter")}</button>
       </form>
 
       <div className="card overflow-x-auto p-0">
         <table className="tbl">
           <thead>
-            <tr><th>ชื่อ</th><th>เบอร์</th><th>สเตจ</th><th>แหล่ง</th><th>สนใจ</th><th>{tab === "inbox" ? "รับงาน" : "เจ้าของ"}</th><th>วันที่</th></tr>
+            <tr><th>{t(lang, "common.name")}</th><th>{t(lang, "common.phone")}</th><th>{t(lang, "common.stage")}</th><th>{t(lang, "common.source")}</th><th>{t(lang, "common.interest")}</th><th>{tab === "inbox" ? t(lang, "leads.detail.claim") : t(lang, "common.owner")}</th><th>{t(lang, "common.due")}</th></tr>
           </thead>
           <tbody>
             {leads.map((l: any) => (
@@ -91,25 +93,25 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
                   <a href={`/leads/${l.id}`} className="hover:text-[#0E7490]">{l.full_name}</a>
                 </td>
                 <td className="font-mono text-[13px]">{l.phone ?? "—"}</td>
-                <td><StageBadge stage={l.crm_stage} /></td>
-                <td>{SOURCE_LABELS[l.source] ?? l.source}</td>
+                <td><StageBadge stage={l.crm_stage} lang={lang} /></td>
+                <td>{sourceLabel(lang, l.source)}</td>
                 <td>{l.interest ?? "—"}</td>
                 <td>
                   {l.owner_name
                     ? <span className="text-[13px] text-[#334155]">{l.owner_name}</span>
                     : <ClaimButton leadId={l.id} />}
                 </td>
-                <td className="whitespace-nowrap">{new Date(l.lead_date).toLocaleDateString("th-TH", { day: "numeric", month: "short" })}</td>
+                <td className="whitespace-nowrap">{new Date(l.lead_date).toLocaleDateString(lang === "en" ? "en-US" : "th-TH", { day: "numeric", month: "short" })}</td>
               </tr>
             ))}
             {leads.length === 0 && (
               <tr>
                 <td colSpan={7} className="text-center py-10">
                   <div className="text-sm font-medium text-[#334155]">
-                    {tab === "inbox" ? "ไม่มีลีดรอรับงาน" : "ไม่พบลีด"}
+                    {tab === "inbox" ? t(lang, "leads.inboxEmpty") : t(lang, "leads.notFound")}
                   </div>
                   <div className="text-xs text-[#94A3B8] mt-1">
-                    {tab === "inbox" ? "ลีดจากเว็บและ Facebook จะมารวมที่นี่ รอรับงานเข้าบอร์ด" : "ลองเปลี่ยนคำค้น หรือเพิ่มลีดใหม่"}
+                    {tab === "inbox" ? t(lang, "leads.inboxHint") : t(lang, "leads.trySearch")}
                   </div>
                 </td>
               </tr>

@@ -3,27 +3,26 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import StageBadge from "./StageBadge";
+import { stageLabel } from "@/lib/labels";
+import { t, getClientLang } from "@/lib/i18n";
 
-const LANES = [
-  { key: "contacted", label: "ติดต่อแล้ว" },
-  { key: "qualified", label: "สนใจ" },
-  { key: "site_visit", label: "นัดดู" },
-  { key: "proposal", label: "เสนอราคา" },
-  { key: "won", label: "ปิดการขาย" },
-];
+const LANE_KEYS = ["contacted", "qualified", "site_visit", "proposal", "won"];
 
 export default function Board() {
+  const lang = getClientLang();
   const [lanes, setLanes] = useState<Record<string, any[]>>({});
   const [unowned, setUnowned] = useState(0);
   const [loading, setLoading] = useState(true);
   const [dragging, setDragging] = useState<string | null>(null);
+
+  const LANES = LANE_KEYS.map((key) => ({ key, label: stageLabel(lang, key) }));
 
   useEffect(() => {
     fetch("/api/board")
       .then((r) => r.json())
       .then((d) => {
         const grouped: Record<string, any[]> = {};
-        for (const lane of LANES) grouped[lane.key] = [];
+        for (const lane of LANE_KEYS) grouped[lane] = [];
         for (const lead of d.leads ?? []) {
           if (grouped[lead.crm_stage]) grouped[lead.crm_stage].push(lead);
           else grouped.other = [...(grouped.other ?? []), lead];
@@ -38,7 +37,7 @@ export default function Board() {
     setDragging(null);
     setLanes((prev) => {
       const next: Record<string, any[]> = {};
-      for (const lane of LANES) next[lane.key] = [...(prev[lane.key] ?? [])];
+      for (const lane of LANE_KEYS) next[lane] = [...(prev[lane] ?? [])];
       if (prev.other) next.other = [...prev.other];
       let moved: any = null;
       for (const k of Object.keys(prev)) {
@@ -58,7 +57,7 @@ export default function Board() {
     });
   };
 
-  if (loading) return <p className="text-sm text-[#64748B]">กำลังโหลด...</p>;
+  if (loading) return <p className="text-sm text-[#64748B]">{t(lang, "common.loading")}</p>;
 
   return (
     <div className="space-y-4">
@@ -68,8 +67,8 @@ export default function Board() {
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M4 6h16M4 12h10M4 18h6" />
           </svg>
-          ลีดใหม่ในกล่อง {unowned} ราย รับงานก่อนลีดถึงจะเข้าบอร์ด
-          <span className="ml-auto text-xs font-semibold">ไปรับงาน</span>
+          {t(lang, "board.claimQueue", { n: unowned })}
+          <span className="ml-auto text-xs font-semibold">{t(lang, "today.claim")}</span>
         </Link>
       )}
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4">
@@ -99,29 +98,29 @@ export default function Board() {
                 <p className="font-mono text-xs text-[#94A3B8] mt-0.5 truncate">{lead.phone ?? "—"}</p>
                 {lead.interest && <p className="text-xs text-[#64748B] mt-1 truncate">{lead.interest}</p>}
                 <div className="mt-1.5 flex items-center justify-between gap-1">
-                  <StageBadge stage={lead.crm_stage} />
+                  <StageBadge stage={lead.crm_stage} lang={lang} />
                   <select
                     value={lead.crm_stage}
                     onChange={(e) => onDrop(e.target.value, lead.id)}
                     className="text-[11px] border border-[#E2E8F0] rounded px-1.5 py-0.5 bg-white text-[#334155] focus:outline-none focus:border-[#0E7490]"
-                    title="เลื่อนสเตจ"
+                    title={t(lang, "board.moveStage")}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {[...LANES.map((l) => l.key), "no_answer", "lost", "duplicate", "unqualified"].map((s) => (
-                      <option key={s} value={s}>{s}</option>
+                    {[...LANE_KEYS, "no_answer", "lost", "duplicate", "unqualified"].map((s) => (
+                      <option key={s} value={s}>{stageLabel(lang, s)}</option>
                     ))}
                   </select>
                 </div>
               </div>
             ))}
             {(lanes[lane.key] ?? []).length === 0 && (
-              <p className="text-xs text-[#94A3B8] px-2 py-3">ว่าง</p>
+              <p className="text-xs text-[#94A3B8] px-2 py-3">{t(lang, "board.empty")}</p>
             )}
           </div>
         ))}
       </div>
       {unowned === 0 && (
-        <p className="text-xs text-[#94A3B8]">บอร์ดแสดงเฉพาะลีดที่มีเจ้าของ — ลีดใหม่รอรับงานในหน้า ลีด → ลีดใหม่</p>
+        <p className="text-xs text-[#94A3B8]">{t(lang, "board.ownedOnly")} — {t(lang, "board.claimFirst")}</p>
       )}
     </div>
   );

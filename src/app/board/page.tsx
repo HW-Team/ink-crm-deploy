@@ -1,11 +1,13 @@
 import Board from "@/components/Board";
+import { t, getServerLang } from "@/lib/i18n";
 
-export default function BoardPage() {
+export default async function BoardPage() {
+  const lang = await getServerLang();
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold text-[#0F172A]">บอร์ด</h1>
-        <p className="text-sm text-[#64748B]">ลากการ์ดเพื่อเปลี่ยนสเตจ</p>
+        <h1 className="text-2xl font-bold text-[#0F172A]">{t(lang, "board.title")}</h1>
+        <p className="text-sm text-[#64748B]">{t(lang, "board.dragHint")}</p>
       </header>
       <Board />
     </div>

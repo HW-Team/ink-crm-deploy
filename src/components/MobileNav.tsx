@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { t, getClientLang, type Lang } from "@/lib/i18n";
 
 const ICONS = {
   today: "M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z",
@@ -13,16 +14,9 @@ const ICONS = {
   settings: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm7.4-3a7.4 7.4 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7.3 7.3 0 0 0-2-1.2L14.6 3h-4l-.4 2.7a7.3 7.3 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5a7.4 7.4 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-1a7.3 7.3 0 0 0 2 1.2l.4 2.7h4l.4-2.7a7.3 7.3 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z",
 };
 
-const BASE = [
-  { href: "/", key: "today", label: "วันนี้" },
-  { href: "/leads", key: "leads", label: "ลีด" },
-  { href: "/board", key: "board", label: "บอร์ด" },
-  { href: "/calendar", key: "calendar", label: "ปฏิทิน" },
-  { href: "/leads/new", key: "add", label: "เพิ่ม" },
-];
-
-export default function MobileNav() {
+export default function MobileNav({ lang: langProp }: { lang?: Lang }) {
   const pathname = usePathname();
+  const lang = langProp ?? getClientLang();
   const [isManager, setIsManager] = useState(false);
 
   useEffect(() => {
@@ -31,13 +25,20 @@ export default function MobileNav() {
     }).catch(() => {});
   }, []);
 
+  const BASE = [
+    { href: "/", key: "today", label: t(lang, "nav.today") },
+    { href: "/leads", key: "leads", label: t(lang, "nav.leads") },
+    { href: "/board", key: "board", label: t(lang, "nav.board") },
+    { href: "/calendar", key: "calendar", label: t(lang, "nav.calendar") },
+    { href: "/leads/new", key: "add", label: t(lang, "nav.add") },
+  ];
+
   const items = isManager
-    ? [...BASE.slice(0, 4), { href: "/admin/users", key: "settings", label: "ตั้งค่า" }, BASE[4]]
+    ? [...BASE.slice(0, 4), { href: "/admin/users", key: "settings", label: t(lang, "nav.settings") }, BASE[4]]
     : BASE;
 
   const isActive = (href: string, key: string) => {
-    if (key === "add") return false;
-    if (key === "logout") return false;
+    if (key === "add" || key === "logout") return false;
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
@@ -73,7 +74,7 @@ export default function MobileNav() {
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
             </svg>
-            <span className="text-[10px] font-medium">ออก</span>
+            <span className="text-[10px] font-medium">{t(lang, "nav.logout")}</span>
           </button>
         </form>
       </div>

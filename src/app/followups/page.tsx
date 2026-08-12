@@ -1,9 +1,11 @@
 import { q } from "@/lib/supabase";
 import { thDate } from "@/lib/labels";
+import { t, getServerLang } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
 export default async function FollowUpsPage() {
+  const lang = await getServerLang();
   const followUps = await q(
     `select fu.*, c.full_name as contact_name, c.primary_phone,
             l.full_name as lead_name, l.crm_stage
@@ -17,7 +19,7 @@ export default async function FollowUpsPage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-2xl font-bold text-[#0F172A]">ติดตาม</h1>
-        <p className="text-sm text-[#64748B]">รายการติดตามทั้งหมด</p>
+        <p className="text-sm text-[#64748B]">{t(lang, "fu.listTitle")}</p>
       </header>
 
       <div className="card overflow-x-auto p-0">

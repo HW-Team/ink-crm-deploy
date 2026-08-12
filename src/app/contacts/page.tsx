@@ -1,9 +1,11 @@
 import { q } from "@/lib/supabase";
 import { thDate } from "@/lib/labels";
+import { t, getServerLang } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
 export default async function ContactsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const lang = await getServerLang();
   const params = await searchParams;
 
   const conds: string[] = [`deleted_at is null`];
@@ -28,8 +30,8 @@ export default async function ContactsPage({ searchParams }: { searchParams: Pro
     <div className="space-y-6">
       <header className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#0F172A]">คอนแทกต์</h1>
-          <p className="text-sm text-[#64748B]">ลูกค้า (dedupe ด้วยเบอร์)</p>
+          <h1 className="text-2xl font-bold text-[#0F172A]">{t(lang, "contacts.title")}</h1>
+          <p className="text-sm text-[#64748B]">{t(lang, "contacts.linked")}dedupe {t(lang, "contacts.byPhone")}</p>
         </div>
       </header>
 
@@ -41,7 +43,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Pro
       <div className="card overflow-x-auto p-0">
         <table className="tbl">
           <thead>
-            <tr><th>ชื่อ</th><th>เบอร์</th><th>สเตจล่าสุด</th><th>แหล่งแรก</th><th>จังหวัด</th><th>อัปเดตล่าสุด</th></tr>
+            <tr><th>ชื่อ</th><th>เบอร์</th><th>{t(lang, "contacts.lastStage")}</th><th>{t(lang, "contacts.firstSource")}</th><th>จังหวัด</th><th>อัปเดตล่าสุด</th></tr>
           </thead>
           <tbody>
             {contacts.map((c: any) => (
@@ -55,7 +57,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Pro
               </tr>
             ))}
             {contacts.length === 0 && (
-              <tr><td colSpan={6} className="text-center text-[#94A3B8] py-8">ไม่พบคอนแทกต์</td></tr>
+              <tr><td colSpan={6} className="text-center text-[#94A3B8] py-8">ไม่พบ{t(lang, "contacts.title")}</td></tr>
             )}
           </tbody>
         </table>
