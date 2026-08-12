@@ -163,6 +163,7 @@ const D = {
   "board.me": { th: "ฉัน", en: "My work" },
   "board.allUsers": { th: "ทุกคน", en: "Everyone" },
   "board.myOnly": { th: "เฉพาะงานของฉัน", en: "Only my leads" },
+  "board.openLead": { th: "เปิดรายละเอียด", en: "Open lead" },
 
   // calendar
   "cal.title": { th: "ปฏิทิน", en: "Calendar" },
