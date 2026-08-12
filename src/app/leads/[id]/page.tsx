@@ -36,8 +36,14 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <h1 className="text-2xl font-bold text-[#0F172A]">{lead.full_name}</h1>
           <p className="text-sm text-[#64748B]">
             <span className="font-mono">{lead.phone ?? "—"}</span>
+            {lead.email && (
+              <>
+                {" · "}
+                <a href={`mailto:${lead.email}`} className="font-mono text-[#0E7490] hover:underline">{lead.email}</a>
+              </>
+            )}
             {" · "}{sourceLabel(lang, lead.source)}
-            {" · "}{thDate(lead.lead_date)}
+            {" · "}{thDate(lead.lead_date, lang)}
           </p>
         </div>
         <div className="flex items-center justify-between flex-wrap gap-3">
@@ -54,7 +60,8 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <h2 className="text-base font-semibold text-[#0F172A] mb-3">{t(lang, "leads.detail.title")}</h2>
           <dl className="space-y-2 text-sm">
             {[
-              ["จังหวัด", lead.province], ["สนใจ", lead.interest],
+              [t(lang, "common.email"), lead.email],
+              [t(lang, "common.province"), lead.province], [t(lang, "common.interest"), lead.interest],
               ["มูลค่า", lead.deal_value ? `฿${Number(lead.deal_value).toLocaleString()}` : null],
               [t(lang, "leads.detail.probability"), lead.probability_pct ? `${lead.probability_pct}%` : null],
               [t(lang, "common.nextAction"), lead.next_action],

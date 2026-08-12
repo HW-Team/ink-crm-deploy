@@ -11,11 +11,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const lead = await qOne(
-      `insert into leads (full_name, phone, source, interest, province, owner, crm_stage)
-       values ($1,$2,$3,$4,$5,$6,'new') returning *`,
+      `insert into leads (full_name, phone, email, source, interest, province, owner, crm_stage)
+       values ($1,$2,$3,$4,$5,$6,$7,'new') returning *`,
       [
         fullName,
         body.phone ? String(body.phone) : null,
+        body.email ? String(body.email) : null,
         String(body.source ?? "OTHER").toUpperCase(),
         body.interest ? String(body.interest) : null,
         body.province ? String(body.province) : null,

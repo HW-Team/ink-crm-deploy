@@ -7,7 +7,7 @@ import { t, getClientLang } from "@/lib/i18n";
 export default function NewLeadPage() {
   const router = useRouter();
   const lang = getClientLang();
-  const [form, setForm] = useState({ full_name: "", phone: "", source: "FACEBOOK", interest: "", province: "" });
+  const [form, setForm] = useState({ full_name: "", phone: "", email: "", source: "FACEBOOK", interest: "", province: "" });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -48,6 +48,10 @@ export default function NewLeadPage() {
         <div>
           <label className="inp-label">{t(lang, "common.phone")}</label>
           <input className="inp" value={form.phone} onChange={set("phone")} placeholder="08x-xxx-xxxx" />
+        </div>
+        <div>
+          <label className="inp-label">{t(lang, "common.email")}</label>
+          <input className="inp" type="email" value={form.email} onChange={set("email")} placeholder="name@example.com" />
         </div>
         <div>
           <label className="inp-label">{t(lang, "common.source")}</label>
