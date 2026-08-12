@@ -147,7 +147,7 @@ export default function Board() {
                 <span className="text-[10px] font-semibold text-[#0E7490] bg-[#E0F2FE] rounded-full px-2 py-0.5">+{inboxTotal - inbox.length}</span>
               )}
             </h3>
-            <div className="space-y-2 overflow-y-auto pr-0.5 md:overflow-visible">
+            <div className="space-y-2 overflow-y-auto pr-0.5 flex-1 min-h-0 overscroll-contain md:overflow-visible">
               {lane.key === "new" &&
                 (inbox.length === 0 ? (
                   <p className="text-xs text-[#94A3B8] px-2 py-3">{t(lang, "board.empty")}</p>
