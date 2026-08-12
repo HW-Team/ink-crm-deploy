@@ -1,5 +1,5 @@
 import Board from "@/components/Board";
-import { t, getServerLang } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 
 export default async function BoardPage() {
   const lang = await getServerLang();

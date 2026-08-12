@@ -3,7 +3,7 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
 import LangToggle from "@/components/LangToggle";
-import { getServerLang } from "@/lib/i18n";
+import { getServerLang } from "@/lib/i18n-server";
 
 export const metadata: Metadata = {
   title: "Ink Homes CRM",

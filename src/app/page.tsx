@@ -1,6 +1,6 @@
 import { q } from "@/lib/supabase";
 import { thDate } from "@/lib/labels";
-import { getServerLang, t } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 import StageBadge from "@/components/StageBadge";
 import ClaimButton from "@/components/ClaimButton";
 import Link from "next/link";

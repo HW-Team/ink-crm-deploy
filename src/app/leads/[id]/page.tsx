@@ -5,7 +5,7 @@ import LogConversation from "@/components/LogConversation";
 import AddFollowUp from "@/components/AddFollowUp";
 import TransferOwner from "@/components/TransferOwner";
 import VisitButton from "@/components/VisitButton";
-import { t, getServerLang } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 
 export const dynamic = "force-dynamic";
 

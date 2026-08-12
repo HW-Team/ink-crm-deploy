@@ -1,6 +1,6 @@
 import { q } from "@/lib/supabase";
 import { thDate } from "@/lib/labels";
-import { t, getServerLang } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 
 export const dynamic = "force-dynamic";
 

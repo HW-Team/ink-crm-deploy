@@ -1,7 +1,7 @@
 import { q } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
 import { sourceLabel, stageLabel } from "@/lib/labels";
-import { t, getServerLang } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";

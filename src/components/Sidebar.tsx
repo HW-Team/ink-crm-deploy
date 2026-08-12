@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { verifySessionToken } from "@/lib/auth";
 import { qOne } from "@/lib/supabase";
-import { t, getServerLang } from "@/lib/i18n";
+import { t, getServerLang } from "@/lib/i18n-server";
 
 // Sidebar — shows current user (server-side via session cookie) + logout
 export default async function Sidebar() {
