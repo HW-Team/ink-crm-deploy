@@ -1,6 +1,7 @@
 import { q, qOne } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
 import StageSelect from "@/components/StageSelect";
+import FollowUpActions from "@/components/FollowUpActions";
 import { thDate, sourceLabel } from "@/lib/labels";
 import LogConversation from "@/components/LogConversation";
 import AddFollowUp from "@/components/AddFollowUp";
@@ -90,16 +91,15 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
             {followUps.length === 0 && <p className="text-sm text-[#94A3B8] mb-2">{t(lang, "leads.detail.noFollowups")}</p>}
             <div className="space-y-2 mb-3">
               {followUps.map((fu: any) => (
-                <div key={fu.id} className="flex items-center justify-between text-sm border border-[#E2E8F0] rounded-md px-3 py-2">
+                <div key={fu.id} className="flex flex-wrap items-center justify-between gap-2 text-sm border border-[#E2E8F0] rounded-md px-3 py-2">
                   <div>
                     <span className={fu.status === "done" ? "line-through text-[#94A3B8]" : "text-[#334155]"}>
-                      {thDate(fu.due_date)}{fu.due_time ? ` ${fu.due_time}` : ""}
+                      {fu.task_type ? <span className="badge st-contacted mr-1.5">{fu.task_type}</span> : null}
+                      {thDate(fu.due_date, lang)}{fu.due_time ? ` ${fu.due_time}` : ""}
                     </span>
-                    {fu.latest_note && <p className="text-xs text-[#64748B]">{fu.latest_note}</p>}
+                    {fu.latest_note && <p className="text-xs text-[#64748B] mt-0.5">{fu.latest_note}</p>}
                   </div>
-                  <span className={`badge ${fu.status === "done" ? "st-won" : "st-contacted"}`}>
-                    {fu.status === "done" ? "เสร็จ" : "ค้าง"}
-                  </span>
+                  <FollowUpActions id={fu.id} status={fu.status} confirmed={fu.confirmed} />
                 </div>
               ))}
             </div>
