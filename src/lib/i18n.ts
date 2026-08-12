@@ -226,6 +226,14 @@ const D = {
   "log.noContact": { th: "ยังไม่มีคอนแทกต์ให้ลงบันทึก", en: "No contact to log against" },
   "visit.title": { th: "นัดดูหน้างาน", en: "Schedule visit" },
   "visit.save": { th: "บันทึกนัด", en: "Save visit" },
+  "visit.reopen": { th: "เปิดงานใหม่", en: "Reopen" },
+  "visit.confirm": { th: "ยืนยันนัด", en: "Confirm visit" },
+  "visit.confirmed": { th: "ยืนยันนัดแล้ว", en: "Confirmed" },
+  "visit.done": { th: "เสร็จแล้ว", en: "Done" },
+  "visit.cancel": { th: "ยกเลิกนัด", en: "Cancel" },
+  "fu.done": { th: "เสร็จ", en: "Done" },
+  "fu.open": { th: "ค้าง", en: "Open" },
+  "common.cancelled": { th: "ยกเลิกแล้ว", en: "Cancelled" },
   "visit.placeHint": { th: "สถานที่นัด / เตือนตัวเอง", en: "Visit location / note" },
 
   // contacts
