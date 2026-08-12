@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   const logs = Array.isArray(body.logs) ? body.logs : [];
   const followUps = Array.isArray(body.follow_ups) ? body.follow_ups : [];
 
-  const C = 'id, legacy_id, full_name, primary_phone, normalized_phone, email, line_id, fb_name, province, preferred_contact_time, first_source, first_lead_date, latest_lead_id, interest, budget_range, land_status, timeline, crm_stage, contacted_yet, last_contact_date, last_contact_channel, last_contact_outcome, latest_conversation_summary, next_followup_date, next_action, owner, priority, do_not_contact, notes, all_linked_lead_ids, log_count';
+  const C = 'legacy_id, full_name, primary_phone, normalized_phone, email, line_id, fb_name, province, preferred_contact_time, first_source, first_lead_date, latest_lead_id, interest, budget_range, land_status, timeline, crm_stage, contacted_yet, last_contact_date, last_contact_channel, last_contact_outcome, latest_conversation_summary, next_followup_date, next_action, owner, priority, do_not_contact, notes, all_linked_lead_ids, log_count';
 
   try {
     const stats = { contacts: 0, contacts_merged: 0, contacts_errors: 0, leads: 0, logs: 0, follow_ups: 0, skipped: 0 };
