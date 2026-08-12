@@ -7,28 +7,46 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ stage?: string; q?: string; tab?: string }> }) {
+export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ stage?: string; q?: string; tab?: string; page?: string }> }) {
   const lang = await getServerLang();
   const params = await searchParams;
   const tab = params.tab === "inbox" ? "inbox" : "all";
+  const PAGE_SIZE = 50;
+  const page = Math.max(1, parseInt(params.page ?? "1", 10) || 1);
 
   const conds: string[] = [];
   const vals: unknown[] = [];
   if (params.stage) { vals.push(params.stage); conds.push(`l.crm_stage = $${vals.length}`); }
   if (params.q) { vals.push(`%${params.q}%`); conds.push(`(l.full_name ilike $${vals.length} or l.phone ilike $${vals.length})`); }
   if (tab === "inbox") conds.push("l.owner_id is null");
+  const where = conds.length ? `where ${conds.join(" and ")}` : "";
 
-  const [leads, inboxRows] = await Promise.all([
-    q(
-      `select l.*, u.full_name as owner_name
-       from leads l left join users u on u.id = l.owner_id
-       ${conds.length ? `where ${conds.join(" and ")}` : ""}
-       order by l.lead_date desc limit 200`,
-      vals
-    ),
+  const [inboxRows, countRows] = await Promise.all([
     q(`select count(*)::int as n from leads where owner_id is null`),
+    q(`select count(*)::int as n from leads l ${where}`, vals),
   ]);
   const inboxCount = inboxRows[0]?.n ?? 0;
+  const total = countRows[0]?.n ?? 0;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+
+  const leads = await q(
+    `select l.*, u.full_name as owner_name
+     from leads l left join users u on u.id = l.owner_id
+     ${where}
+     order by l.lead_date desc limit ${PAGE_SIZE} offset ${(safePage - 1) * PAGE_SIZE}`,
+    vals
+  );
+
+  const pageHref = (p: number) => {
+    const sp = new URLSearchParams();
+    if (tab === "inbox") sp.set("tab", "inbox");
+    if (params.stage) sp.set("stage", params.stage);
+    if (params.q) sp.set("q", params.q);
+    if (p > 1) sp.set("page", String(p));
+    const qs = sp.toString();
+    return qs ? `/leads?${qs}` : "/leads";
+  };
 
   return (
     <div className="space-y-6">
@@ -118,6 +136,38 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
             )}
           </tbody>
         </table>
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-[#E2E8F0]">
+            <span className="text-xs text-[#64748B]">
+              {total.toLocaleString()} {t(lang, "leads.total")} · {t(lang, "leads.page", { n: safePage, m: totalPages })}
+            </span>
+            <div className="flex items-center gap-1.5">
+              {safePage > 1 ? (
+                <a href={pageHref(safePage - 1)} className="btn-secondary !py-1.5 !px-3 !text-xs">‹ {t(lang, "leads.prev")}</a>
+              ) : (
+                <span className="btn-secondary !py-1.5 !px-3 !text-xs opacity-40 pointer-events-none">‹ {t(lang, "leads.prev")}</span>
+              )}
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter((p) => p === 1 || p === totalPages || Math.abs(p - safePage) <= 2)
+                .reduce<React.ReactNode[]>((acc, p, idx, arr) => {
+                  if (idx > 0 && p - (arr[idx - 1] as number) > 1) acc.push(<span key={`e${p}`} className="text-xs text-[#94A3B8] px-0.5">…</span>);
+                  acc.push(
+                    p === safePage ? (
+                      <span key={p} className="w-8 h-8 inline-flex items-center justify-center rounded-md bg-[#0E7490] text-white text-xs font-semibold">{p}</span>
+                    ) : (
+                      <a key={p} href={pageHref(p)} className="w-8 h-8 inline-flex items-center justify-center rounded-md text-xs font-medium text-[#334155] hover:bg-[#EEF2F7]">{p}</a>
+                    )
+                  );
+                  return acc;
+                }, [])}
+              {safePage < totalPages ? (
+                <a href={pageHref(safePage + 1)} className="btn-secondary !py-1.5 !px-3 !text-xs">{t(lang, "leads.next")} ›</a>
+              ) : (
+                <span className="btn-secondary !py-1.5 !px-3 !text-xs opacity-40 pointer-events-none">{t(lang, "leads.next")} ›</span>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
