@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { t, getClientLang } from "@/lib/i18n";
 
-export default function ClaimButton({ leadId }: { leadId: string }) {
+export default function ClaimButton({ leadId, onClaimed }: { leadId: string; onClaimed?: () => void }) {
   const router = useRouter();
   const lang = getClientLang();
   const [busy, setBusy] = useState(false);
@@ -12,8 +12,12 @@ export default function ClaimButton({ leadId }: { leadId: string }) {
   const claim = async () => {
     setBusy(true);
     const res = await fetch(`/api/leads/${leadId}/claim`, { method: "POST" });
-    if (res.ok) router.refresh();
-    else setBusy(false);
+    if (res.ok) {
+      router.refresh();
+      onClaimed?.();
+    } else {
+      setBusy(false);
+    }
   };
 
   return (

@@ -124,7 +124,7 @@ export default function Board() {
                     <p className="font-mono text-xs text-[#94A3B8] mt-0.5 truncate">{lead.phone ?? "—"}</p>
                     {lead.interest && <p className="text-xs text-[#64748B] mt-1 truncate">{lead.interest}</p>}
                     <div className="mt-1.5" onClick={(e) => e.stopPropagation()}>
-                      <ClaimButton leadId={lead.id} />
+                      <ClaimButton leadId={lead.id} onClaimed={load} />
                     </div>
                   </div>
                 ))}
