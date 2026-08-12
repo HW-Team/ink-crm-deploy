@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import StageBadge from "./StageBadge";
 import ClaimButton from "./ClaimButton";
+import FollowUpActions from "./FollowUpActions";
 import { stageLabel } from "@/lib/labels";
 import { t, getClientLang } from "@/lib/i18n";
 
@@ -148,6 +149,14 @@ export default function Board() {
                     <p className="font-medium text-[#0F172A] text-sm truncate">{lead.full_name}</p>
                     <p className="font-mono text-xs text-[#94A3B8] mt-0.5 truncate">{lead.phone ?? "—"}</p>
                     {lead.interest && <p className="text-xs text-[#64748B] mt-1 truncate">{lead.interest}</p>}
+                    {lead.visit_id && (
+                      <div className="mt-1.5 flex items-center gap-1.5 flex-wrap" onClick={(e) => e.stopPropagation()}>
+                        <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-full ${lead.visit_confirmed ? "bg-[#EDE9FE] text-[#6D28D9]" : "bg-[#FEF3C7] text-[#B45309]"}`}>
+                          นัดดูโชว์รูม{lead.visit_date ? " · " + new Date(lead.visit_date + "T12:00:00").toLocaleDateString(lang === "en" ? "en-US" : "th-TH", { day: "numeric", month: "short" }) : ""}{lead.visit_time ? " " + lead.visit_time : ""}
+                        </span>
+                        <FollowUpActions id={lead.visit_id} status={lead.visit_status} confirmed={!!lead.visit_confirmed} />
+                      </div>
+                    )}
                     <div className="mt-1.5 flex items-center justify-between gap-1">
                       <StageBadge stage={lead.crm_stage} lang={lang} />
                       <select

@@ -19,10 +19,17 @@ export async function GET(req: NextRequest) {
 
     const [leads, inboxRows, unownedRows] = await Promise.all([
       q(
-        `select id, full_name, phone, interest, crm_stage, priority
-         from leads
-         where owner_id is not null ${ownerId ? "and owner_id = $1" : ""}
-         order by lead_date desc limit 300`,
+        `select l.id, l.full_name, l.phone, l.interest, l.crm_stage, l.priority,
+                v.id as visit_id, v.due_date as visit_date, v.due_time as visit_time,
+                v.confirmed as visit_confirmed, v.status as visit_status
+         from leads l
+         left join lateral (
+           select id, due_date, due_time, confirmed, status from follow_ups
+           where lead_id = l.id and status = 'open' and task_type like '%นัดดู%'
+           order by due_date limit 1
+         ) v on true
+         where l.owner_id is not null ${ownerId ? "and l.owner_id = $1" : ""}
+         order by l.lead_date desc limit 300`,
         ownerId ? [ownerId] : []
       ),
       q(
