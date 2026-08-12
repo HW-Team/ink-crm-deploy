@@ -37,13 +37,14 @@ export default function MobileNav() {
 
   const isActive = (href: string, key: string) => {
     if (key === "add") return false;
+    if (key === "logout") return false;
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E2E8F0] backdrop-blur">
-      <div className="grid grid-cols-6">
+      <div className="grid" style={{ gridTemplateColumns: `repeat(${items.length + 1}, minmax(0, 1fr))` }}>
         {items.map((it) => {
           const active = isActive(it.href, it.key);
           const add = it.key === "add";
@@ -67,6 +68,14 @@ export default function MobileNav() {
             </Link>
           );
         })}
+        <form action="/api/auth/logout" method="post" className="flex flex-col items-center gap-0.5 py-2.5">
+          <button type="submit" className="flex flex-col items-center gap-0.5 text-[#B91C1C]">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+            </svg>
+            <span className="text-[10px] font-medium">ออก</span>
+          </button>
+        </form>
       </div>
     </nav>
   );
