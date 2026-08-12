@@ -63,10 +63,10 @@ async function seedUsers(): Promise<string[]> {
   }
   seeded.push('admin');
 
-  // Other staff (skip existing, don't touch passwords)
+  // Other staff (skip existing, don't touch passwords).
+  // NOTE: only system accounts here — mockup users (สมชาย/นิด) were removed in
+  // /api/setup/clean and must NOT be re-seeded.
   const others = [
-    { email: 'somchai@inkhomes.co', full_name: 'สมชาย ใจดี', role: 'sales' },
-    { email: 'nid@inkhomes.co', full_name: 'นิด นิลวรรณ', role: 'sales' },
     { email: 'ink-agent@inkhomes.co', full_name: 'Ink Agent', role: 'agent' },
   ];
   for (const s of others) {
