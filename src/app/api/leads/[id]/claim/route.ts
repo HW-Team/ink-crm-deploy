@@ -17,7 +17,11 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
       return NextResponse.json({ error: "ลีดนี้มีเจ้าของแล้ว" }, { status: 409 });
     }
     const updated = await qOne(
-      `update leads set owner_id = $1, owner = $2 where id = $3 returning *`,
+      `update leads
+       set owner_id = $1, owner = $2,
+           crm_stage = case when crm_stage = 'new' then 'contacted' else crm_stage end,
+           updated_at = now()
+       where id = $3 returning *`,
       [me.id, me.full_name, id]
     );
     return NextResponse.json({ lead: updated });
