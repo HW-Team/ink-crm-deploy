@@ -160,6 +160,9 @@ const D = {
   "board.empty": { th: "ยังไม่มีลีดในสเตจนี้", en: "No leads in this stage" },
   "board.moveStage": { th: "เลื่อนสเตจ", en: "Move stage" },
   "board.claimFirst": { th: "ลีดใหม่รอรับงานในหน้า ลีด", en: "New leads wait in the Leads page" },
+  "board.me": { th: "ฉัน", en: "My work" },
+  "board.allUsers": { th: "ทุกคน", en: "Everyone" },
+  "board.myOnly": { th: "เฉพาะงานของฉัน", en: "Only my leads" },
 
   // calendar
   "cal.title": { th: "ปฏิทิน", en: "Calendar" },
