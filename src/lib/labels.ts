@@ -1,15 +1,5 @@
-export const STAGE_LABELS: Record<string, string> = {
-  new: "ใหม่",
-  contacted: "ติดต่อแล้ว",
-  qualified: "สนใจ",
-  site_visit: "นัดดู",
-  proposal: "เสนอราคา",
-  won: "ปิดการขาย",
-  unqualified: "ไม่ผ่าน",
-  lost: "หลุด",
-  duplicate: "ซ้ำ",
-  no_answer: "ไม่ตอบ",
-};
+import type { Lang } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
 export const STAGE_CLASS: Record<string, string> = {
   new: "st-new",
@@ -24,24 +14,32 @@ export const STAGE_CLASS: Record<string, string> = {
   no_answer: "st-no_answer",
 };
 
-export const SOURCE_LABELS: Record<string, string> = {
-  FACEBOOK: "Facebook",
-  WEBSITE: "เว็บไซต์",
-  LINE: "LINE",
-  CALL: "โทร",
-  OTHER: "อื่นๆ",
-};
-
-export function thDate(iso: string | null | undefined): string {
-  if (!iso) return "—";
-  const d = new Date(iso);
-  if (isNaN(d.getTime())) return "—";
-  return d.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" });
+export function stageLabel(lang: Lang, stage: string): string {
+  return t(lang, `stage.${stage}`);
 }
 
-export function thDateTime(iso: string | null | undefined): string {
+export function sourceLabel(lang: Lang, source: string): string {
+  return t(lang, `src.${source}`);
+}
+
+export function channelLabel(lang: Lang, channel: string): string {
+  return t(lang, `ch.${channel}`);
+}
+
+export function priorityLabel(lang: Lang, p: string): string {
+  return t(lang, `common.priority.${p}`);
+}
+
+export function thDate(iso: string | null | undefined, lang: Lang = "th"): string {
   if (!iso) return "—";
   const d = new Date(iso);
   if (isNaN(d.getTime())) return "—";
-  return d.toLocaleString("th-TH", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  return d.toLocaleDateString(lang === "en" ? "en-US" : "th-TH", { day: "numeric", month: "short", year: "numeric" });
+}
+
+export function thDateTime(iso: string | null | undefined, lang: Lang = "th"): string {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  return d.toLocaleString(lang === "en" ? "en-US" : "th-TH", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }
