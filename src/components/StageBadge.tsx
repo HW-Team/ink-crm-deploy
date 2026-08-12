@@ -1,5 +1,5 @@
 import { stageLabel } from "@/lib/labels";
-import { t, getServerLang, type Lang } from "@/lib/i18n";
+import { t, type Lang } from "@/lib/i18n";
 
 export default function StageBadge({ stage, lang = "th" }: { stage: string | null | undefined; lang?: Lang }) {
   const classes: Record<string, string> = {
