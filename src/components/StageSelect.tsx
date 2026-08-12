@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { stageLabel } from "@/lib/labels";
 import { t, getClientLang } from "@/lib/i18n";
@@ -11,26 +11,32 @@ const STAGES = ["new", "contacted", "qualified", "site_visit", "proposal", "won"
 export default function StageSelect({ leadId, stage, compact }: { leadId: string; stage: string; compact?: boolean }) {
   const router = useRouter();
   const lang = getClientLang();
+  const [val, setVal] = useState(stage);
   const [busy, setBusy] = useState(false);
 
+  // keep in sync when the server re-renders with a new stage
+  useEffect(() => { setVal(stage); }, [stage]);
+
   const change = async (next: string) => {
-    if (next === stage) return;
+    if (next === val || busy) return;
+    setVal(next);
     setBusy(true);
     const res = await fetch(`/api/leads/${leadId}/stage`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ stage: next }),
     });
+    setBusy(false);
     if (res.ok) {
       router.refresh();
     } else {
-      setBusy(false);
+      setVal(stage); // revert on failure
     }
   };
 
   return (
     <select
-      value={stage}
+      value={val}
       disabled={busy}
       onChange={(e) => change(e.target.value)}
       onClick={(e) => e.stopPropagation()}
