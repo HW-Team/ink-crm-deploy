@@ -1,6 +1,5 @@
 // Lightweight i18n: Thai default, English toggle. Language stored in a `lang` cookie.
 // Server components: const lang = await getServerLang();  Client: pass lang as prop.
-import { cookies } from "next/headers";
 
 export type Lang = "th" | "en";
 
@@ -271,16 +270,6 @@ export function t(lang: Lang, key: string, vars?: Record<string, string | number
   let s = e[lang] ?? e.th;
   if (vars) for (const [k, v] of Object.entries(vars)) s = s.replace(`{${k}}`, String(v));
   return s;
-}
-
-// Server-side: read the lang cookie.
-export async function getServerLang(): Promise<Lang> {
-  try {
-    const jar = await cookies();
-    return jar.get("lang")?.value === "en" ? "en" : "th";
-  } catch {
-    return "th";
-  }
 }
 
 // Client-side: read the lang cookie (for client components without a prop).
