@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     for (const c of contacts) {
       const ins = await qOne<{ id: string }>(
         `insert into contacts (${C}) values (
-           $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31)
+           $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30)
          on conflict (legacy_id) do nothing returning id`,
         [c.legacy_id, c.full_name, c.primary_phone, c.normalized_phone, c.email, c.line_id, c.fb_name,
          c.province, c.preferred_contact_time, c.first_source, c.first_lead_date, c.latest_lead_id,
