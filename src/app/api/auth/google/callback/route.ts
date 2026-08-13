@@ -9,10 +9,12 @@ import { createSessionToken, SESSION_COOKIE, SESSION_MAX_AGE } from "@/lib/auth"
 // GET /api/auth/google/callback — exchange code, find-or-create user, set session.
 export async function GET(req: NextRequest) {
   const jar = await cookies();
+  // Public origin — req.nextUrl.origin is http://localhost:3000 behind the proxy.
+  const origin = (process.env.APP_URL || req.nextUrl.origin).replace(/\/$/, "");
   const state = req.nextUrl.searchParams.get("state") || "";
   const saved = jar.get(GOOGLE_STATE_COOKIE)?.value;
   const fail = (msg: string) =>
-    NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(msg)}`, req.nextUrl.origin));
+    NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(msg)}`, origin));
 
   if (!googleConfigured()) return fail("Google ยังไม่ได้ตั้งค่า");
   if (!saved || state !== saved) return fail("state ไม่ตรงกัน — ลองใหม่อีกครั้ง");
@@ -22,7 +24,7 @@ export async function GET(req: NextRequest) {
   if (!code) return fail("ไม่มีรหัสยืนยันจาก Google");
 
   try {
-    const { email, name, sub } = await exchangeCode(code, req.nextUrl.origin);
+    const { email, name, sub } = await exchangeCode(code, `${origin}/api/auth/google/callback`);
     if (!email) return fail("Google ไม่ได้ส่งอีเมลให้ — ใช้บัญชีอื่น");
 
     // existing user?
@@ -50,7 +52,7 @@ export async function GET(req: NextRequest) {
       if (!user) return fail("สร้างบัญชีไม่สำเร็จ");
     }
 
-    const res = NextResponse.redirect(new URL("/", req.nextUrl.origin));
+    const res = NextResponse.redirect(new URL("/", origin));
     res.cookies.set(SESSION_COOKIE, createSessionToken(user.id), {
       httpOnly: true, sameSite: "lax", secure: false, path: "/",
       maxAge: SESSION_MAX_AGE,

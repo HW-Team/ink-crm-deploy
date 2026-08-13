@@ -10,7 +10,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Google Sign-In ยังไม่ได้ตั้งค่า (GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET)" }, { status: 503 });
   }
   const state = crypto.randomBytes(24).toString("hex");
-  const res = NextResponse.redirect(googleAuthUrl(state, req.nextUrl.origin));
+  const origin = (process.env.APP_URL || req.nextUrl.origin).replace(/\/$/, "");
+  const res = NextResponse.redirect(googleAuthUrl(state, origin));
   res.cookies.set(GOOGLE_STATE_COOKIE, state, {
     httpOnly: true, sameSite: "lax", secure: false, path: "/",
     maxAge: GOOGLE_STATE_MAX_AGE,
