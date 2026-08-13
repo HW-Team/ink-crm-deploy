@@ -7,18 +7,22 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ stage?: string; q?: string; tab?: string; page?: string }> }) {
+export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ stage?: string; q?: string; tab?: string; page?: string; from?: string; to?: string }> }) {
   const lang = await getServerLang();
   const params = await searchParams;
   const tab = params.tab === "inbox" ? "inbox" : "all";
   const PAGE_SIZE = 50;
   const page = Math.max(1, parseInt(params.page ?? "1", 10) || 1);
+  const from = /^\d{4}-\d{2}-\d{2}$/.test(params.from ?? "") ? params.from! : "";
+  const to = /^\d{4}-\d{2}-\d{2}$/.test(params.to ?? "") ? params.to! : "";
 
   const conds: string[] = [];
   const vals: unknown[] = [];
   if (params.stage) { vals.push(params.stage); conds.push(`l.crm_stage = $${vals.length}`); }
   if (params.q) { vals.push(`%${params.q}%`); conds.push(`(l.full_name ilike $${vals.length} or l.phone ilike $${vals.length})`); }
   if (tab === "inbox") conds.push("l.owner_id is null");
+  if (from) { vals.push(from); conds.push(`l.lead_date >= $${vals.length}::date`); }
+  if (to) { vals.push(to); conds.push(`l.lead_date < ($${vals.length}::date + interval '1 day')`); }
   const where = conds.length ? `where ${conds.join(" and ")}` : "";
 
   const [inboxRows, countRows] = await Promise.all([
@@ -43,6 +47,8 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
     if (tab === "inbox") sp.set("tab", "inbox");
     if (params.stage) sp.set("stage", params.stage);
     if (params.q) sp.set("q", params.q);
+    if (from) sp.set("from", from);
+    if (to) sp.set("to", to);
     if (p > 1) sp.set("page", String(p));
     const qs = sp.toString();
     return qs ? `/leads?${qs}` : "/leads";
@@ -81,9 +87,17 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
         </Link>
       </div>
 
-      <form className="flex gap-3 items-center" method="get">
+      <form className="flex gap-3 items-center flex-wrap" method="get">
         <input type="hidden" name="tab" value={tab} />
         <input name="q" className="inp max-w-xs" placeholder={t(lang, "leads.search")} defaultValue={params.q ?? ""} />
+        <label className="flex items-center gap-1.5 text-xs text-[#64748B]">
+          {t(lang, "leads.from")}
+          <input type="date" name="from" className="inp !w-auto !py-1.5 !text-sm" defaultValue={from} />
+        </label>
+        <label className="flex items-center gap-1.5 text-xs text-[#64748B]">
+          {t(lang, "leads.to")}
+          <input type="date" name="to" className="inp !w-auto !py-1.5 !text-sm" defaultValue={to} />
+        </label>
         {tab === "all" && (
           <select name="stage" className="inp max-w-[180px]" defaultValue={params.stage ?? ""}>
             <option value="">{t(lang, "leads.all")}</option>
@@ -97,6 +111,11 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
           </select>
         )}
         <button className="btn-secondary">{t(lang, "leads.filter")}</button>
+        {(from || to || params.q || params.stage) && (
+          <a href={tab === "inbox" ? "/leads?tab=inbox" : "/leads"} className="text-xs font-medium text-[#0E7490] hover:underline">
+            {t(lang, "leads.clear")}
+          </a>
+        )}
       </form>
 
       <div className="card overflow-x-auto p-0">
