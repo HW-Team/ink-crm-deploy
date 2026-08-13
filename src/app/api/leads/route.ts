@@ -1,5 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { qOne } from "@/lib/supabase";
+import { q, qOne } from "@/lib/supabase";
+import { getSessionUser } from "@/lib/auth";
+
+// GET /api/leads — lightweight lead picker list (session-authed) for
+// calendar quick-add etc. Returns id/full_name/phone/contact_id.
+export async function GET(req: NextRequest) {
+  const me = await getSessionUser();
+  if (!me) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const limit = Math.min(500, Math.max(1, parseInt(req.nextUrl.searchParams.get("limit") ?? "200", 10) || 200));
+  try {
+    const leads = await q(
+      `select id, full_name, phone, contact_id, crm_stage
+       from leads order by lead_date desc limit ${limit}`
+    );
+    return NextResponse.json({ leads });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}
 
 // POST /api/leads — create lead from UI form
 export async function POST(req: NextRequest) {
