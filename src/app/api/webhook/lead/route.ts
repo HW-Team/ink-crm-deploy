@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
   const np = normPhone(phone);
   const email = S(b.email) || S(b.email_address);
   const province = S(b.province) || S(b.location) || S(b.city);
+  const prefContactTime = S(b.preferred_contact_time) || S(b.contact_time) || S(b.best_time);
   const interest = S(b.interest) || S(b.project_type) || S(b.message) || S(b.comments);
   const metaLeadId = S(b.meta_lead_id) || S(b.leadgen_id) || S(b.fb_lead_id);
   const rawSource = S(b.source) || S(b.channel) || 'OTHER';
@@ -71,9 +72,9 @@ export async function POST(req: NextRequest) {
     // 3) create the lead (unowned → inbox)
     const mergedInterest = formName && interest ? `${interest} (${formName})` : (interest || formName);
     const ins = await qOne<{ id: string }>(
-      `insert into leads (contact_id, lead_date, crm_stage, priority, full_name, phone, email, province, source, interest, meta_lead_id)
-       values ($1, now(), 'new', 'medium', $2, $3, $4, $5, $6, $7, $8) returning id`,
-      [contactId, name || 'ไม่ระบุชื่อ', phone, email, province, source, mergedInterest, metaLeadId]
+      `insert into leads (contact_id, lead_date, crm_stage, priority, full_name, phone, email, province, source, interest, meta_lead_id, preferred_contact_time)
+       values ($1, now(), 'new', 'medium', $2, $3, $4, $5, $6, $7, $8, $9) returning id`,
+      [contactId, name || 'ไม่ระบุชื่อ', phone, email, province, source, mergedInterest, metaLeadId, prefContactTime]
     );
 
     return NextResponse.json({ ok: true, duplicate: false, lead_id: ins?.id, contact_id: contactId, stage: 'new' });
