@@ -45,6 +45,7 @@ const D = {
   "common.phone": { th: "เบอร์โทร", en: "Phone" },
   "common.email": { th: "อีเมล", en: "Email" },
   "common.line": { th: "Line ID", en: "Line ID" },
+  "common.prefTime": { th: "ช่วงเวลาติดต่อ", en: "Preferred contact time" },
   "common.name": { th: "ชื่อ", en: "Name" },
   "common.fullname": { th: "ชื่อ-นามสกุล", en: "Full name" },
   "common.interest": { th: "ประเภทโครงการ", en: "Project type" },
