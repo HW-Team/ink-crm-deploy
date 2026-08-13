@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
   const cfPref = cf(["preferredcontacttime", "contacttime", "besttimetocall", "เวลาติดต่อ", "ช่วงเวลาติดต่อ", "เวลาสะดวก", "เวลาว่าง"]);
   const cfLine = cf(["line", "lineid", "ไลน์", "ไอดีไลน์"]);
   const cfBudget = cf(["budget", "budgetrange", "งบ", "งบประมาณ", "price", "ราคา"]);
-  const cfTimeline = cf(["timeline", "ระยะเวลา", "plan", "เมื่อไหร่", "กำหนด"]);
+  const cfTimeline = cf(["timeline", "ระยะเวลา", "plan", "เมื่อไหร่", "เมื่อไร", "กำหนด", "ต้องการสร้างเมื่อไหร่", "ต้องการสร้าง", "จะสร้างเมื่อไหร่", "เวลาเริ่มสร้าง"]);
   const cfHouse = cf(["housetype", "type", "housestyle", "แบบบ้าน", "ประเภทบ้าน", "projecttype", "โครงการ"]);
   const cfMsg = cf(["message", "interest", "comment", "รายละเอียด", "ความสนใจ", "ข้อความ"]);
 
