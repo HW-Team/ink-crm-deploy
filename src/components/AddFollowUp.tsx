@@ -55,7 +55,6 @@ export default function AddFollowUp({ contactId, leadId }: { contactId: string |
           <select className="inp" value={form.task_type} onChange={set("task_type")}>
             <option>{t(lang, "fu.type.call")}</option>
             <option>{t(lang, "fu.type.visit")}</option>
-            <option>{t(lang, "fu.type.land")}</option>
             <option>{t(lang, "fu.type.proposal")}</option>
             <option>อื่นๆ</option>
           </select>

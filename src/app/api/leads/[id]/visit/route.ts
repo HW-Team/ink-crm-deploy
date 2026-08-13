@@ -22,7 +22,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 
     const fu = await qOne(
       `insert into follow_ups (contact_id, lead_id, due_date, due_time, task_type, owner, owner_id, priority, status, latest_note, location)
-       values ($1,$2,$3,$4,'นัดดูโชว์รูม/ที่ดิน',$5,$6,'high','open',$7,$8) returning *`,
+       values ($1,$2,$3,$4,'นัดดูโชว์รูม',$5,$6,'high','open',$7,$8) returning *`,
       [lead.contact_id, id, dueDate, body.due_time || null, me.full_name, me.id, body.note || null, body.location || null]
     );
 
