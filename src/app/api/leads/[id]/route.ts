@@ -11,12 +11,10 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
 
   const { id } = await params;
   try {
-    await qRun(
-      `delete from conversation_logs where lead_id = $1;
-       delete from follow_ups where lead_id = $1;
-       delete from leads where id = $1;`,
-      [id]
-    );
+    // separate statements — pg prepared statements reject multi-command SQL
+    await qRun(`delete from conversation_logs where lead_id = $1`, [id]);
+    await qRun(`delete from follow_ups where lead_id = $1`, [id]);
+    await qRun(`delete from leads where id = $1`, [id]);
     return NextResponse.json({ ok: true });
   } catch (e: any) {
     return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
