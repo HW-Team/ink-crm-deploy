@@ -80,6 +80,13 @@ export async function notifyCrmLead(doc: CrmLeadDoc, _req?: unknown): Promise<vo
     source: mapSource(doc.source),
     meta_lead_id: clean(doc.fbLeadId) ?? undefined,
     form_name: clean(doc.fbFormId) ?? undefined,
+    // FB Lead Ads custom fields (งบ/จังหวัด/ช่วงเวลาติดต่อ/Line ID/แบบบ้าน...)
+    // + any direct line id on the doc — CRM maps known labels into the lead card.
+    line_id: clean((doc as any).lineId ?? (doc as any).line_id) ?? undefined,
+    fb_custom_fields: (doc.fbCustomFields ?? []).map((f) => ({
+      name: f.name ?? null,
+      values: Array.isArray(f.values) ? f.values : [],
+    })),
   })
 
   try {
