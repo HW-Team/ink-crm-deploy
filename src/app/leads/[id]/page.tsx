@@ -16,8 +16,10 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   const { id } = await params;
 
   const lead = await qOne(
-    `select l.*, u.full_name as owner_name
-     from leads l left join users u on u.id = l.owner_id
+    `select l.*, u.full_name as owner_name, c.line_id as contact_line_id
+     from leads l
+     left join users u on u.id = l.owner_id
+     left join contacts c on c.id = l.contact_id
      where l.id = $1`,
     [id]
   );
@@ -63,6 +65,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <dl className="space-y-2 text-sm">
             {[
               [t(lang, "common.email"), lead.email],
+              [t(lang, "common.line"), lead.contact_line_id],
               [t(lang, "common.province"), lead.province], [t(lang, "common.interest"), lead.interest],
               ["มูลค่า", lead.deal_value ? `฿${Number(lead.deal_value).toLocaleString()}` : null],
               [t(lang, "leads.detail.probability"), lead.probability_pct ? `${lead.probability_pct}%` : null],
