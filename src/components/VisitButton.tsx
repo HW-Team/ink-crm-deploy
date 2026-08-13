@@ -32,7 +32,7 @@ export default function VisitButton({ leadId }: { leadId: string }) {
   };
 
   if (!open) {
-    return <button className="btn-primary" onClick={() => setOpen(true)}>นัดดูโชว์รูม/ที่ดิน</button>;
+    return <button className="btn-primary" onClick={() => setOpen(true)}>{t(lang, "visit.showroom")}</button>;
   }
 
   return (
