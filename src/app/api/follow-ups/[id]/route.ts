@@ -4,6 +4,20 @@ import { qOne, qRun } from "@/lib/supabase";
 
 // PATCH /api/follow-ups/:id — reschedule (due_date/due_time), complete (status=done),
 // cancel (status=cancelled), confirm a visit (confirmed=true, auto-logs), set location.
+// DELETE /api/follow-ups/:id — hard-delete a follow-up (manager only, cleanup).
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const me = await getSessionUser();
+  if (!me) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (me.role !== "manager") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const { id } = await params;
+  try {
+    await qRun(`delete from follow_ups where id = $1`, [id]);
+    return NextResponse.json({ ok: true });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? String(e) }, { status: 500 });
+  }
+}
+
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const me = await getSessionUser();
   if (!me) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
