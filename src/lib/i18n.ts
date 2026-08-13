@@ -240,13 +240,18 @@ const D = {
   "visit.done": { th: "เสร็จแล้ว", en: "Done" },
   "visit.cancel": { th: "ยกเลิกนัด", en: "Cancel" },
   "fu.done": { th: "เสร็จ", en: "Done" },
+  "fu.type": { th: "ประเภท", en: "Type" },
+  "fu.empty": { th: "ไม่มีรายการติดตาม", en: "No follow-ups" },
   "fu.open": { th: "ค้าง", en: "Open" },
   "common.cancelled": { th: "ยกเลิกแล้ว", en: "Cancelled" },
+  "common.contact": { th: "คอนแทกต์", en: "Contact" },
+  "common.status": { th: "สถานะ", en: "Status" },
   "visit.placeHint": { th: "สถานที่นัด / เตือนตัวเอง", en: "Visit location / note" },
 
   // contacts
   "contacts.title": { th: "คอนแทกต์", en: "Contacts" },
   "contacts.notFound": { th: "ไม่พบคอนแทกต์", en: "No contacts found" },
+  "contacts.lastUpdate": { th: "อัปเดตล่าสุด", en: "Last update" },
   "contacts.linked": { th: "ลูกค้า (", en: "Linked leads (" },
   "contacts.firstSource": { th: "แหล่งแรก", en: "First source" },
   "contacts.lastStage": { th: "สเตจล่าสุด", en: "Latest stage" },
