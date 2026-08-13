@@ -66,6 +66,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
             {[
               [t(lang, "common.email"), lead.email],
               [t(lang, "common.line"), lead.contact_line_id],
+              [t(lang, "common.prefTime"), lead.preferred_contact_time],
               [t(lang, "common.province"), lead.province], [t(lang, "common.interest"), lead.interest],
               ["มูลค่า", lead.deal_value ? `฿${Number(lead.deal_value).toLocaleString()}` : null],
               [t(lang, "leads.detail.probability"), lead.probability_pct ? `${lead.probability_pct}%` : null],
