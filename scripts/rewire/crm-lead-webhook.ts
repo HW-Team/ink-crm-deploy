@@ -91,23 +91,39 @@ export async function notifyCrmLead(doc: CrmLeadDoc, _req?: unknown): Promise<vo
 
   try {
     const signature = createHmac('sha256', secret).update(body).digest('hex')
-    const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
-    try {
-      await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Hub-Signature-256': `sha256=${signature}`,
-          'X-Webhook-Signature': signature,
-          'X-Ink-Agent-Key': secret,
-        },
-        body,
-        signal: controller.signal,
-      })
-    } finally {
-      clearTimeout(timer)
+    const attempts = 3
+    for (let attempt = 1; attempt <= attempts; attempt++) {
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Hub-Signature-256': `sha256=${signature}`,
+            'X-Webhook-Signature': signature,
+            'X-Ink-Agent-Key': secret,
+          },
+          body,
+          signal: controller.signal,
+        })
+        if (res.ok) {
+          return // delivered — done
+        }
+        // 4xx = permanent (bad payload/auth) — retrying won't help; log it.
+        if (res.status >= 400 && res.status < 500) {
+          console.error(`[crm-lead] CRM rejected lead (${res.status}) — not retrying`, res.status)
+          return
+        }
+        console.warn(`[crm-lead] CRM responded ${res.status} — retry ${attempt}/${attempts}`)
+      } catch (err) {
+        console.warn(`[crm-lead] CRM delivery failed (attempt ${attempt}/${attempts}): ${(err as Error).message}`)
+      } finally {
+        clearTimeout(timer)
+      }
+      if (attempt < attempts) await new Promise((r) => setTimeout(r, 2000 * attempt))
     }
+    console.error(`[crm-lead] CRM delivery FAILED after ${attempts} attempts for lead ${doc.id ?? '?'} — lead not in CRM`)
   } catch (err) {
     // Never throw: lead creation must not fail because of CRM delivery.
     if (_req && typeof _req === 'object' && 'payload' in _req) {
