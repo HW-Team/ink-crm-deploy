@@ -90,6 +90,15 @@ export async function POST(req: NextRequest) {
       const dup = await qOne<{ id: string }>(`select id from leads where meta_lead_id = $1`, [metaLeadId]);
       if (dup) return NextResponse.json({ ok: true, duplicate: true, lead_id: dup.id });
     }
+    // 1b) accidental double-submit guard: same phone within 10 min
+    //     (double-click / form retry) — legit re-entries later still create new leads
+    if (fNp) {
+      const recent = await qOne<{ id: string }>(
+        `select id from leads where phone = $1 and lead_date > now() - interval '10 minutes' limit 1`,
+        [fNp]
+      );
+      if (recent) return NextResponse.json({ ok: true, duplicate: true, lead_id: recent.id });
+    }
 
     // 2) resolve or create contact
     let contact = fNp
