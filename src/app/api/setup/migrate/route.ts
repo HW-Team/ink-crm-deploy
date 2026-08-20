@@ -33,6 +33,11 @@ export async function POST(req: NextRequest) {
     await qRun(raw3);
     applied.push('0003');
 
+    // 0004: call_logs — โทรออก + บันทึกผลอัตโนมัติ
+    const raw4 = fs.readFileSync(path.join(base, '0004_calls.sql'), 'utf8');
+    await qRun(raw4);
+    applied.push('0004');
+
     // Seed staff accounts (skip existing emails)
     const seeded = await seedUsers();
     return NextResponse.json({ message: 'schema applied', migrations: applied, seeded }, { status: 201 });

@@ -1,10 +1,11 @@
 import { q, qOne } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
 import StageSelect from "@/components/StageSelect";
+import AddFollowUp from "@/components/AddFollowUp";
+import CallButton from "@/components/CallButton";
 import FollowUpActions from "@/components/FollowUpActions";
 import { thDate, sourceLabel } from "@/lib/labels";
 import LogConversation from "@/components/LogConversation";
-import AddFollowUp from "@/components/AddFollowUp";
 import TransferOwner from "@/components/TransferOwner";
 import VisitButton from "@/components/VisitButton";
 import { t, getServerLang } from "@/lib/i18n-server";
@@ -25,11 +26,18 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   );
   if (!lead) return <p className="text-[#B91C1C]">ไม่พบลีด</p>;
 
-  const [logs, followUps, users] = await Promise.all([
+  const [logs, followUps, users, calls] = await Promise.all([
     q(`select * from conversation_logs where contact_id = $1 order by logged_at desc limit 50`, [lead.contact_id]),
     q(`select * from follow_ups where contact_id = $1 order by due_date`, [lead.contact_id]),
     q<{ id: string; full_name: string; role: string }>(
       `select id, full_name, role from users where active = true order by role desc, full_name`
+    ),
+    q<any>(
+      `select c.*, u.full_name as user_name
+       from call_logs c left join users u on u.id = c.user_id
+       where c.lead_id = $1
+       order by c.called_at desc limit 20`,
+      [id]
     ),
   ]);
 
@@ -53,6 +61,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
         <div className="flex items-center justify-between flex-wrap gap-3">
           <StageSelect leadId={lead.id} stage={lead.crm_stage} />
           <div className="flex items-center gap-3">
+            <CallButton leadId={lead.id} phone={lead.phone} />
             <VisitButton leadId={lead.id} />
             <AddFollowUp contactId={lead.contact_id} leadId={lead.id} />
           </div>
@@ -110,6 +119,30 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           </div>
         </section>
       </div>
+
+      <section className="card">
+        <h2 className="text-base font-semibold text-[#0F172A] mb-3">📞 {t(lang, "call.history")}</h2>
+        {calls.length === 0 && <p className="text-sm text-[#94A3B8]">{t(lang, "call.noCalls")}</p>}
+        <div className="space-y-2">
+          {calls.map((c: any) => (
+            <div key={c.id} className="flex flex-wrap items-center justify-between gap-2 text-sm border border-[#E2E8F0] rounded-md px-3 py-2">
+              <div>
+                <span className="font-medium text-[#0F172A]">{c.user_name ?? c.owner ?? "—"}</span>
+                <span className="text-[#64748B]"> · {thDate(c.called_at, lang)}{c.called_at ? ` ${new Date(c.called_at).toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" })}` : ""}</span>
+                {c.outcome && (
+                  <span className={`badge ml-1.5 ${c.outcome === "contacted" ? "st-won" : c.outcome === "no_answer" ? "st-lost" : "st-contacted"}`}>
+                    {c.outcome === "contacted" ? t(lang, "call.contacted")
+                      : c.outcome === "no_answer" ? t(lang, "call.noAnswer")
+                      : c.outcome === "appointment" ? t(lang, "call.appointment") : t(lang, "call.other")}
+                  </span>
+                )}
+                {c.note && <p className="text-xs text-[#64748B] mt-0.5">{c.note}</p>}
+              </div>
+              <span className="font-mono text-xs text-[#94A3B8]">{c.phone ?? ""}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="card">
         <h2 className="text-base font-semibold text-[#0F172A] mb-3">{t(lang, "leads.detail.contactLog")}</h2>
