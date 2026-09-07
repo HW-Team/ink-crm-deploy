@@ -1,6 +1,6 @@
 import { q } from "@/lib/supabase";
 import StageBadge from "@/components/StageBadge";
-import { sourceLabel, stageLabel } from "@/lib/labels";
+import { sourceLabel, relDue, relDate, dayDiff } from "@/lib/labels";
 import { t, getServerLang } from "@/lib/i18n-server";
 import ClaimButton from "@/components/ClaimButton";
 import Link from "next/link";
@@ -35,7 +35,9 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
   const safePage = Math.min(page, totalPages);
 
   const leads = await q(
-    `select l.*, u.full_name as owner_name
+    `select l.*, u.full_name as owner_name,
+            (select min(fu.due_date) from follow_ups fu
+              where fu.lead_id = l.id and fu.status = 'open') as next_due
      from leads l left join users u on u.id = l.owner_id
      ${where}
      order by l.lead_date desc limit ${PAGE_SIZE} offset ${(safePage - 1) * PAGE_SIZE}`,
@@ -118,13 +120,66 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
         )}
       </form>
 
-      <div className="card overflow-x-auto p-0">
+      {/* mobile: scannable cards (the desktop table scrolls sideways endlessly on a phone) */}
+      <ul className="md:hidden space-y-2.5">
+        {leads.map((l) => {
+          const dueDiff = dayDiff(l.next_due);
+          return (
+            <li key={l.id} className="card !p-3.5">
+              <Link href={`/leads/${l.id}`} className="block">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-semibold text-[15px] text-[#0F172A] truncate">{l.full_name}</span>
+                  <StageBadge stage={l.crm_stage} lang={lang} />
+                </div>
+                {l.interest && (
+                  <p className="text-[13px] text-[#5B6B7C] mt-1 line-clamp-1">{l.interest}</p>
+                )}
+                <div className="flex items-center gap-2 mt-2 text-xs text-[#64748B] flex-wrap">
+                  <span>{sourceLabel(lang, l.source)}</span>
+                  <span>· {relDate(lang, l.lead_date)}</span>
+                  {dueDiff !== null && (
+                    <span className={dueDiff > 0 ? "text-[#B91C1C] font-semibold" : ""}>
+                      · {t(lang, "common.due")} {relDue(lang, l.next_due)}
+                    </span>
+                  )}
+                </div>
+              </Link>
+              <div className="flex items-center justify-between gap-2 mt-2">
+                {l.phone ? (
+                  <a
+                    href={`tel:${l.phone.replace(/[^\d+]/g, "")}`}
+                    className="text-[13px] font-mono text-[#0E7490] bg-[#E0F2FE] rounded-md px-2.5 py-1"
+                  >
+                    ☎ {l.phone}
+                  </a>
+                ) : <span />}
+                {l.owner_name
+                  ? <span className="text-[13px] text-[#334155] truncate">{l.owner_name}</span>
+                  : <ClaimButton leadId={l.id} />}
+              </div>
+            </li>
+          );
+        })}
+        {leads.length === 0 && (
+          <li className="card text-center py-10">
+            <div className="text-sm font-medium text-[#334155]">
+              {tab === "inbox" ? t(lang, "leads.inboxEmpty") : t(lang, "leads.notFound")}
+            </div>
+            <div className="text-xs text-[#94A3B8] mt-1">
+              {tab === "inbox" ? t(lang, "leads.inboxHint") : t(lang, "leads.trySearch")}
+            </div>
+          </li>
+        )}
+      </ul>
+
+      {/* desktop: the table */}
+      <div className="card overflow-x-auto p-0 hidden md:block">
         <table className="tbl">
           <thead>
             <tr><th>{t(lang, "common.name")}</th><th>{t(lang, "common.phone")}</th><th>{t(lang, "common.stage")}</th><th>{t(lang, "common.source")}</th><th>{t(lang, "common.interest")}</th><th>{tab === "inbox" ? t(lang, "leads.detail.claim") : t(lang, "common.owner")}</th><th>{t(lang, "common.due")}</th></tr>
           </thead>
           <tbody>
-            {leads.map((l: any) => (
+            {leads.map((l) => (
               <tr key={l.id}>
                 <td className="font-medium text-[#0F172A]">
                   <a href={`/leads/${l.id}`} className="hover:text-[#0E7490]">{l.full_name}</a>
@@ -138,7 +193,15 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
                     ? <span className="text-[13px] text-[#334155]">{l.owner_name}</span>
                     : <ClaimButton leadId={l.id} />}
                 </td>
-                <td className="whitespace-nowrap">{new Date(l.lead_date).toLocaleDateString(lang === "en" ? "en-US" : "th-TH", { day: "numeric", month: "short" })}</td>
+                <td className="whitespace-nowrap">
+                  {l.next_due ? (
+                    <span className={dayDiff(l.next_due)! > 0 ? "text-[#B91C1C] font-semibold" : ""}>
+                      {relDue(lang, l.next_due)}
+                    </span>
+                  ) : (
+                    <span className="text-[#94A3B8]">{relDate(lang, l.lead_date)}</span>
+                  )}
+                </td>
               </tr>
             ))}
             {leads.length === 0 && (
@@ -155,39 +218,39 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
             )}
           </tbody>
         </table>
-        {totalPages > 1 && (
-          <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-[#E2E8F0]">
-            <span className="text-xs text-[#64748B]">
-              {total.toLocaleString()} {t(lang, "leads.total")} · {t(lang, "leads.page", { n: safePage, m: totalPages })}
-            </span>
-            <div className="flex items-center gap-1.5">
-              {safePage > 1 ? (
-                <a href={pageHref(safePage - 1)} className="btn-secondary !py-1.5 !px-3 !text-xs">‹ {t(lang, "leads.prev")}</a>
-              ) : (
-                <span className="btn-secondary !py-1.5 !px-3 !text-xs opacity-40 pointer-events-none">‹ {t(lang, "leads.prev")}</span>
-              )}
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter((p) => p === 1 || p === totalPages || Math.abs(p - safePage) <= 2)
-                .reduce<React.ReactNode[]>((acc, p, idx, arr) => {
-                  if (idx > 0 && p - (arr[idx - 1] as number) > 1) acc.push(<span key={`e${p}`} className="text-xs text-[#94A3B8] px-0.5">…</span>);
-                  acc.push(
-                    p === safePage ? (
-                      <span key={p} className="w-8 h-8 inline-flex items-center justify-center rounded-md bg-[#0E7490] text-white text-xs font-semibold">{p}</span>
-                    ) : (
-                      <a key={p} href={pageHref(p)} className="w-8 h-8 inline-flex items-center justify-center rounded-md text-xs font-medium text-[#334155] hover:bg-[#EEF2F7]">{p}</a>
-                    )
-                  );
-                  return acc;
-                }, [])}
-              {safePage < totalPages ? (
-                <a href={pageHref(safePage + 1)} className="btn-secondary !py-1.5 !px-3 !text-xs">{t(lang, "leads.next")} ›</a>
-              ) : (
-                <span className="btn-secondary !py-1.5 !px-3 !text-xs opacity-40 pointer-events-none">{t(lang, "leads.next")} ›</span>
-              )}
-            </div>
-          </div>
-        )}
       </div>
+      {totalPages > 1 && (
+        <div className="card flex items-center justify-between gap-3 px-4 py-3">
+          <span className="text-xs text-[#64748B]">
+            {total.toLocaleString()} {t(lang, "leads.total")} · {t(lang, "leads.page", { n: safePage, m: totalPages })}
+          </span>
+          <div className="flex items-center gap-1.5">
+            {safePage > 1 ? (
+              <a href={pageHref(safePage - 1)} className="btn-secondary !py-1.5 !px-3 !text-xs">‹ {t(lang, "leads.prev")}</a>
+            ) : (
+              <span className="btn-secondary !py-1.5 !px-3 !text-xs opacity-40 pointer-events-none">‹ {t(lang, "leads.prev")}</span>
+            )}
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((p) => p === 1 || p === totalPages || Math.abs(p - safePage) <= 2)
+              .reduce<React.ReactNode[]>((acc, p, idx, arr) => {
+                if (idx > 0 && p - (arr[idx - 1] as number) > 1) acc.push(<span key={`e${p}`} className="text-xs text-[#94A3B8] px-0.5">…</span>);
+                acc.push(
+                  p === safePage ? (
+                    <span key={p} className="w-8 h-8 inline-flex items-center justify-center rounded-md bg-[#0E7490] text-white text-xs font-semibold">{p}</span>
+                  ) : (
+                    <a key={p} href={pageHref(p)} className="w-8 h-8 inline-flex items-center justify-center rounded-md text-xs font-medium text-[#334155] hover:bg-[#EEF2F7]">{p}</a>
+                  )
+                );
+                return acc;
+              }, [])}
+            {safePage < totalPages ? (
+              <a href={pageHref(safePage + 1)} className="btn-secondary !py-1.5 !px-3 !text-xs">{t(lang, "leads.next")} ›</a>
+            ) : (
+              <span className="btn-secondary !py-1.5 !px-3 !text-xs opacity-40 pointer-events-none">{t(lang, "leads.next")} ›</span>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

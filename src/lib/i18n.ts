@@ -63,6 +63,15 @@ const D = {
   "common.noData": { th: "ยังไม่มีข้อมูล", en: "No data" },
   "common.loading": { th: "กำลังโหลด...", en: "Loading…" },
   "common.error": { th: "เกิดข้อผิดพลาด", en: "Something went wrong" },
+
+  // relative time
+  "rel.today": { th: "วันนี้", en: "today" },
+  "rel.yesterday": { th: "เมื่อวาน", en: "yesterday" },
+  "rel.tomorrow": { th: "พรุ่งนี้", en: "tomorrow" },
+  "rel.daysAgo": { th: "{n} วันก่อน", en: "{n}d ago" },
+  "rel.inDays": { th: "อีก {n} วัน", en: "in {n}d" },
+  "rel.overdue": { th: "เลยกำหนด", en: "overdue" },
+  "rel.overdueDays": { th: "เลยกำหนด {n} วัน", en: "{n}d overdue" },
   "common.saving": { th: "กำลังบันทึก...", en: "Saving…" },
   "common.month.jan": { th: "มกราคม", en: "January" },
   "common.month.feb": { th: "กุมภาพันธ์", en: "February" },
@@ -159,6 +168,11 @@ const D = {
   "leads.detail.followups": { th: "นัดติดตาม", en: "Follow-ups" },
   "leads.detail.noFollowups": { th: "ไม่มีรายการติดตาม", en: "No follow-ups" },
   "leads.detail.claim": { th: "รับงาน", en: "Claim" },
+  "leads.detail.notFound": { th: "ไม่พบลีด", en: "Lead not found" },
+  "fu.listTitle": { th: "งานที่ทีมต้องตามต่อ", en: "What the team owes customers next" },
+  "fu.tabOpen": { th: "งานค้าง", en: "Open" },
+  "fu.tabAll": { th: "ทั้งหมด", en: "All" },
+  "fu.count": { th: "รายการ", en: "items" },
   "leads.detail.transfer": { th: "โอนเจ้าของ", en: "Transfer" },
 
   // board

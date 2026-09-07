@@ -16,62 +16,63 @@ export default async function DashboardPage() {
   const twoWeeksAgo = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
 
   const [
-    leadRows, contactsRows, followUpsRows, unownedRows,
-    trendRows, weekCounts, activityRows, workloadRows, closesRows, pipelineRows,
+    stageRows, sourceRows, contactsRows, followUpsRows, unownedRows,
+    trendRows, weekCounts, activityRows, workloadRows, closesRows, pipelineRows, latestRows,
   ] = await Promise.all([
-    q(`select crm_stage, source, full_name, owner from leads limit 5000`),
+    q(`select crm_stage, count(*)::int as n from leads group by crm_stage`),
+    q(`select source, count(*)::int as n from leads group by source`),
     q(`select count(*)::int as n from contacts`),
     q(`select count(*)::int as n from follow_ups where status = 'open'`),
     q(`select count(*)::int as n from leads where owner_id is null`),
     q(
       `select to_char(lead_date, 'MM-DD') as d, count(*)::int as n
-       from leads where lead_date >= $1 group by 1 order by 1`,
-      [`${twoWeeksAgo}T00:00:00`]
+       from leads where lead_date >= $1::date group by 1 order by 1`,
+      [twoWeeksAgo],
     ),
     q(
       `select
-         count(*) filter (where lead_date >= $1 and lead_date < $2) as this_week,
-         count(*) filter (where lead_date >= $2 and lead_date < $3) as last_week
+         count(*) filter (where lead_date >= $1::date and lead_date < $2::date) as this_week,
+         count(*) filter (where lead_date >= $2::date and lead_date < $3::date) as last_week
        from leads`,
-      [`${weekAgo}T00:00:00`, `${today}T00:00:00`, `${twoWeeksAgo}T00:00:00`]
+      [weekAgo, today, twoWeeksAgo],
     ),
     q(
       `select
-         count(*) filter (where lead_date >= $1) as new_today,
-         (select count(*) from conversation_logs where logged_at >= $1) as logs_today,
-         (select count(*) from follow_ups where status = 'done' and completed_at >= $1) as done_today,
-         (select count(*) from follow_ups where status = 'open' and due_date = $2) as due_today
+         count(*) filter (where lead_date >= $1::date) as new_today,
+         (select count(*) from conversation_logs where logged_at >= $1::date) as logs_today,
+         (select count(*) from follow_ups where status = 'done' and completed_at >= $1::date) as done_today,
+         (select count(*) from follow_ups where status = 'open' and due_date = $2::date) as due_today
        from leads`,
-      [`${today}T00:00:00`, today]
+      [today, today],
     ),
     q(
       `select u.full_name, u.role,
-         count(l.id) filter (where l.owner_id = u.id) as owned_leads,
-         count(l.id) filter (where l.owner_id = u.id and l.crm_stage = 'new') as uncontacted,
-         count(fu.id) filter (where fu.owner_id = u.id and fu.status = 'open') as open_followups
+         (select count(*)::int from leads l where l.owner_id = u.id) as owned_leads,
+         (select count(*)::int from leads l where l.owner_id = u.id and l.crm_stage = 'new') as uncontacted,
+         (select count(*)::int from follow_ups fu where fu.owner_id = u.id and fu.status = 'open') as open_followups
        from users u
-       left join leads l on 1 = 1
-       left join follow_ups fu on 1 = 1
-       group by u.id, u.full_name, u.role
+       where u.active = true
        order by owned_leads desc`
     ),
     q(
       `select count(*)::int as n from leads
-       where crm_stage = 'won' and updated_at >= $1`, [`${weekAgo}T00:00:00`]
+       where crm_stage = 'won' and updated_at >= $1::date`, [weekAgo]
     ),
     q(
       `select crm_stage, count(*)::int as n, coalesce(sum(deal_value), 0)::numeric(12,0) as total
        from leads where owner_id is not null group by crm_stage`
     ),
+    q(
+      `select id, full_name, crm_stage, source, owner from leads
+       order by lead_date desc limit 10`
+    ),
   ]);
 
-  const totalLeads = leadRows.length;
+  const totalLeads = stageRows.reduce((a: number, r) => a + (r.n ?? 0), 0);
   const byStage = new Map<string, number>();
   const bySource = new Map<string, number>();
-  for (const l of leadRows) {
-    byStage.set(l.crm_stage, (byStage.get(l.crm_stage) ?? 0) + 1);
-    bySource.set(l.source, (bySource.get(l.source) ?? 0) + 1);
-  }
+  for (const r of stageRows) byStage.set(r.crm_stage, r.n);
+  for (const r of sourceRows) bySource.set(r.source, r.n);
   const openFollowUps = followUpsRows[0]?.n ?? 0;
   const totalContacts = contactsRows[0]?.n ?? 0;
   const unowned = unownedRows[0]?.n ?? 0;
@@ -233,7 +234,7 @@ export default async function DashboardPage() {
             <tr><th>{t(lang, "common.name")}</th><th>{t(lang, "common.stage")}</th><th>{t(lang, "common.source")}</th><th>{t(lang, "common.owner")}</th></tr>
           </thead>
           <tbody>
-            {leadRows.slice(0, 10).map((l: any) => (
+            {latestRows.map((l: any) => (
               <tr key={l.id}>
                 <td className="font-medium text-[#0F172A]">
                   <a href={`/leads/${l.id}`} className="hover:text-[#0E7490]">{l.full_name}</a>
@@ -243,7 +244,7 @@ export default async function DashboardPage() {
                 <td>{l.owner ?? "—"}</td>
               </tr>
             ))}
-            {leadRows.length === 0 && (
+            {latestRows.length === 0 && (
               <tr><td colSpan={4} className="text-center text-[#94A3B8] py-8">{t(lang, "dash.noLeads")}</td></tr>
             )}
           </tbody>

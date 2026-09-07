@@ -4,10 +4,11 @@ import StageSelect from "@/components/StageSelect";
 import AddFollowUp from "@/components/AddFollowUp";
 import CallButton from "@/components/CallButton";
 import FollowUpActions from "@/components/FollowUpActions";
-import { thDate, sourceLabel } from "@/lib/labels";
+import { thDate, sourceLabel, taskTypeLabel } from "@/lib/labels";
 import LogConversation from "@/components/LogConversation";
 import TransferOwner from "@/components/TransferOwner";
 import VisitButton from "@/components/VisitButton";
+import ClaimButton from "@/components/ClaimButton";
 import { t, getServerLang } from "@/lib/i18n-server";
 
 export const dynamic = "force-dynamic";
@@ -24,7 +25,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
      where l.id = $1`,
     [id]
   );
-  if (!lead) return <p className="text-[#B91C1C]">ไม่พบลีด</p>;
+  if (!lead) return <p className="text-[#B91C1C]">{t(lang, "leads.detail.notFound")}</p>;
 
   const [logs, followUps, users, calls] = await Promise.all([
     q(`select * from conversation_logs where contact_id = $1 order by logged_at desc limit 50`, [lead.contact_id]),
@@ -41,8 +42,28 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
     ),
   ]);
 
+  // "new" means an unclaimed inbox lead — claim first, then act.
+  const unowned = !lead.owner_id;
   return (
-    <div className="space-y-6 max-w-5xl">
+    <div className="space-y-6 max-w-5xl pb-24 md:pb-0">
+      {/* mobile sticky action bar — header actions would scroll out of reach */}
+      <div className="md:hidden fixed inset-x-0 bottom-[68px] z-30 px-3">
+        <div className="bg-white/95 backdrop-blur border border-[#E2E8F0] rounded-xl shadow-lg px-3 py-2 flex items-center gap-2">
+          {unowned ? (
+            <ClaimButton leadId={lead.id} />
+          ) : (
+            <StageSelect leadId={lead.id} stage={lead.crm_stage} compact />
+          )}
+          {lead.phone ? (
+            <a
+              href={`tel:${lead.phone.replace(/[^\d+]/g, "")}`}
+              className="btn-primary !py-1.5 !px-3 text-sm ml-auto shrink-0"
+            >
+              📞 {t(lang, "call.now")}
+            </a>
+          ) : <span className="ml-auto text-xs text-[#94A3B8]">{t(lang, "common.noData")}</span>}
+        </div>
+      </div>
       <header className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-bold text-[#0F172A]">{lead.full_name}</h1>
@@ -107,7 +128,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                 <div key={fu.id} className="flex flex-wrap items-center justify-between gap-2 text-sm border border-[#E2E8F0] rounded-md px-3 py-2">
                   <div>
                     <span className={fu.status === "done" ? "line-through text-[#94A3B8]" : "text-[#334155]"}>
-                      {fu.task_type ? <span className="badge st-contacted mr-1.5">{fu.task_type}</span> : null}
+                      {fu.task_type ? <span className="badge st-contacted mr-1.5">{taskTypeLabel(lang, fu.task_type)}</span> : null}
                       {thDate(fu.due_date, lang)}{fu.due_time ? ` ${fu.due_time}` : ""}
                     </span>
                     {fu.latest_note && <p className="text-xs text-[#64748B] mt-0.5">{fu.latest_note}</p>}
